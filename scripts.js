@@ -1,0 +1,305 @@
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Three.js background
+    initThreeJsBackground();
+    
+    // Reveal animations on scroll
+    initScrollReveal();
+    
+    // Sticky header
+    initStickyHeader();
+    
+    // Form input effects
+    initFormEffects();
+    
+    // Countdown timer
+    initCountdown();
+
+    // Checkbox animation
+    initCheckboxAnimation();
+
+    initFaqAccordion();
+});
+
+// Three.js animated background
+function initThreeJsBackground() {
+    const container = document.getElementById('scene-container');
+    
+    // Scene, camera, and renderer setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    container.appendChild(renderer.domElement);
+    
+    // Create particles
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCount = 1500;
+    
+    const posArray = new Float32Array(particlesCount * 3);
+    for (let i = 0; i < particlesCount * 3; i++) {
+        posArray[i] = (Math.random() - 0.5) * 15;
+    }
+    
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    
+    // Material
+    const particlesMaterial = new THREE.PointsMaterial({
+        size: 0.02,
+        color: 0x6366f1,
+        transparent: true,
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending
+    });
+    
+    // Mesh
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particlesMesh);
+    
+    // Position camera
+    camera.position.z = 5;
+    
+    // Mouse move effect
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    document.addEventListener('mousemove', (event) => {
+        mouseX = (event.clientX / window.innerWidth) - 0.5;
+        mouseY = (event.clientY / window.innerHeight) - 0.5;
+    });
+    
+    // Handle resize
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+    
+    // Animation
+    const animate = () => {
+        requestAnimationFrame(animate);
+        
+        particlesMesh.rotation.x += 0.0003;
+        particlesMesh.rotation.y += 0.0003;
+        
+        // Follow mouse with slight delay
+        particlesMesh.rotation.x += mouseY * 0.001;
+        particlesMesh.rotation.y += mouseX * 0.001;
+        
+        renderer.render(scene, camera);
+    };
+    
+    animate();
+}
+
+// Scroll reveal animations
+function initScrollReveal() {
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    const fadeElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.classList.contains('reveal-on-scroll')) {
+                    entry.target.classList.add('reveal-visible');
+                }
+                if (entry.target.classList.contains('fade-in-up') ||
+                    entry.target.classList.contains('fade-in-left') ||
+                    entry.target.classList.contains('fade-in-right')) {
+                    setTimeout(() => {
+                        entry.target.classList.add('in-view');
+                    }, 100);
+                }
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
+    revealElements.forEach(element => {
+        observer.observe(element);
+    });
+    
+    fadeElements.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+
+// Sticky header behavior
+function initStickyHeader() {
+    const nav = document.querySelector('.sticky-nav');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            nav.classList.add('nav-scrolled');
+        } else {
+            nav.classList.remove('nav-scrolled');
+        }
+    });
+}
+
+// Form input animations and validation
+function initFormEffects() {
+    const formInputs = document.querySelectorAll('.form-input');
+    
+    formInputs.forEach(input => {
+        // Focus effect
+        input.addEventListener('focus', () => {
+            input.parentElement.classList.add('input-focused');
+        });
+        
+        input.addEventListener('blur', () => {
+            input.parentElement.classList.remove('input-focused');
+            
+            // Simple validation
+            if (input.value.trim() !== '') {
+                input.classList.add('has-value');
+            } else {
+                input.classList.remove('has-value');
+            }
+        });
+        
+        // Check if input already has value on page load
+        if (input.value.trim() !== '') {
+            input.classList.add('has-value');
+        }
+    });
+}
+
+// Initialize FAQ accordion functionality
+function initFaqAccordion() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const faqItem = question.parentElement;
+            const answer = question.nextElementSibling;
+            const icon = question.querySelector('.faq-icon');
+            const isOpen = question.getAttribute('aria-expanded') === 'true';
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    const itemQuestion = item.querySelector('.faq-question');
+                    const itemAnswer = item.querySelector('.faq-answer');
+                    const itemIcon = item.querySelector('.faq-icon');
+                    
+                    itemQuestion.setAttribute('aria-expanded', 'false');
+                    itemAnswer.style.maxHeight = '0';
+                    itemAnswer.classList.add('hidden');
+                    itemIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Toggle current FAQ item
+            if (isOpen) {
+                question.setAttribute('aria-expanded', 'false');
+                answer.style.maxHeight = '0';
+                setTimeout(() => {
+                    answer.classList.add('hidden');
+                }, 300);
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                question.setAttribute('aria-expanded', 'true');
+                answer.classList.remove('hidden');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+}
+
+// Countdown timer
+function initCountdown() {
+    // Target date: June 15th, 2025 at 23:59:59
+    const targetDate = new Date('2025-06-15T23:59:59').getTime();
+    
+    // Calculate the total duration from now to target for progress bar
+    const startDate = new Date().getTime();
+    const totalDuration = targetDate - startDate;
+
+    const countdownInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const timeRemaining = targetDate - now;
+
+        if (timeRemaining > 0) {
+            // Calculate time units
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            // Update display
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+            // Update progress bar
+            const progress = ((totalDuration - timeRemaining) / totalDuration) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        } else {
+            // Countdown expired
+            clearInterval(countdownInterval);
+            document.getElementById('countdownDisplay').innerHTML = 
+                '<div class="expired">🎉 Time\'s Up! 🎉</div>';
+            document.getElementById('progressBar').style.width = '100%';
+        }
+    }, 1000);
+
+    // Initial call to avoid delay
+    const now = new Date().getTime();
+    const timeRemaining = targetDate - now;
+    
+    if (timeRemaining > 0) {
+        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = days.toString().padStart(2, '0');
+        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+}
+
+// Checkbox animation
+function initCheckboxAnimation() {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const checkmark = this.parentElement.querySelector('svg');
+            if (this.checked) {
+                this.parentElement.parentElement.classList.add('checked');
+                checkmark.classList.remove('hidden');
+            } else {
+                this.parentElement.parentElement.classList.remove('checked');
+                checkmark.classList.add('hidden');
+            }
+        });
+    });
+}
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80, // Offset for the sticky header
+                behavior: 'smooth'
+            });
+        }
+    });
+});
