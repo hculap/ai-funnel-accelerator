@@ -1,5 +1,3 @@
-
-<script>
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize Three.js background
     initThreeJsBackground();
