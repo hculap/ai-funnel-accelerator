@@ -26,8 +26,8 @@
                 <a href="#program" class="nav-link">Program</a>
                 <a href="#opinie" class="nav-link">Opinie</a>
             </div>
-            <a href="#zarezerwuj-miejsce" class="hidden md:flex  btn-primary py-3 px-6 text-sm">Aplikuj teraz</a>
-            <a href="#zarezerwuj-miejsce" class="flex md:hidden  btn-primary py-3 px-6 text-sm">Dołącz</a>
+            <button class="hidden md:flex btn-primary py-3 px-6 text-sm" onclick="openModal()">Aplikuj teraz</button>
+            <button class="flex md:hidden btn-primary py-3 px-6 text-sm" onclick="openModal()">Dołącz</button>
         </div>
     </nav>
 
@@ -91,9 +91,9 @@
                         </li>
                     </ul>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#zarezerwuj-miejsce" class="btn-primary text-center font-bold">
+                        <button class="btn-primary text-center font-bold" onclick="openModal()">
                             Aplikuj teraz
-                        </a>
+                        </button>
                         <a href="#o-programie" class="glass text-white font-bold py-4 px-8 rounded-2xl text-center hover:bg-white hover:bg-opacity-5 transition-all duration-500">
                             Poznaj Program
                         </a>
@@ -171,9 +171,9 @@
                               </li>
                         </ul>
                         <div class="flex flex-row space-x-6">
-                            <a href="#zarezerwuj-miejsce" class="btn-primary text-center font-bold">
+                            <button class="btn-primary text-center font-bold" onclick="openModal()">
                                 Aplikuj teraz
-                            </a>
+                            </button>
                             <a href="#o-programie" class="glass text-white font-bold py-4 px-8 rounded-2xl text-center hover:bg-white hover:bg-opacity-5 transition-all duration-500">
                                 Poznaj Program
                             </a>
@@ -244,10 +244,10 @@
             </p>
           </div>
       
-          <!-- Karty z „bólami” -->
+          <!-- Karty z „bólami" -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div class="pain-card fade-in-up reveal-on-scroll">
-              <h3 class="text-2xl font-bold mb-5 text-white">„Wszyscy już korzystają z AI, a ja zostaję w tyle”</h3>
+              <h3 class="text-2xl font-bold mb-5 text-white">„Wszyscy już korzystają z AI, a ja zostaję w tyle"</h3>
               <p class="text-white opacity-70">
                 Czujesz technologiczną niepewność. Testowałeś/-aś ChatGPT, ale nadal nie wiesz, od czego zacząć i jak włączyć AI
                 w swój proces marketingowo-sprzedażowy.
@@ -255,7 +255,7 @@
             </div>
       
             <div class="pain-card fade-in-up reveal-on-scroll" style="transition-delay: 0.2s">
-              <h3 class="text-2xl font-bold mb-5 text-white">„Nie mam czasu, żeby nauczyć się czegoś nowego”</h3>
+              <h3 class="text-2xl font-bold mb-5 text-white">„Nie mam czasu, żeby nauczyć się czegoś nowego"</h3>
               <p class="text-white opacity-70">
                 Każdego dnia zmagasz się z natłokiem zadań – tworzeniem treści, odpowiadaniem na wiadomości, obsługą mediów społecznościowych.
                 Nauka AI wydaje się luksusem, na który nie możesz sobie pozwolić.
@@ -263,7 +263,7 @@
             </div>
       
             <div class="pain-card fade-in-up reveal-on-scroll" style="transition-delay: 0.4s">
-              <h3 class="text-2xl font-bold mb-5 text-white">„Boję się, że AI stworzy coś banalnego lub błędnego”</h3>
+              <h3 class="text-2xl font-bold mb-5 text-white">„Boję się, że AI stworzy coś banalnego lub błędnego"</h3>
               <p class="text-white opacity-70">
                 Obawiasz się, że treści generowane przez AI będą nijakie i pozbawione charakteru. Martwią Cię też kwestie etyczne i prawne – 
                 czy to nie będzie plagiat? A co, jeśli AI wygeneruje fałszywe informacje?
@@ -291,7 +291,7 @@
             <div class="solution-card fade-in-up reveal-on-scroll" style="transition-delay: 0.2s">
               <h3 class="text-2xl font-bold mb-5 text-white">Osiągasz wyższe wyniki sprzedaży dzięki AI</h3>
               <p class="text-white opacity-70">
-                Twoje lejki sprzedażowe zasilane są inteligentną automatyzacją. Zamiast ręcznie „ogarniać wszystko”, budujesz system,
+                Twoje lejki sprzedażowe zasilane są inteligentną automatyzacją. Zamiast ręcznie „ogarniać wszystko", budujesz system,
                 który działa za Ciebie jak niezawodny asystent.
               </p>
             </div>
@@ -299,7 +299,7 @@
             <div class="solution-card fade-in-up reveal-on-scroll" style="transition-delay: 0.4s">
               <h3 class="text-2xl font-bold mb-5 text-white">Pozbywasz się technologicznego stresu</h3>
               <p class="text-white opacity-70">
-                Swobodnie korzystasz z AI jak z „najmądrzejszego członka zespołu”. Masz sprawdzone metody, gotowe szablony i jasny plan działania – 
+                Swobodnie korzystasz z AI jak z „najmądrzejszego członka zespołu". Masz sprawdzone metody, gotowe szablony i jasny plan działania – 
                 bez zgadywania i frustrujących poszukiwań.
               </p>
             </div>
@@ -561,7 +561,7 @@
             <ul class="space-y-4 text-white/80">
               <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Projektowanie lejków HT z wykorzystaniem AI (quiz, VSL, webinar, wyzwanie, itp.).</span></li>
               <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Sekwencje follow‑up (e‑maile, DM, remarketing) tworzone i personalizowane przez AI.</span></li>
-              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Storytelling oraz edukacja w lejku – framework „Educate &amp; Elevate”.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Storytelling oraz edukacja w lejku – framework „Educate &amp; Elevate".</span></li>
               <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Automatyczne nurturing flows (lead warming i objection handling).</span></li>
             </ul>
             <!-- Rezultat -->
@@ -585,7 +585,7 @@
             <!-- Rezultat -->
             <div class="mt-6 text-white/80 text-sm">
               <p class="text-accent font-semibold mt-4">Rezultat:</p>
-              <p>Skalowalna kampania marketingowa z gotowymi zestawami reklam i systemem „content machine”, generująca przewidywalny napływ wysoko‑wartościowych leadów.</p>
+              <p>Skalowalna kampania marketingowa z gotowymi zestawami reklam i systemem „content machine", generująca przewidywalny napływ wysoko‑wartościowych leadów.</p>
             </div>
           </div>
         </div>
@@ -660,7 +660,7 @@
             <!-- Rezultat -->
             <div class="mt-6 text-white/80 text-sm">
               <p class="text-accent font-semibold mt-4">Rezultat:</p>
-              <p>Narzędziownik „plug‑and‑play”, który pozwala natychmiast wdrażać, testować i skalować nowe kampanie oraz procesy bez kodowania.</p>
+              <p>Narzędziownik „plug‑and‑play", który pozwala natychmiast wdrażać, testować i skalować nowe kampanie oraz procesy bez kodowania.</p>
             </div>
           </div>
         </div>
@@ -668,7 +668,7 @@
   
       <!-- ======= CTA ======= -->
       <div class="mt-24 text-center reveal-on-scroll">
-        <a href="#cennik" class="btn-primary inline-block">Poznaj ofertę</a>
+        <button class="btn-primary inline-block" onclick="openModal()">Poznaj ofertę</button>
       </div>
     </div>
   </section>
@@ -789,7 +789,7 @@
                                 <span>Certyfikat ukończenia warsztatów</span>
                             </li>
                         </ul>
-                        <a href="#zarezerwuj-miejsce" class="block text-center py-4 px-8 rounded-lg  bg-blue-600 text-white font-bold text-lg transition duration-300 hover:bg-blue-700 transform hover:-translate-y-1 shadow-lg hover:shadow-xl">WYBIERZ TEN PAKIET</a>
+                        <button class="block text-center py-4 px-8 rounded-lg  bg-blue-600 text-white font-bold text-lg transition duration-300 hover:bg-blue-700 transform hover:-translate-y-1 shadow-lg hover:shadow-xl w-full" onclick="openModal('pakiet-live')">WYBIERZ TEN PAKIET</button>
                     </div>
                 </div>
     
@@ -831,75 +831,9 @@
                                 <span><strong>30-minutowa konsultacja</strong> przed rozpoczęciem warsztatów</span>
                             </li>
                         </ul>
-                        <a href="#zarezerwuj-miejsce" class="block text-center py-4 px-8 btn-primary w-full text-lg">WYBIERZ TEN PAKIET</a>
+                        <button class="block text-center py-4 px-8 btn-primary w-full text-lg" onclick="openModal('pakiet-live-mentoring')">WYBIERZ TEN PAKIET</button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    
-
-    <!-- Registration Form Section -->
-    <section id="zarezerwuj-miejsce" class="section section-dark">
-        <div class="container mx-auto px-6 lg:px-8">
-            <div class="max-w-3xl mx-auto text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white reveal-on-scroll">
-                    Dowiedz się więcej o programie<br /><span class="text-gradient">AI Funnel Accelerator</span>
-                </h2>
-                <p class="text-xl text-white opacity-80 reveal-on-scroll">
-                    Po wypełnieniu formularza nasz doradca skontaktuje się z Tobą w celu przedstawienia szczegółowych informacji dotyczących przebiegu programu oraz jego kosztów.
-                </p>
-            </div>
-            
-            <div class="form-container max-w-2xl mx-auto p-10 reveal-on-scroll fade-in-up relative z-10 overflow-hidden">
-                <div class="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-accent to-secondary opacity-30 rounded-full filter blur-3xl pointer-events-none"></div>
-                <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-primary to-secondary opacity-20 rounded-full filter blur-3xl pointer-events-none"></div>
-                
-                <form class="relative z-10">
-                    <div class="mb-8">
-                        <label for="name" class="form-label">Imię i Nazwisko</label>
-                        <input type="text" id="name" class="form-input" placeholder="Twoje imię" required>
-                    </div>
- 
-                    
-                    <div class="mb-8">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" class="form-input" placeholder="twoj@email.pl" required>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <label for="phone" class="form-label">Telefon</label>
-                        <input type="tel" id="phone" class="form-input" placeholder="+48 000 000 000" required>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <label for="package" class="form-label">Wybierz pakiet</label>
-                        <select id="package" class="form-input">
-                            <option value="" disabled selected>Wybierz pakiet</option>
-                            <option value="pakiet-live">Pakiet LIVE</option>
-                            <option value="pakiet-live-mentoring">Pakiet LIVE & MENTORING</option>
-                        </select>
-                    </div>
-                    
-                    <div class="mb-10">
-                        <label class="flex items-start cursor-pointer group">
-                            <div class="relative flex items-start">
-                                <div class="flex items-center h-5">
-                                    <input type="checkbox" class="opacity-0 absolute h-5 w-5" required>
-                                    <div class="bg-transparent border-2 border-gray-500 rounded w-5 h-5 flex flex-shrink-0 justify-center items-center mr-3 group-hover:border-primary transition-colors">
-                                        <svg class="fill-current hidden w-3 h-3 text-white pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="text-sm text-white opacity-70 ml-2">Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z polityką prywatności. Rozumiem, że mogę otrzymywać komunikację związaną z programem.</span>
-                        </label>
-                    </div>
-                    
-                    <button type="submit" class="btn-primary w-full text-lg py-4">
-                        Wyślij formularz
-                    </button>
-                </form>
             </div>
         </div>
     </section>
@@ -1144,7 +1078,7 @@
                     <p class="text-white mb-1">Gwarantowane miejsca kończą się za:</p>
                     <div class="text-gradient font-bold text-xl">3 dni, 11 godzin, 43 minuty</div>
                 </div>
-                <a href="#zarezerwuj-miejsce" class="btn-primary inline-block">Dowiedz się o programie</a>
+                <button class="btn-primary inline-block" onclick="openModal()">Dowiedz się o programie</button>
             </div>
         
             
@@ -1192,6 +1126,69 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal for Registration Form -->
+    <div id="registrationModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="text-3xl font-bold text-white mb-4">
+                    Dowiedz się więcej o programie<br/><span class="text-gradient">AI Funnel Accelerator</span>
+                </h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <p class="text-lg text-white opacity-80 mb-8 text-center">
+                    Po wypełnieniu formularza nasz doradca skontaktuje się z Tobą w celu przedstawienia szczegółowych informacji dotyczących przebiegu programu oraz jego kosztów.
+                </p>
+                
+                <form id="registrationForm" class="space-y-6">
+                    <div>
+                        <label for="name" class="form-label">Imię i Nazwisko</label>
+                        <input type="text" id="name" class="form-input" placeholder="Twoje imię" required>
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-input" placeholder="twoj@email.pl" required>
+                    </div>
+                    
+                    <div>
+                        <label for="phone" class="form-label">Telefon</label>
+                        <input type="tel" id="phone" class="form-input" placeholder="+48 000 000 000" required>
+                    </div>
+                    
+                    <div>
+                        <label for="package" class="form-label">Wybierz pakiet</label>
+                        <select id="package" class="form-input">
+                            <option value="" disabled selected>Wybierz pakiet</option>
+                            <option value="pakiet-live">Pakiet LIVE</option>
+                            <option value="pakiet-live-mentoring">Pakiet LIVE & MENTORING</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <label class="flex items-start cursor-pointer group">
+                            <div class="relative flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input type="checkbox" class="opacity-0 absolute h-5 w-5" required>
+                                    <div class="bg-transparent border-2 border-gray-500 rounded w-5 h-5 flex flex-shrink-0 justify-center items-center mr-3 group-hover:border-primary transition-colors">
+                                        <svg class="fill-current hidden w-3 h-3 text-white pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-sm text-white opacity-70 ml-2">Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z polityką prywatności. Rozumiem, że mogę otrzymywać komunikację związaną z programem.</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary w-full text-lg py-4">
+                        Wyślij formularz
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="scripts.js"></script>
 </body>
 </html>

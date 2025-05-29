@@ -17,7 +17,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Checkbox animation
     initCheckboxAnimation();
 
+    // FAQ Accordion
     initFaqAccordion();
+
+    // Modal functionality
+    initModalFunctionality();
 });
 
 // Three.js animated background
@@ -127,7 +131,6 @@ function initScrollReveal() {
     });
 }
 
-
 // Sticky header behavior
 function initStickyHeader() {
     const nav = document.querySelector('.sticky-nav');
@@ -233,20 +236,19 @@ function initCountdown() {
             const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
             // Update display
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-
-            // Update progress bar
-            const progress = ((totalDuration - timeRemaining) / totalDuration) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
+            const daysElements = document.querySelectorAll('.countdown-number');
+            if (daysElements.length >= 4) {
+                daysElements[0].textContent = days.toString().padStart(2, '0');
+                daysElements[1].textContent = hours.toString().padStart(2, '0');
+                daysElements[2].textContent = minutes.toString().padStart(2, '0');
+                daysElements[3].textContent = seconds.toString().padStart(2, '0');
+            }
         } else {
             // Countdown expired
             clearInterval(countdownInterval);
-            document.getElementById('countdownDisplay').innerHTML = 
-                '<div class="expired">🎉 Time\'s Up! 🎉</div>';
-            document.getElementById('progressBar').style.width = '100%';
+            document.querySelectorAll('.countdown-container').forEach(container => {
+                container.innerHTML = '<div class="expired text-center text-2xl font-bold text-gradient">🎉 Czas upłynął! 🎉</div>';
+            });
         }
     }, 1000);
 
@@ -260,10 +262,13 @@ function initCountdown() {
         const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-        document.getElementById('days').textContent = days.toString().padStart(2, '0');
-        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        const daysElements = document.querySelectorAll('.countdown-number');
+        if (daysElements.length >= 4) {
+            daysElements[0].textContent = days.toString().padStart(2, '0');
+            daysElements[1].textContent = hours.toString().padStart(2, '0');
+            daysElements[2].textContent = minutes.toString().padStart(2, '0');
+            daysElements[3].textContent = seconds.toString().padStart(2, '0');
+        }
     }
 }
 
@@ -285,12 +290,89 @@ function initCheckboxAnimation() {
     });
 }
 
+// Modal functionality
+function initModalFunctionality() {
+    const modal = document.getElementById('registrationModal');
+    const form = document.getElementById('registrationForm');
+    
+    // Form submission
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            // Here you would typically send data to your server
+            console.log('Form data:', data);
+            
+            // Show success message (you can customize this)
+            alert('Dziękujemy za zgłoszenie! Nasz doradca skontaktuje się z Tobą wkrótce.');
+            
+            // Close modal and reset form
+            closeModal();
+            form.reset();
+        });
+    }
+    
+    // Close modal when clicking outside
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+}
+
+// Global modal functions
+function openModal(selectedPackage = null) {
+    const modal = document.getElementById('registrationModal');
+    const packageSelect = document.getElementById('package');
+    
+    // Set selected package if provided
+    if (selectedPackage && packageSelect) {
+        packageSelect.value = selectedPackage;
+    }
+    
+    // Show modal
+    modal.classList.remove('hidden');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Focus on first input
+    const firstInput = modal.querySelector('input');
+    if (firstInput) {
+        setTimeout(() => firstInput.focus(), 300);
+    }
+}
+
+function closeModal() {
+    const modal = document.getElementById('registrationModal');
+    
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    
+    // Hide modal after animation
+    setTimeout(() => {
+        modal.classList.add('hidden');
+    }, 300);
+}
+
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
         
         const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
         const targetElement = document.querySelector(targetId);
         
         if (targetElement) {
