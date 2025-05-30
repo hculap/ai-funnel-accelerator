@@ -52,13 +52,81 @@
                     <div class="tilt-card tilt-video">
                         <div class="tilt-card-inner">
                             <div class="video-container">
-                                <div class="video-placeholder">
-                                    <div class="video-bg-dots"></div>
-                                    <div class="play-button">
-                                        <div class="play-icon"></div>
+                                <div class="custom-video-player">
+                                    <video 
+                                        id="mainVideo" 
+                                        class="w-full h-full object-cover rounded-2xl"
+                                        poster=""
+                                        preload="metadata"
+                                        playsinline
+                                        webkit-playsinline>
+                                        <source src="https://ai-funnel-accelerator.s3.eu-central-1.amazonaws.com/video.mp4" type="video/mp4">
+                                        Twoja przeglądarka nie obsługuje odtwarzania wideo.
+                                    </video>
+                                    
+                                    <!-- Video Overlay & Controls -->
+                                    <div class="video-overlay">
+                                        <!-- Play Button Overlay -->
+                                        <div class="play-overlay">
+                                            <div class="play-button-large" id="playButtonLarge">
+                                                <svg class="play-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M8 5v14l11-7z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Video Label -->
+                                        <div class="absolute top-4 left-4 bg-gradient-to-r from-indigo-500 to-purple-600 px-3 py-1 rounded-full text-sm text-white font-medium">
+                                            Zobacz jak wykorzytać pełną moc AI
+                                        </div>
+                                        
+                                        <!-- Custom Controls -->
+                                        <div class="video-controls">
+                                            <div class="progress-container">
+                                                <div class="progress-bar">
+                                                    <div class="progress-filled" id="progressFilled"></div>
+                                                    <div class="progress-handle" id="progressHandle"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="controls-bottom">
+                                                <div class="controls-left">
+                                                    <button class="control-btn play-pause" id="playPauseBtn">
+                                                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M8 5v14l11-7z"/>
+                                                        </svg>
+                                                        <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                                        </svg>
+                                                    </button>
+                                                    
+                                                    <span class="time-display">
+                                                        <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                                                    </span>
+                                                </div>
+                                                
+                                                <div class="controls-right">
+                                                    <button class="control-btn volume-btn" id="volumeBtn">
+                                                        <svg class="volume-up" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                                        </svg>
+                                                        <svg class="volume-muted hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M7 9v6h4l5 5V4l-5 5H7z"/>
+                                                        </svg>
+                                                    </button>
+                                                    
+                                                    <button class="control-btn fullscreen-btn" id="fullscreenBtn">
+                                                        <svg class="fullscreen-open" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                                                        </svg>
+                                                        <svg class="fullscreen-close hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="absolute top-4 right-4 bg-black bg-opacity-70 px-3 py-1 rounded-full text-sm text-white">2:14</div>
-                                    <div class="absolute bottom-4 left-4 bg-gradient-to-r from-indigo-500 to-purple-600 px-3 py-1 rounded-full text-sm text-white font-medium">Zobacz jak wykorzytać pełną moc AI</div>
                                 </div>
                             </div>
                         </div>
@@ -97,34 +165,6 @@
                         <a href="#o-programie" class="glass text-white font-bold py-4 px-8 rounded-2xl text-center hover:bg-white hover:bg-opacity-5 transition-all duration-500">
                             Poznaj Program
                         </a>
-                    </div>
-                    
-                    <!-- Countdown Timer -->
-                    <div class="mt-10">
-                        <div class="my-4">
-                            <span class="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-red-500 to-red-600 text-white text-sm font-bold animate-pulse">Pozostało tylko 40 gwarantowanych miejsc!</span>
-                        </div>
-                        <div class="flex items-center mb-4">
-                            <p class="text-lg text-white font-medium mr-2">Zapisy kończą się za:</p>
-                        </div>
-                        <div class="countdown-container">
-                            <div class="countdown-item">
-                                <span class="countdown-number">3</span>
-                                <span class="countdown-label">dni</span>
-                            </div>
-                            <div class="countdown-item">
-                                <span class="countdown-number">11</span>
-                                <span class="countdown-label">godz</span>
-                            </div>
-                            <div class="countdown-item">
-                                <span class="countdown-number">43</span>
-                                <span class="countdown-label">min</span>
-                            </div>
-                            <div class="countdown-item">
-                                <span class="countdown-number">27</span>
-                                <span class="countdown-label">sek</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -178,34 +218,6 @@
                                 Poznaj Program
                             </a>
                         </div>
-                        
-                        <!-- Countdown Timer -->
-                        <div class="mt-16">
-                            <div class="my-4">
-                                <span class="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-red-500 to-red-600 text-white text-sm font-bold animate-pulse">Pozostało tylko 40 gwarantowanych miejsc!</span>
-                            </div>
-                            <div class="flex items-center mb-5">
-                                <p class="text-xl text-white font-medium mr-2">Zapisy kończą się za:</p>
-                            </div>
-                            <div class="countdown-container">
-                                <div class="countdown-item">
-                                    <span class="countdown-number">3</span>
-                                    <span class="countdown-label">dni</span>
-                                </div>
-                                <div class="countdown-item">
-                                    <span class="countdown-number">11</span>
-                                    <span class="countdown-label">godz</span>
-                                </div>
-                                <div class="countdown-item">
-                                    <span class="countdown-number">43</span>
-                                    <span class="countdown-label">min</span>
-                                </div>
-                                <div class="countdown-item">
-                                    <span class="countdown-number">27</span>
-                                    <span class="countdown-label">sek</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 
@@ -214,16 +226,111 @@
                     <div class="tilt-card tilt-video">
                         <div class="tilt-card-inner">
                             <div class="video-container">
-                                <div class="video-placeholder">
-                                    <div class="video-bg-dots"></div>
-                                    <div class="play-button">
-                                        <div class="play-icon"></div>
+                                <div class="custom-video-player">
+                                    <video 
+                                        id="mainVideoDesktop" 
+                                        class="w-full h-full object-cover rounded-2xl"
+                                        poster=""
+                                        preload="metadata"
+                                        playsinline
+                                        webkit-playsinline>
+                                        <source src="https://ai-funnel-accelerator.s3.eu-central-1.amazonaws.com/video.mp4" type="video/mp4">
+                                        Twoja przeglądarka nie obsługuje odtwarzania wideo.
+                                    </video>
+                                    
+                                    <!-- Video Overlay & Controls -->
+                                    <div class="video-overlay">
+                                        <!-- Play Button Overlay -->
+                                        <div class="play-overlay">
+                                            <div class="play-button-large" id="playButtonLargeDesktop">
+                                                <svg class="play-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M8 5v14l11-7z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Video Label -->
+                                        <div class="absolute top-4 left-4 bg-gradient-to-r from-indigo-500 to-purple-600 px-3 py-1 rounded-full text-sm text-white font-medium">
+                                            Zobacz jak wykorzytać pełną moc AI
+                                        </div>
+                                        
+                                        <!-- Custom Controls -->
+                                        <div class="video-controls">
+                                            <div class="progress-container">
+                                                <div class="progress-bar">
+                                                    <div class="progress-filled" id="progressFilledDesktop"></div>
+                                                    <div class="progress-handle" id="progressHandleDesktop"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="controls-bottom">
+                                                <div class="controls-left">
+                                                    <button class="control-btn play-pause" id="playPauseBtnDesktop">
+                                                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M8 5v14l11-7z"/>
+                                                        </svg>
+                                                        <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                                        </svg>
+                                                    </button>
+                                                    
+                                                    <span class="time-display">
+                                                        <span id="currentTimeDesktop">0:00</span> / <span id="durationDesktop">0:00</span>
+                                                    </span>
+                                                </div>
+                                                
+                                                <div class="controls-right">
+                                                    <button class="control-btn volume-btn" id="volumeBtnDesktop">
+                                                        <svg class="volume-up" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                                        </svg>
+                                                        <svg class="volume-muted hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M7 9v6h4l5 5V4l-5 5H7z"/>
+                                                        </svg>
+                                                    </button>
+                                                    
+                                                    <button class="control-btn fullscreen-btn" id="fullscreenBtnDesktop">
+                                                        <svg class="fullscreen-open" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                                                        </svg>
+                                                        <svg class="fullscreen-close hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="absolute top-4 right-4 bg-black bg-opacity-70 px-3 py-1 rounded-full text-sm text-white">2:14</div>
-                                    <div class="absolute bottom-4 left-4 bg-gradient-to-r from-indigo-500 to-purple-600 px-3 py-1 rounded-full text-sm text-white font-medium">Zobacz jak wykorzytać pełną moc AI</div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Countdown Timer -->
+            <div class="mt-10 w-80 mx-auto">
+                <div class="my-4 ">
+                    <span class="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-red-500 to-red-600 text-white text-sm font-bold animate-pulse">Pozostało tylko 40 gwarantowanych miejsc!</span>
+                </div>
+                <div class="flex items-center mb-4">
+                    <p class="text-lg text-white text-center font-medium mx-auto">Zapisy kończą się za:</p>
+                </div>
+                <div class="countdown-container">
+                    <div class="countdown-item">
+                        <span class="countdown-number">3</span>
+                        <span class="countdown-label">dni</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">11</span>
+                        <span class="countdown-label">godz</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">43</span>
+                        <span class="countdown-label">min</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">27</span>
+                        <span class="countdown-label">sek</span>
                     </div>
                 </div>
             </div>
@@ -332,12 +439,92 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="fade-in-left reveal-on-scroll">
                 <div class="video-container tilt-card-inner">
-                    <div class="video-placeholder">
-                        <div class="video-bg-dots"></div>
-                        <div class="play-button">
-                            <div class="play-icon"></div>
+                    <div class="custom-video-player">
+                        <video 
+                            id="aboutVideo" 
+                            class="w-full h-full object-cover rounded-2xl"
+                            poster=""
+                            preload="metadata"
+                            playsinline
+                            webkit-playsinline>
+                            <source src="https://ai-funnel-accelerator.s3.eu-central-1.amazonaws.com/video.mp4" type="video/mp4">
+                            Twoja przeglądarka nie obsługuje odtwarzania wideo.
+                        </video>
+                        <script>
+                            const video = document.getElementById('aboutVideo');
+                            
+                            // Set start time in seconds (e.g., start at 10 seconds)
+                            const startTime = 1174;
+                            video.currentTime = startTime;
+                            // Wait until metadata is loaded to safely set currentTime
+                            video.addEventListener('loadedmetadata', function () {
+                              video.currentTime = startTime;
+                            });
+                          </script>
+                        
+                        <!-- Video Overlay & Controls -->
+                        <div class="video-overlay">
+                            <!-- Play Button Overlay -->
+                            <div class="play-overlay">
+                                <div class="play-button-large" id="playButtonLargeAbout">
+                                    <svg class="play-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <!-- Video Label -->
+                            <div class="absolute top-4 left-4 bg-gradient-to-r from-indigo-500 to-purple-600 px-3 py-1 rounded-full text-sm font-medium">
+                                Zobacz jak działa nasz system
+                            </div>
+                            
+                            <!-- Custom Controls -->
+                            <div class="video-controls">
+                                <div class="progress-container">
+                                    <div class="progress-bar">
+                                        <div class="progress-filled" id="progressFilledAbout"></div>
+                                        <div class="progress-handle" id="progressHandleAbout"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="controls-bottom">
+                                    <div class="controls-left">
+                                        <button class="control-btn play-pause" id="playPauseBtnAbout">
+                                            <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M8 5v14l11-7z"/>
+                                            </svg>
+                                            <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                            </svg>
+                                        </button>
+                                        
+                                        <span class="time-display">
+                                            <span id="currentTimeAbout">0:00</span> / <span id="durationAbout">0:00</span>
+                                        </span>
+                                    </div>
+                                    
+                                    <div class="controls-right">
+                                        <button class="control-btn volume-btn" id="volumeBtnAbout">
+                                            <svg class="volume-up" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                            </svg>
+                                            <svg class="volume-muted hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M7 9v6h4l5 5V4l-5 5H7z"/>
+                                            </svg>
+                                        </button>
+                                        
+                                        <button class="control-btn fullscreen-btn" id="fullscreenBtnAbout">
+                                            <svg class="fullscreen-open" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                                            </svg>
+                                            <svg class="fullscreen-close hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="absolute bottom-4 left-4 bg-gradient-to-r from-indigo-500 to-purple-600 px-3 py-1 rounded-full text-sm  font-medium">Zobacz jak działa nasz system</div>
                     </div>
                 </div>
             </div>
@@ -862,36 +1049,6 @@
                         </span>
                     </button>
                     <div class="faq-answer px-10 pb-8 pt-0 hidden">
-                        <p class="text-white opacity-80">Absolutnie nie! Nasz program zaprojektowany jest specjalnie dla osób bez technicznej wiedzy. Prowadzimy Cię krok po kroku przez wszystkie niezbędne narzędzia – od ChatGPT, przez Claude, po Make.com (dawniej Integromat) – używając prostego, zrozumiałego języka. Każdy etap jest dokładnie pokazany na ekranie, więc możesz łatwo powtórzyć wszystkie czynności we własnym tempie.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 2 - Udoskonalony -->
-                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.1s">
-                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
-                        <h3 class="text-2xl font-bold text-white">Kiedy zacznie się  programu?</h3>
-                        <span class="faq-icon text-accent transition-transform duration-300">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </span>
-                    </button>
-                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
-                        <p class="text-white opacity-80">Przewidywany start programu to koniec czerwca. Dokładny termin oraz harmonogram zostaną podane po zakończeniu zapisów i ustaleniu dogodnych dat z grupą szkoleniową.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 3 - Udoskonalony -->
-                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.2s">
-                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
-                        <h3 class="text-2xl font-bold text-white">Jak szybko mogę oczekiwać rezultatów?</h3>
-                        <span class="faq-icon text-accent transition-transform duration-300">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </span>
-                    </button>
-                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
                         <p class="text-white opacity-80">Większość uczestników widzi pierwsze wymierne rezultaty już w ciągu pierwszego tygodnia od wdrożenia pierwszych elementów systemu. Typowe początkowe efekty to oszczędność 5-10 godzin tygodniowo na powtarzalnych zadaniach oraz zwiększenie konwersji leadów o 15-30%. Pełne korzyści zazwyczaj pojawiają się po 6 tygodniach, gdy cały system zostanie zintegrowany i zoptymalizowany pod Twoją konkretną ofertę.</p>
                     </div>
                 </div>
@@ -1191,4 +1348,34 @@
 
     <script src="scripts.js"></script>
 </body>
-</html>
+</html> fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Absolutnie nie! Nasz program zaprojektowany jest specjalnie dla osób bez technicznej wiedzy. Prowadzimy Cię krok po kroku przez wszystkie niezbędne narzędzia – od ChatGPT, przez Claude, po Make.com (dawniej Integromat) – używając prostego, zrozumiałego języka. Każdy etap jest dokładnie pokazany na ekranie, więc możesz łatwo powtórzyć wszystkie czynności we własnym tempie.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 - Udoskonalony -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.1s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Kiedy zacznie się  programu?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Przewidywany start programu to koniec czerwca. Dokładny termin oraz harmonogram zostaną podane po zakończeniu zapisów i ustaleniu dogodnych dat z grupą szkoleniową.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 - Udoskonalony -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.2s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Jak szybko mogę oczekiwać rezultatów?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8"
