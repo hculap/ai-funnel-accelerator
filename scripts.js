@@ -1,4 +1,7 @@
-// Replace the entire script section in program.html with this:
+// Updated scripts.js with UTM parameter handling
+
+// UTM parameter names to track
+const UTM_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 
 // Cookie utility functions
 function setCookie(name, value, days = 30) {
@@ -16,6 +19,121 @@ function getCookie(name) {
         if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
     }
     return null;
+}
+
+// UTM Parameter Handling Functions
+function extractUtmParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmData = {};
+    
+    UTM_PARAMS.forEach(param => {
+        const value = urlParams.get(param);
+        if (value) {
+            utmData[param] = value;
+        }
+    });
+    
+    return utmData;
+}
+
+function storeUtmParams(utmData, days = 30) {
+    Object.keys(utmData).forEach(param => {
+        setCookie(param, utmData[param], days);
+        console.log(`Stored UTM parameter: ${param} = ${utmData[param]}`);
+    });
+}
+
+function getStoredUtmParams() {
+    const utmData = {};
+    
+    UTM_PARAMS.forEach(param => {
+        const value = getCookie(param);
+        if (value) {
+            utmData[param] = value;
+        }
+    });
+    
+    return utmData;
+}
+
+function addUtmHiddenInputs(form) {
+    if (!form) return;
+    
+    const utmData = getStoredUtmParams();
+    
+    // Remove existing UTM hidden inputs to avoid duplicates
+    UTM_PARAMS.forEach(param => {
+        const existingInput = form.querySelector(`input[name="${param}"]`);
+        if (existingInput && existingInput.type === 'hidden') {
+            existingInput.remove();
+        }
+    });
+    
+    // Add new hidden inputs for each UTM parameter
+    Object.keys(utmData).forEach(param => {
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = param;
+        hiddenInput.value = utmData[param];
+        form.appendChild(hiddenInput);
+        console.log(`Added hidden input: ${param} = ${utmData[param]}`);
+    });
+}
+
+function addUtmInputsToAllForms() {
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        addUtmHiddenInputs(form);
+    });
+}
+
+function initUtmTracking() {
+    // Extract UTM parameters from current URL
+    const currentUtmParams = extractUtmParams();
+    
+    // If we have UTM parameters in the URL, store them (overwrites existing)
+    if (Object.keys(currentUtmParams).length > 0) {
+        storeUtmParams(currentUtmParams);
+        console.log('New UTM parameters detected and stored:', currentUtmParams);
+    }
+    
+    // Add hidden inputs to existing forms
+    addUtmInputsToAllForms();
+    
+    // Set up a MutationObserver to handle dynamically added forms
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            mutation.addedNodes.forEach((node) => {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    // Check if the added node is a form
+                    if (node.tagName === 'FORM') {
+                        addUtmHiddenInputs(node);
+                    }
+                    // Check if the added node contains forms
+                    const forms = node.querySelectorAll && node.querySelectorAll('form');
+                    if (forms) {
+                        forms.forEach(form => addUtmHiddenInputs(form));
+                    }
+                }
+            });
+        });
+    });
+    
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+}
+
+function getUtmDataForSubmission() {
+    return getStoredUtmParams();
+}
+
+function clearUtmParams() {
+    UTM_PARAMS.forEach(param => {
+        document.cookie = `${param}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    });
+    console.log('All UTM parameters cleared');
 }
 
 // Function to auto-fill form from cookies
@@ -58,6 +176,9 @@ function autoFillFormFromCookies() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize UTM tracking FIRST
+    initUtmTracking();
+    
     // Initialize Three.js background
     initThreeJsBackground();
     
@@ -355,7 +476,7 @@ function initCheckboxAnimation() {
     });
 }
 
-// Modal functionality - UPDATED WITH COOKIE AUTO-FILL
+// Modal functionality - UPDATED WITH COOKIE AUTO-FILL AND UTM HANDLING
 function initModalFunctionality() {
     const modal = document.getElementById('registrationModal');
     const form = document.getElementById('registrationForm');
@@ -369,13 +490,17 @@ function initModalFunctionality() {
             const formData = new FormData(form);
             const data = Object.fromEntries(formData);
             
+            // Add UTM data to submission
+            const utmData = getUtmDataForSubmission();
+            const submissionData = { ...data, ...utmData };
+            
             // Update cookies with latest data
             setCookie('user_name', data.name || '', 30);
             setCookie('user_email', data.email || '', 30);
             setCookie('user_phone', data.phone || '', 30);
             
             // Here you would typically send data to your server
-            console.log('Registration form data:', data);
+            console.log('Registration form data with UTM:', submissionData);
             
             // Show success message (you can customize this)
             alert('Dziękujemy za zgłoszenie! Nasz doradca skontaktuje się z Tobą wkrótce.');
@@ -713,10 +838,11 @@ function initVideoPlayers() {
     });
 }
 
-// Global modal functions - UPDATED WITH AUTO-FILL
+// Global modal functions - UPDATED WITH AUTO-FILL AND UTM
 function openModal(selectedPackage = null) {
     const modal = document.getElementById('registrationModal');
     const packageSelect = document.getElementById('package');
+    const form = document.getElementById('registrationForm');
     
     // Set selected package if provided
     if (selectedPackage && packageSelect) {
@@ -727,6 +853,11 @@ function openModal(selectedPackage = null) {
     modal.classList.remove('hidden');
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Add UTM inputs to the form
+    if (form) {
+        addUtmHiddenInputs(form);
+    }
     
     // Auto-fill form from cookies
     autoFillFormFromCookies();
