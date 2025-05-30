@@ -1,3 +1,62 @@
+// Replace the entire script section in program.html with this:
+
+// Cookie utility functions
+function setCookie(name, value, days = 30) {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires.toUTCString()};path=/`;
+}
+
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+    }
+    return null;
+}
+
+// Function to auto-fill form from cookies
+function autoFillFormFromCookies() {
+    // Get data from cookies
+    const userName = getCookie('userName');
+    const userEmail = getCookie('userEmail');
+    const userPhone = getCookie('userPhone');
+    
+    // Fill the registration form if data exists
+    if (userName || userEmail || userPhone) {
+        // Wait for the form to be available
+        const fillForm = () => {
+            const nameField = document.getElementById('name');
+            const emailField = document.getElementById('email');
+            const phoneField = document.getElementById('phone');
+            
+            if (nameField && userName) {
+                nameField.value = userName;
+                nameField.classList.add('has-value');
+            }
+            
+            if (emailField && userEmail) {
+                emailField.value = userEmail;
+                emailField.classList.add('has-value');
+            }
+            
+            if (phoneField && userPhone) {
+                phoneField.value = userPhone;
+                phoneField.classList.add('has-value');
+            }
+            
+            console.log('Form auto-filled from cookies:', { userName, userEmail, userPhone });
+        };
+        
+        // Try to fill immediately, then with a small delay if form isn't ready
+        fillForm();
+        setTimeout(fillForm, 100);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize Three.js background
     initThreeJsBackground();
@@ -20,11 +79,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // FAQ Accordion
     initFaqAccordion();
 
-    // Modal functionality
+    // Modal functionality - UPDATED with auto-fill
     initModalFunctionality();
 
     // Initialize Video Players
     initVideoPlayers();
+    
+    // Auto-fill form on page load
+    autoFillFormFromCookies();
 });
 
 // Three.js animated background
@@ -293,7 +355,7 @@ function initCheckboxAnimation() {
     });
 }
 
-// Modal functionality
+// Modal functionality - UPDATED WITH COOKIE AUTO-FILL
 function initModalFunctionality() {
     const modal = document.getElementById('registrationModal');
     const form = document.getElementById('registrationForm');
@@ -307,8 +369,13 @@ function initModalFunctionality() {
             const formData = new FormData(form);
             const data = Object.fromEntries(formData);
             
+            // Update cookies with latest data
+            setCookie('user_name', data.name || '', 30);
+            setCookie('user_email', data.email || '', 30);
+            setCookie('user_phone', data.phone || '', 30);
+            
             // Here you would typically send data to your server
-            console.log('Form data:', data);
+            console.log('Registration form data:', data);
             
             // Show success message (you can customize this)
             alert('Dziękujemy za zgłoszenie! Nasz doradca skontaktuje się z Tobą wkrótce.');
@@ -646,7 +713,7 @@ function initVideoPlayers() {
     });
 }
 
-// Global modal functions
+// Global modal functions - UPDATED WITH AUTO-FILL
 function openModal(selectedPackage = null) {
     const modal = document.getElementById('registrationModal');
     const packageSelect = document.getElementById('package');
@@ -655,17 +722,30 @@ function openModal(selectedPackage = null) {
     if (selectedPackage && packageSelect) {
         packageSelect.value = selectedPackage;
     }
-    
+
     // Show modal
     modal.classList.remove('hidden');
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // Focus on first input
-    const firstInput = modal.querySelector('input');
-    if (firstInput) {
-        setTimeout(() => firstInput.focus(), 300);
-    }
+    // Auto-fill form from cookies
+    autoFillFormFromCookies();
+    
+    // Focus on first empty input
+    setTimeout(() => {
+        const inputs = modal.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
+        for (let input of inputs) {
+            if (!input.value) {
+                input.focus();
+                break;
+            }
+        }
+        // If all inputs are filled, focus on the submit button
+        if (Array.from(inputs).every(input => input.value)) {
+            const submitBtn = modal.querySelector('button[type="submit"]');
+            if (submitBtn) submitBtn.focus();
+        }
+    }, 300);
 }
 
 function closeModal() {
