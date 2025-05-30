@@ -578,6 +578,7 @@ body {
     border-radius: 24px;
     transition: all 0.3s ease;
     z-index: 10;
+    pointer-events: auto;
 }
 
 .custom-video-player:hover .video-overlay {
@@ -663,7 +664,8 @@ body {
     opacity: 0;
     transform: translateY(100%);
     transition: all 0.3s ease;
-    z-index: 12;
+    z-index: 15;
+    pointer-events: auto;
 }
 
 .custom-video-player:hover .video-controls,
@@ -738,6 +740,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: auto;
+    z-index: 20;
+    position: relative;
 }
 
 .control-btn:hover {
@@ -854,6 +859,17 @@ body {
         width: 16px;
         height: 16px;
     }
+    
+    /* Fix 1: Remove video tilt on mobile devices */
+
+    .tilt-card {
+        transform-style: initial !important;
+        perspective: none !important;
+    }
+    
+    .tilt-card-inner {
+        transform: none !important;
+    }
 }
 
 @media (max-width: 480px) {
@@ -882,6 +898,22 @@ body {
     
     .controls-right {
         order: 2;
+    }
+}
+
+/* Fix for tablets - remove tilt on devices up to 1024px */
+@media (max-width: 1024px) {
+    .tilt-video {
+        transform: none !important;
+    }
+    
+    .tilt-card {
+        transform-style: initial !important;
+        perspective: none !important;
+    }
+    
+    .tilt-card-inner {
+        transform: none !important;
     }
 }
 
@@ -961,10 +993,6 @@ body {
 
 .tilt-card-inner {
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.tilt-video {
-    transform: perspective(1000px) rotateX(-7.17839deg) rotateY(-7.98611deg) scale3d(1.02, 1.02, 1.02);
 }
 
 /* Reveal Animations on Scroll */
@@ -1171,4 +1199,24 @@ body {
 
 .modal-content::-webkit-scrollbar-thumb:hover {
     background: rgba(99, 102, 241, 0.8);
+}
+
+/* Desktop video enhancements for better clickability */
+@media (min-width: 1025px) {
+    .video-container {
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+    }
+    
+    .custom-video-player {
+        /* position: relative; */
+        z-index: 1;
+    }
+    
+    /* Ensure fullscreen and controls work properly with transforms */
+    .fullscreen-btn {
+        pointer-events: auto !important;
+        z-index: 25 !important;
+        position: relative;
+    }
 }
