@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Funnel Accelerator | Z niepewnych sprzedaży do stałego dochodu</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="./styles.css"/>
+</head>
+<body class="dark-theme">
+    <!-- Background Effects -->
+    <div class="gl-wrapper" id="scene-container"></div>
+    <div class="noise-bg"></div>
+    
+    <!-- Navigation -->
+    <nav class="sticky-nav py-5">
+        <div class="container mx-auto px-6 lg:px-8 flex justify-between items-center">
+            <div class="font-bold text-2xl">
+                <img src="./logo.png" alt="Logo" class="h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 w-auto" />
+            </div>
+            <div class="hidden md:flex space-x-10">
+                <a href="#o-programie" class="nav-link">O programie</a>
+                <a href="#dla-kogo" class="nav-link">Dla kogo</a>
+                <a href="#program" class="nav-link">Program</a>
+                <a href="#opinie" class="nav-link">Opinie</a>
+            </div>
+            <button class="hidden md:flex btn-primary py-3 px-6 text-sm" onclick="openModal()">Aplikuj teraz</button>
+            <button class="flex md:hidden btn-primary py-3 px-6 text-sm" onclick="openModal()">Dołącz</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        
+        <div class="container mx-auto px-4 lg:px-8 hero-content py-8 lg:py-16">
+            <!-- Mobile Layout (default) -->
+            <div class="lg:hidden flex flex-col gap-6">
+                <!-- Heading Section -->
+                <div>
+                    <span class="inline-block px-4 py-2 rounded-full bg-white bg-opacity-10 text-white text-sm font-medium mb-4">Tylko 6 tygodni do transformacji Twojego biznesu</span>
+                    <h1 class="text-5xl md:text-6xl font-black leading-tight mb-8 text-white">
+                        Wyskaluj swoją <span class="text-gradient">sprzedaż</span>&nbsp;dzięki <span class="text-gradient">AI</span>
+                    </h1>
+                </div>
+                
+                <!-- Video Section (immediately after heading on mobile) -->
+                <div class="w-full mb-6">
+                    <div class="tilt-card tilt-video">
+                        <div class="tilt-card-inner">
+                            <div class="video-container">
+                                <div class="custom-video-player">
+                                    <video 
+                                        id="mainVideo" 
+                                        class="w-full h-full object-cover rounded-2xl"
+                                        poster=""
+                                        preload="metadata"
+                                        playsinline
+                                        webkit-playsinline>
+                                        <source src="https://ai-funnel-accelerator.s3.eu-central-1.amazonaws.com/video.mp4" type="video/mp4">
+                                        Twoja przeglądarka nie obsługuje odtwarzania wideo.
+                                    </video>
+                                    
+                                    <!-- Video Overlay & Controls -->
+                                    <div class="video-overlay">
+                                        <!-- Play Button Overlay -->
+                                        <div class="play-overlay">
+                                            <div class="play-button-large" id="playButtonLarge">
+                                                <svg class="play-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M8 5v14l11-7z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Video Label -->
+                                        <div class="absolute top-4 left-4 bg-gradient-to-r from-indigo-500 to-purple-600 px-3 py-1 rounded-full text-sm text-white font-medium">
+                                            Zobacz jak wykorzytać pełną moc AI
+                                        </div>
+                                        
+                                        <!-- Custom Controls -->
+                                        <div class="video-controls">
+                                            <div class="progress-container">
+                                                <div class="progress-bar">
+                                                    <div class="progress-filled" id="progressFilled"></div>
+                                                    <div class="progress-handle" id="progressHandle"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="controls-bottom">
+                                                <div class="controls-left">
+                                                    <button class="control-btn play-pause" id="playPauseBtn">
+                                                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M8 5v14l11-7z"/>
+                                                        </svg>
+                                                        <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                                        </svg>
+                                                    </button>
+                                                    
+                                                    <span class="time-display">
+                                                        <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+                                                    </span>
+                                                </div>
+                                                
+                                                <div class="controls-right">
+                                                    <button class="control-btn volume-btn" id="volumeBtn">
+                                                        <svg class="volume-up" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                                        </svg>
+                                                        <svg class="volume-muted hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M7 9v6h4l5 5V4l-5 5H7z"/>
+                                                        </svg>
+                                                    </button>
+                                                    
+                                                    <button class="control-btn fullscreen-btn" id="fullscreenBtn">
+                                                        <svg class="fullscreen-open" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                                                        </svg>
+                                                        <svg class="fullscreen-close hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Section -->
+                <div>
+                    <p class="text-lg text-white opacity-90 font-light mb-6">
+                        6-tygodniowy program, który pozwoli Ci <strong>3-5× przyspieszyć tworzenie treści marketingowych</strong>, zbudować <strong>lejek sprzedażowy</strong> oraz skalować biznes dzięki AI.
+                    </p>
+                    <ul class="mb-6 text-white opacity-80">
+                        <li class="flex items-center mb-3">
+                            <svg class="w-5 h-5 mr-2 text-gradient-end" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Sprawdzony system - już od pierwszego tygodnia zobaczysz rezultaty
+                        </li>
+                        <li class="flex items-center mb-3">
+                            <svg class="w-5 h-5 mr-2 text-gradient-end" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Zero wiedzy technicznej - wystarczy, że potrafisz pisać
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-gradient-end" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Pełne wsparcie i gotowe szablony - wdrożenie zajmie Ci tylko 5-6 godzin tygodniowo
+                        </li>
+                    </ul>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="btn-primary text-center font-bold" onclick="openModal()">
+                            Aplikuj teraz
+                        </button>
+                        <a href="#o-programie" class="glass text-white font-bold py-4 px-8 rounded-2xl text-center hover:bg-white hover:bg-opacity-5 transition-all duration-500">
+                            Poznaj Program
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Desktop Layout -->
+            <div class="hidden lg:grid lg:grid-cols-2 lg:gap-16">
+                <!-- Left Column (Text Content) -->
+                <div class="fade-in-left">
+                    <div class="animate__animated animate__fadeIn">
+                        <span class="inline-block px-4 py-2 rounded-full bg-white bg-opacity-10 text-white text-sm font-medium mb-6">Tylko 6 tygodni do transformacji Twojego biznesu</span>
+                        <h1 class="text-5xl md:text-6xl font-black leading-tight mb-8 text-white">
+                            Wyskaluj swoją <span class="text-gradient">sprzedaż</span>&nbsp;dzięki <span class="text-gradient">AI</span>
+                        </h1>
+                        <p class="text-xl md:text-2xl mb-6 text-white opacity-90 font-light">
+                            6-tygodniowy program, który pozwoli Ci <strong>3-5× przyspieszyć tworzenie treści marketingowych </strong>, zbudować <strong>lejek sprzedażowy</strong> oraz skalować biznes dzięki AI.
+                        </p>
+                        <ul class="mb-10 text-white opacity-80">
+                            <li class="flex items-center mb-3">
+                                <svg class="w-5 h-5 mr-2 text-gradient-end" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Sprawdzony system – efekty zobaczysz już w pierwszym tygodniu.
+                              </li>
+                            
+                              <li class="flex items-center mb-3">
+                                <svg class="w-5 h-5 mr-2 text-gradient-end" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Żadnej technicznej wiedzy – wystarczy, że potrafisz pisać.
+                              </li>
+                            
+                              <li class="flex items-center mb-3">
+                                <svg class="w-5 h-5 mr-2 text-gradient-end" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Pełne wsparcie i praktyczne zadania – wdrożenie zajmie Ci jedynie 4–5 godzin tygodniowo.
+                              </li>
+                            
+                              <li class="flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-gradient-end" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Zakończysz program projektem, a po jego ukończeniu otrzymasz certyfikat.
+                              </li>
+                        </ul>
+                        <div class="flex flex-row space-x-6">
+                            <button class="btn-primary text-center font-bold" onclick="openModal()">
+                                Aplikuj teraz
+                            </button>
+                            <a href="#o-programie" class="glass text-white font-bold py-4 px-8 rounded-2xl text-center hover:bg-white hover:bg-opacity-5 transition-all duration-500">
+                                Poznaj Program
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column (Video) -->
+                <div class="fade-in-right">
+                    <div class="tilt-card tilt-video">
+                        <div class="tilt-card-inner">
+                            <div class="video-container">
+                                <div class="custom-video-player">
+                                    <video 
+                                        id="mainVideoDesktop" 
+                                        class="w-full h-full object-cover rounded-2xl"
+                                        poster=""
+                                        preload="metadata"
+                                        playsinline
+                                        webkit-playsinline>
+                                        <source src="https://ai-funnel-accelerator.s3.eu-central-1.amazonaws.com/video.mp4" type="video/mp4">
+                                        Twoja przeglądarka nie obsługuje odtwarzania wideo.
+                                    </video>
+                                    
+                                    <!-- Video Overlay & Controls -->
+                                    <div class="video-overlay">
+                                        <!-- Play Button Overlay -->
+                                        <div class="play-overlay">
+                                            <div class="play-button-large" id="playButtonLargeDesktop">
+                                                <svg class="play-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M8 5v14l11-7z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Video Label -->
+                                        <div class="absolute top-4 left-4 bg-gradient-to-r from-indigo-500 to-purple-600 px-3 py-1 rounded-full text-sm text-white font-medium">
+                                            Zobacz jak wykorzytać pełną moc AI
+                                        </div>
+                                        
+                                        <!-- Custom Controls -->
+                                        <div class="video-controls">
+                                            <div class="progress-container">
+                                                <div class="progress-bar">
+                                                    <div class="progress-filled" id="progressFilledDesktop"></div>
+                                                    <div class="progress-handle" id="progressHandleDesktop"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="controls-bottom">
+                                                <div class="controls-left">
+                                                    <button class="control-btn play-pause" id="playPauseBtnDesktop">
+                                                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M8 5v14l11-7z"/>
+                                                        </svg>
+                                                        <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                                        </svg>
+                                                    </button>
+                                                    
+                                                    <span class="time-display">
+                                                        <span id="currentTimeDesktop">0:00</span> / <span id="durationDesktop">0:00</span>
+                                                    </span>
+                                                </div>
+                                                
+                                                <div class="controls-right">
+                                                    <button class="control-btn volume-btn" id="volumeBtnDesktop">
+                                                        <svg class="volume-up" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                                        </svg>
+                                                        <svg class="volume-muted hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M7 9v6h4l5 5V4l-5 5H7z"/>
+                                                        </svg>
+                                                    </button>
+                                                    
+                                                    <button class="control-btn fullscreen-btn" id="fullscreenBtnDesktop">
+                                                        <svg class="fullscreen-open" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                                                        </svg>
+                                                        <svg class="fullscreen-close hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                            <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Countdown Timer -->
+            <div class="mt-10 w-80 mx-auto">
+                <div class="my-4 ">
+                    <span class="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-red-500 to-red-600 text-white text-sm font-bold animate-pulse">Pozostało tylko 40 gwarantowanych miejsc!</span>
+                </div>
+                <div class="flex items-center mb-4">
+                    <p class="text-lg text-white text-center font-medium mx-auto">Zapisy kończą się za:</p>
+                </div>
+                <div class="countdown-container">
+                    <div class="countdown-item">
+                        <span class="countdown-number">3</span>
+                        <span class="countdown-label">dni</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">11</span>
+                        <span class="countdown-label">godz</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">43</span>
+                        <span class="countdown-label">min</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">27</span>
+                        <span class="countdown-label">sek</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section id="o-programie" class="section section-dark">
+        <div class="container mx-auto px-6 lg:px-8">
+          <!-- Nagłówek sekcji z obawami -->
+          <div class="max-w-3xl mx-auto text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 reveal-on-scroll">
+              Czy te <span class="text-gradient">obawy</span> brzmią znajomo?
+            </h2>
+            <p class="text-xl text-white opacity-80 reveal-on-scroll">
+              Masz wiedzę i pasję, ale codzienny obowiązek tworzenia treści i prowadzenia sprzedaży sprawia, że czujesz się przytłoczona/przytłoczony
+              i trudno Ci skalować swój biznes.
+            </p>
+          </div>
+      
+          <!-- Karty z „bólami" -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="pain-card fade-in-up reveal-on-scroll">
+              <h3 class="text-2xl font-bold mb-5 text-white">„Wszyscy już korzystają z AI, a ja zostaję w tyle"</h3>
+              <p class="text-white opacity-70">
+                Czujesz technologiczną niepewność. Testowałeś/-aś ChatGPT, ale nadal nie wiesz, od czego zacząć i jak włączyć AI
+                w swój proces marketingowo-sprzedażowy.
+              </p>
+            </div>
+      
+            <div class="pain-card fade-in-up reveal-on-scroll" style="transition-delay: 0.2s">
+              <h3 class="text-2xl font-bold mb-5 text-white">„Nie mam czasu, żeby nauczyć się czegoś nowego"</h3>
+              <p class="text-white opacity-70">
+                Każdego dnia zmagasz się z natłokiem zadań – tworzeniem treści, odpowiadaniem na wiadomości, obsługą mediów społecznościowych.
+                Nauka AI wydaje się luksusem, na który nie możesz sobie pozwolić.
+              </p>
+            </div>
+      
+            <div class="pain-card fade-in-up reveal-on-scroll" style="transition-delay: 0.4s">
+              <h3 class="text-2xl font-bold mb-5 text-white">„Boję się, że AI stworzy coś banalnego lub błędnego"</h3>
+              <p class="text-white opacity-70">
+                Obawiasz się, że treści generowane przez AI będą nijakie i pozbawione charakteru. Martwią Cię też kwestie etyczne i prawne – 
+                czy to nie będzie plagiat? A co, jeśli AI wygeneruje fałszywe informacje?
+              </p>
+            </div>
+          </div>
+      
+          <!-- Nagłówek sekcji z rozwiązaniami -->
+          <div class="max-w-3xl mx-auto text-center mt-32 mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 reveal-on-scroll">
+              Wyobraź sobie, <span class="text-gradient">że w 6 tygodni...</span>
+            </h2>
+          </div>
+      
+          <!-- Karty z korzyściami -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="solution-card fade-in-up reveal-on-scroll">
+              <h3 class="text-2xl font-bold mb-5 text-white">Tworzysz treści szybciej, zachowując swój unikalny głos</h3>
+              <p class="text-white opacity-70">
+                AI staje się Twoim wsparciem, nie zamiennikiem. Przygotowujesz wysokiej jakości materiały w ułamku dotychczasowego czasu,
+                a kontrola nad stylem i merytoryką pozostaje w Twoich rękach.
+              </p>
+            </div>
+      
+            <div class="solution-card fade-in-up reveal-on-scroll" style="transition-delay: 0.2s">
+              <h3 class="text-2xl font-bold mb-5 text-white">Osiągasz wyższe wyniki sprzedaży dzięki AI</h3>
+              <p class="text-white opacity-70">
+                Twoje lejki sprzedażowe zasilane są inteligentną automatyzacją. Zamiast ręcznie „ogarniać wszystko", budujesz system,
+                który działa za Ciebie jak niezawodny asystent.
+              </p>
+            </div>
+      
+            <div class="solution-card fade-in-up reveal-on-scroll" style="transition-delay: 0.4s">
+              <h3 class="text-2xl font-bold mb-5 text-white">Pozbywasz się technologicznego stresu</h3>
+              <p class="text-white opacity-70">
+                Swobodnie korzystasz z AI jak z „najmądrzejszego członka zespołu". Masz sprawdzone metody, gotowe szablony i jasny plan działania – 
+                bez zgadywania i frustrujących poszukiwań.
+              </p>
+            </div>
+          </div>
+      
+          <!-- Call To Action -->
+          <div class="mt-16 text-center">
+            <p class="text-xl text-white opacity-80 max-w-3xl mx-auto mb-8 reveal-on-scroll">
+              Wszystko to wymaga od Ciebie jedynie <strong>4–6 godzin tygodniowo</strong> przez 6 tygodni – inwestycja, która zwróci się wielokrotnie dzięki automatyzacji i wzrostowi sprzedaży.
+            </p>
+            <a href="#opis" class="btn-primary text-center font-bold">
+              Chcę dowiedzieć się więcej
+            </a>
+          </div>
+        </div>
+      </section>
+
+    <!-- New About Course Section -->
+<section id="opis" class="section bg-gray-50">
+    <div class="container mx-auto px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8  reveal-on-scroll">
+                Poznaj program<br/><span class="text-gradient">AI Funnel Accelerator</span>
+            </h2>
+            <p class="text-xl opacity-80 reveal-on-scroll">
+                Dedykowany program, który łączy najnowsze technologie AI z procesem marketingowo-sprzedażowym dla niezależnych twórców online oraz przedsiębiorców.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="fade-in-left reveal-on-scroll">
+                <div class="video-container tilt-card-inner">
+                    <div class="custom-video-player">
+                        <video 
+                            id="aboutVideo" 
+                            class="w-full h-full object-cover rounded-2xl"
+                            poster=""
+                            preload="metadata"
+                            playsinline
+                            webkit-playsinline>
+                            <source src="https://ai-funnel-accelerator.s3.eu-central-1.amazonaws.com/video.mp4" type="video/mp4">
+                            Twoja przeglądarka nie obsługuje odtwarzania wideo.
+                        </video>
+                        <script>
+                            const video = document.getElementById('aboutVideo');
+                            
+                            // Set start time in seconds (e.g., start at 10 seconds)
+                            const startTime = 1174;
+                            video.currentTime = startTime;
+                            // Wait until metadata is loaded to safely set currentTime
+                            video.addEventListener('loadedmetadata', function () {
+                              video.currentTime = startTime;
+                            });
+                          </script>
+                        
+                        <!-- Video Overlay & Controls -->
+                        <div class="video-overlay">
+                            <!-- Play Button Overlay -->
+                            <div class="play-overlay">
+                                <div class="play-button-large" id="playButtonLargeAbout">
+                                    <svg class="play-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <!-- Video Label -->
+                            <div class="absolute top-4 left-4 bg-gradient-to-r from-indigo-500 to-purple-600 px-3 py-1 rounded-full text-sm font-medium">
+                                Zobacz jak działa nasz system
+                            </div>
+                            
+                            <!-- Custom Controls -->
+                            <div class="video-controls">
+                                <div class="progress-container">
+                                    <div class="progress-bar">
+                                        <div class="progress-filled" id="progressFilledAbout"></div>
+                                        <div class="progress-handle" id="progressHandleAbout"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="controls-bottom">
+                                    <div class="controls-left">
+                                        <button class="control-btn play-pause" id="playPauseBtnAbout">
+                                            <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M8 5v14l11-7z"/>
+                                            </svg>
+                                            <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                                            </svg>
+                                        </button>
+                                        
+                                        <span class="time-display">
+                                            <span id="currentTimeAbout">0:00</span> / <span id="durationAbout">0:00</span>
+                                        </span>
+                                    </div>
+                                    
+                                    <div class="controls-right">
+                                        <button class="control-btn volume-btn" id="volumeBtnAbout">
+                                            <svg class="volume-up" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                            </svg>
+                                            <svg class="volume-muted hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M7 9v6h4l5 5V4l-5 5H7z"/>
+                                            </svg>
+                                        </button>
+                                        
+                                        <button class="control-btn fullscreen-btn" id="fullscreenBtnAbout">
+                                            <svg class="fullscreen-open" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                                            </svg>
+                                            <svg class="fullscreen-close hidden" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fade-in-right reveal-on-scroll">
+                <h3 class="text-3xl font-bold mb-6 ">Co zyskujesz dzięki programowi?</h3>
+                <div class="glass p-8 rounded-2xl mb-8">
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="feature-icon mr-4">1</div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2 ">Sprawdzoną metodologię</h4>
+                                <p class="opacity-70">Krok po kroku przeprowadzimy Cię przez proces budowy systemu marketingowo-sprzedażowego wykorzystującego AI.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="feature-icon mr-4">2</div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">Nauka w praktyce</h4>
+                                <p class="opacity-70">To nie jest kolejne teoretyczny szkolenie! Każdy tydzień to konkretna częśc procesu oraz zadania i projekty, które od razu przynoszą Ci mierzaone efekty.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="feature-icon mr-4">3</div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2 ">Społeczność i wsparcie</h4>
+                                <p class=" opacity-70">Cotygodniowe sesje Q&A na żywo, dedykowana społeczność uczestników oraz baza wiedzy z rozwiązaniami najczęstszych problemów.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-10 reveal-on-scroll">
+            <div class="glass p-8 rounded-2xl text-center hover:transform hover:scale-105 transition-all duration-500">
+                <div class="w-16 h-16 bg-gradient-to-r from-accent to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Elastyczny format</h3>
+                <p class="opacity-70">Cotygodniowe wykłady oraz sesje Q&A na żywo. Dostępne również w formie nagrań, abyś mógł uczyć się w swoim tempie.</p>
+            </div>
+            
+            <div class="glass p-8 rounded-2xl text-center hover:transform hover:scale-105 transition-all duration-500">
+                <div class="w-16 h-16 bg-gradient-to-r from-accent to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Materiały edukacyjne</h3>
+                <p class="opacity-70">Otrzymasz gotowe materiały, które pomogą Ci lepiej zrozumieć i wdrożyć zagadnainia z wykła\dów. 
+            </div>
+            
+            <div class="glass p-8 rounded-2xl text-center hover:transform hover:scale-105 transition-all duration-500">
+                <div class="w-16 h-16 bg-gradient-to-r from-accent to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Szybkie rezultaty</h3>
+                <p class="opacity-70">Specjalnie zaprojektowany system "quick wins" - pierwsze efekty zobaczysz już po pierwszym tygodniu.</p>
+            </div>
+        </div>
+        
+        <div class="mt-16 text-center reveal-on-scroll">
+            <a href="#dla-kogo" class="btn-primary text-center font-bold">
+                Czy to dla mnie?
+            </a>
+        </div>
+        
+    </div>
+</section>
+
+<!-- Target Audience Section -->
+<section id="dla-kogo" class="section">
+    <div class="container mx-auto px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white reveal-on-scroll">
+                🔥 Dla kogo jest <span class="text-gradient">ten program?</span>
+            </h2>
+            <p class="text-xl text-white opacity-80 reveal-on-scroll">
+                AI Funnel Accelerator został stworzony specjalnie dla twórców online i przedsiębiorców z ofertą high-ticket, którzy chcą przejść na wyższy poziom:
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10 max-w-5xl mx-auto">
+            <div class="course-feature fade-in-left reveal-on-scroll">
+                <div class="feature-icon">✓</div>
+                <div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Eksperci z ofertą high-ticket</h3>
+                    <p class="text-white">Zarabiasz 10-30k PLN miesięcznie, ale czujesz, że osiągnąłeś sufit wzrostu przy obecnym poziomie zaangażowania i manualnej pracy.</p>
+                </div>
+            </div>
+            
+            <div class="course-feature fade-in-right reveal-on-scroll">
+                <div class="feature-icon">✓</div>
+                <div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Konsultanci i coachowie</h3>
+                    <p class="text-white">Chcesz zwiększyć sprzedaż swoich usług premium, ale nie masz czasu na obsługę większej liczby klientów i lead'ów przy zachowaniu wysokiej jakości.</p>
+                </div>
+            </div>
+            
+            <div class="course-feature fade-in-left reveal-on-scroll">
+                <div class="feature-icon">✓</div>
+                <div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Twórcy kursów online</h3>
+                    <p class="text-white">Marzysz o systemie, który pomoże Ci w pozyskaniu klientów i przyśpieszy wykonywanie żmudnych, powtarzalnych zadań.</p>
+                </div>
+            </div>
+            
+            <div class="course-feature fade-in-right reveal-on-scroll">
+                <div class="feature-icon">✓</div>
+                <div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Soloprzedsiębiorcy z ambicjami</h3>
+                    <p class="text-white">Wiesz, że AI to przyszłość, ale potrzebujesz konkretnych strategii i narzędzi, by wykorzystać tę technologię do rzeczywistego skalowania Twojego biznesu.</p>
+                </div>
+            </div>
+            
+            <div class="course-feature fade-in-left reveal-on-scroll">
+                <div class="feature-icon">✓</div>
+                <div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Specjaliści z ograniczonym czasem</h3>
+                    <p class="text-white">Spędzasz zbyt wiele godzin na tworzeniu contentu, leadowaniu i obsłudze klienta. Potrzebujesz systemu, który uwolni Twój czas dla zadań o najwyższej wartości.</p>
+                </div>
+            </div>
+            
+            <div class="course-feature fade-in-right reveal-on-scroll">
+                <div class="feature-icon">✓</div>
+                <div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Praktycy szukający konkretów</h3>
+                    <p class="text-white">Próbowałeś już podstawowych narzędzi AI, ale potrzebujesz sprawdzonych procesów i systemów, które faktycznie działają w biznesie high-ticket.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-16 text-center max-w-3xl mx-auto reveal-on-scroll">
+            <p class="text-white text-lg font-bold">
+                Jeśli spełniasz przynajmniej 1 z powyższych kryteriów — AI Funnel Accelerator to program stworzony właśnie dla Ciebie.
+            </p>
+        </div>
+        
+        <div class="mt-8 text-center max-w-3xl mx-auto reveal-on-scroll">
+            <p class="text-white text-lg mb-4">
+                Ten program NIE jest przeznaczony dla korporacji, początkujących przedsiębiorców bez produktu, ani osób szukających teoretycznej wiedzy o AI
+            </p>
+            <p class="text-white text-lg">
+                Program ten został zaprojektowany specjalnie dla osób sprzedających usługi i produkty high-ticket, którzy są gotowi na prawdziwe skalowanie.
+            </p>
+        </div>
+    </div>
+    <div class="mt-16 text-center reveal-on-scroll">
+        <a href="#program" class="btn-primary text-center font-bold">
+            Poznaj agendę programu
+        </a>
+    </div>
+</section>
+
+    <!-- Course Agenda Section -->
+<!-- AI Funnel Accelerator – Zaktualizowany i rozszerzony program -->
+<section id="program" class="section section-dark">
+    <div class="container mx-auto px-6 lg:px-8">
+  
+      <!-- ======= Nagłówek sekcji ======= -->
+      <div id="agenda" class="max-w-3xl mx-auto text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-bold mb-8 reveal-on-scroll">
+          Agenda programu<br /><span class="text-gradient">AI Funnel Accelerator</span>
+        </h2>
+        <p class="text-xl text-white/90 reveal-on-scroll">
+          Kompleksowy program szkoleniowy, który pokazuje, jak wykorzystać sztuczną inteligencję na każdym etapie procesu
+          promocji i sprzedaży High‑Ticket – od strategii, poprzez tworzenie oferty, promocję, proces sprzedaży aż po
+          obsługę klienta oraz skalowanie i analitykę.
+        </p>
+      </div>
+  
+      <div class="max-w-4xl mx-auto">
+        <!-- ======================== TYDZIEŃ 0 ======================== -->
+        <div class="agenda-item pb-16 reveal-on-scroll fade-in-up">
+          <div class="glass px-8 py-10 rounded-2xl">
+            <h3 class="text-3xl font-bold mb-6 text-white">Tydzień&nbsp;0: <span class="text-gradient">Fundamenty&nbsp;i&nbsp;Konfiguracja&nbsp;AI</span></h3>
+            <p class="text-white/90 mb-8">Solidne podstawy i szybki setup środowiska pracy, aby w pełni wykorzystać potencjał programu.</p>
+            <ul class="space-y-4 text-white/80">
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Architektura programu, cele i kluczowe wskaźniki (KPI).</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Konfiguracja kont, narzędzi AI i środowiska pracy.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Mapa obecnego procesu sprzedaży vs. etapy AI Funnel Accelerator.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Podstawy działania narzędzi AI (LLM, generatory treści, automatyzacje).</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Dobre i złe praktyki w pracy ze sztuczną inteligencją.</span></li>
+            </ul>
+            <!-- Rezultat -->
+            <div class="mt-6 text-white/80 text-sm">
+              <p class="text-accent font-semibold mt-4">Rezultat:</p>
+              <p>W pełni skonfigurowane środowisko AI oraz roadmapa wdrożenia sztucznej inteligencji w Twoim biznesie.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- ======================== TYDZIEŃ 1 ======================== -->
+        <div class="agenda-item pb-16 reveal-on-scroll fade-in-up" style="transition-delay:0.15s">
+          <div class="glass px-8 py-10 rounded-2xl">
+            <h3 class="text-3xl font-bold mb-6 text-white">Tydzień&nbsp;1: <span class="text-gradient">Projektowanie Oferty High‑Ticket</span></h3>
+            <p class="text-white/90 mb-8 italic">Projektowanie oferty i pozycjonowanie z wykorzystaniem AI.</p>
+            <ul class="space-y-4 text-white/80">
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Analiza rynku, nisz i insightów klienta przy użyciu zaawansowanych promptów researchowych.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Tworzenie propozycji wartości – naming, USP, pozycjonowanie, unikalne kąty komunikacji.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Copywriting ofertowy wspierany przez AI: landing page, VSL, oferty sprzedażowe HT.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Generatory Big&nbsp;Promise, frameworków i claimów – gotowe szablony.</span></li>
+            </ul>
+            <!-- Rezultat -->
+            <div class="mt-6 text-white/80 text-sm">
+              <p class="text-accent font-semibold mt-4">Rezultat:</p>
+              <p>Gotowa, wyróżniająca się oferta High‑Ticket (nazwa, USP, Big&nbsp;Promise) wraz z draftem landing page/VSL i kompletną kartą wartości dla działu sprzedaży.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- ======================== TYDZIEŃ 2 ======================== -->
+        <div class="agenda-item pb-16 reveal-on-scroll fade-in-up" style="transition-delay:0.3s">
+          <div class="glass px-8 py-10 rounded-2xl">
+            <h3 class="text-3xl font-bold mb-6 text-white">Tydzień&nbsp;2: <span class="text-gradient">Budowa Lejka Sprzedażowego</span></h3>
+            <p class="text-white/90 mb-8 italic">Projektowanie lejka przy pomocy AI.</p>
+            <ul class="space-y-4 text-white/80">
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Projektowanie lejków HT z wykorzystaniem AI (quiz, VSL, webinar, wyzwanie, itp.).</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Sekwencje follow‑up (e‑maile, DM, remarketing) tworzone i personalizowane przez AI.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Storytelling oraz edukacja w lejku – framework „Educate &amp; Elevate".</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Automatyczne nurturing flows (lead warming i objection handling).</span></li>
+            </ul>
+            <!-- Rezultat -->
+            <div class="mt-6 text-white/80 text-sm">
+              <p class="text-accent font-semibold mt-4">Rezultat:</p>
+              <p>Zautomatyzowany, wieloetapowy lejek sprzedażowy High‑Ticket (quiz/VSL → call) wraz z gotowymi sekwencjami follow‑up i botami nurtującymi leady.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- ======================== TYDZIEŃ 3 ======================== -->
+        <div class="agenda-item pb-16 reveal-on-scroll fade-in-up" style="transition-delay:0.45s">
+          <div class="glass px-8 py-10 rounded-2xl">
+            <h3 class="text-3xl font-bold mb-6 text-white">Tydzień&nbsp;3: <span class="text-gradient">Kampania &amp; Generowanie Leadów</span></h3>
+            <p class="text-white/90 mb-8 italic">Projektowanie kampanii marketingowej i reklam generowanych przez AI.</p>
+            <ul class="space-y-4 text-white/80">
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Kampanie reklamowe (Meta, Google, YouTube, TikTok) – copy, kreacje, testy hooków.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>System contentowy AI: jeden rdzeń treści → wiele formatów (reels, podcast, newsletter).</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Dynamiczne A/B‑testy i optymalizacje z wykorzystaniem AI.</span></li>
+            </ul>
+            <!-- Rezultat -->
+            <div class="mt-6 text-white/80 text-sm">
+              <p class="text-accent font-semibold mt-4">Rezultat:</p>
+              <p>Skalowalna kampania marketingowa z gotowymi zestawami reklam i systemem „content machine", generująca przewidywalny napływ wysoko‑wartościowych leadów.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- ======================== TYDZIEŃ 4 ======================== -->
+        <div class="agenda-item pb-16 reveal-on-scroll fade-in-up" style="transition-delay:0.6s">
+          <div class="glass px-8 py-10 rounded-2xl">
+            <h3 class="text-3xl font-bold mb-6 text-white">Tydzień&nbsp;4: <span class="text-gradient">Sprzedaż &amp; Obsługa Klienta HT</span></h3>
+            <p class="text-white/90 mb-8 italic">Optymalizacja sprzedaży i obsługi klienta wspierana przez AI.</p>
+            <ul class="space-y-4 text-white/80">
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>AI‑skrypty rozmów, voice‑ &amp; chat‑assistant do obsługi zastrzeżeń.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Follow‑up i closing flows – Twój Sales Co‑pilot.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Onboarding klienta HT (checklisty, welcome packs, automatyczne przypomnienia).</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Delivery &amp; support system – AI w community, FAQ, ticketing.</span></li>
+            </ul>
+            <!-- Rezultat -->
+            <div class="mt-6 text-white/80 text-sm">
+              <p class="text-accent font-semibold mt-4">Rezultat:</p>
+              <p>Kompletny proces sprzedaży i obsługi High‑Ticket wspierany przez AI: skrócony cykl dealu, wyższy współczynnik closingu, uspójniony onboarding oraz 24/7 support‑bot.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- ======================== TYDZIEŃ 5 (NOWOŚĆ) ======================== -->
+        <div class="agenda-item pb-16 reveal-on-scroll fade-in-up" style="transition-delay:0.75s">
+          <div class="glass px-8 py-10 rounded-2xl">
+            <h3 class="text-3xl font-bold mb-6 text-white">Tydzień&nbsp;5: <span class="text-gradient">Optymalizacja Konwersji &amp; AI Analytics</span></h3>
+            <p class="text-white/90 mb-8 italic">Wykorzystanie danych i AI do maksymalizacji ROI.</p>
+            <ul class="space-y-4 text-white/80">
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Ustawienie AI dashboardów – realtime KPI, alerty i rekomendacje.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Heatmapy, mapy kliknięć i analizy behawioralne wspierane przez AI.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Modelowanie przychodów, prognozowanie leadów i zarządzanie budżetem reklamowym.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Iteracyjne testy A/B/C i eksperymenty prowadzone automatycznie.</span></li>
+            </ul>
+            <!-- Rezultat -->
+            <div class="mt-6 text-white/80 text-sm">
+              <p class="text-accent font-semibold mt-4">Rezultat:</p>
+              <p>Kompletny zestaw narzędzi analitycznych i procesów optymalizacji, które stale podnoszą konwersję i rentowność lejka.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- ======================== TYDZIEŃ 6 (NOWOŚĆ) ======================== -->
+        <div class="agenda-item pb-16 reveal-on-scroll fade-in-up" style="transition-delay:0.9s">
+          <div class="glass px-8 py-10 rounded-2xl">
+            <h3 class="text-3xl font-bold mb-6 text-white">Tydzień&nbsp;6: <span class="text-gradient">Skalowanie &amp; Automatyzacja End‑to‑End</span></h3>
+            <p class="text-white/90 mb-8 italic">Budowa samonapędzających się procesów oraz ekspansja na nowe rynki.</p>
+            <ul class="space-y-4 text-white/80">
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Projektowanie AI‑driven operating system (CRM, task‑management, delegowanie).</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Workflowy no‑code/low‑code (Zapier, Make, n8n) – integracje i automatyzacje.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Sztuczna inteligencja w HR: rekrutacja, wprowadzenie i trening zespołu sprzedaży.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Ekspansja międzynarodowa – lokalizacja ofert i kampanii z AI‑transkreacją.</span></li>
+            </ul>
+            <!-- Rezultat -->
+            <div class="mt-6 text-white/80 text-sm">
+              <p class="text-accent font-semibold mt-4">Rezultat:</p>
+              <p>Scentralizowany, zautomatyzowany system operacyjny, który pozwala skalować przychody bez proporcjonalnego zwiększania kosztów i wielkości zespołu.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- ======================== BONUS ======================== -->
+        <div class="agenda-item reveal-on-scroll fade-in-up" style="transition-delay:1.05s">
+          <div class="glass px-8 py-10 rounded-2xl">
+            <h3 class="text-3xl font-bold mb-6 text-white">Bonus (pakiet Premium): <span class="text-gradient">Biblioteka Promptów &amp; Szablonów</span></h3>
+            <p class="text-white/90 mb-8 italic">Zaawansowane zasoby, które skracają czas wdrożenia i przyspieszają skalowanie.</p>
+            <ul class="space-y-4 text-white/80">
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Ponad 200 gotowych promptów High‑Ticket Sales &amp; Marketing.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Gotowe szablony lejków, sekwencji e‑mail oraz skryptów sprzedażowych.</span></li>
+              <li class="flex items-start"><span class="text-accent mr-3">•</span><span>Zautomatyzowane blueprinty Zapier/Make – one‑click import.</span></li>
+            </ul>
+            <!-- Rezultat -->
+            <div class="mt-6 text-white/80 text-sm">
+              <p class="text-accent font-semibold mt-4">Rezultat:</p>
+              <p>Narzędziownik „plug‑and‑play", który pozwala natychmiast wdrażać, testować i skalować nowe kampanie oraz procesy bez kodowania.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- ======= CTA ======= -->
+      <div class="mt-24 text-center reveal-on-scroll">
+        <button class="btn-primary inline-block" onclick="openModal()">Poznaj ofertę</button>
+      </div>
+    </div>
+  </section>
+  
+    
+    
+
+    <!-- Testimonials Section -->
+    <!-- <section id="opinie" class="section">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white reveal-on-scroll">
+                    Co mówią nasi <span class="text-gradient">absolwenci</span>
+                </h2>
+                <p class="text-xl text-white opacity-80 reveal-on-scroll">
+                    Polscy twórcy kursów, trenerzy i infoprenerzy dzielą się swoimi doświadczeniami z naszym systemem sprzedaży opartym na AI.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+                <div class="testimonial-card tilt-card fade-in-up reveal-on-scroll">
+                    <div class="tilt-card-inner">
+                        <p class="mb-8 text-white opacity-80 text-lg">„Przed dołączeniem do kursu moja sprzedaż była kompletnym rollercoasterem - jeden miesiąc 12 000 zł, następny zaledwie 3 000 zł. Po wdrożeniu systemu AI mój miesięczny przychód ustabilizował się na poziomie 15 000 zł, a ja mam wreszcie spokój ducha."</p>
+                        <div class="flex items-center">
+                            <div class="w-16 h-16 rounded-xl overflow-hidden bg-gradient-to-r from-purple-400 to-indigo-500 mr-5 flex items-center justify-center text-2xl font-bold text-white">M</div>
+                            <div>
+                                <p class="font-bold text-white">Marta K.</p>
+                                <p class="text-white opacity-60">Trenerka biznesu, Kraków</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card tilt-card fade-in-up reveal-on-scroll" style="transition-delay: 0.2s">
+                    <div class="tilt-card-inner">
+                        <p class="mb-8 text-white opacity-80 text-lg">„Jako twórca kursów online byłem sceptycznie nastawiony do automatyzacji - myślałem, że stracę osobisty kontakt. Ten kurs pokazał mi, jak używać AI w autentyczny sposób. Moja sprzedaż wzrosła o 240%, a klienci chwalą lepszą komunikację!"</p>
+                        <div class="flex items-center">
+                            <div class="w-16 h-16 rounded-xl overflow-hidden bg-gradient-to-r from-blue-400 to-cyan-500 mr-5 flex items-center justify-center text-2xl font-bold text-white">T</div>
+                            <div>
+                                <p class="font-bold text-white">Tomasz W.</p>
+                                <p class="text-white opacity-60">Twórca kursów digital marketingu</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card tilt-card fade-in-up reveal-on-scroll" style="transition-delay: 0.4s">
+                    <div class="tilt-card-inner">
+                        <p class="mb-8 text-white opacity-80 text-lg">„Miałam 10 000 subskrybentów na YouTube, ale tylko niewielka część kupowała moje kursy. Po wdrożeniu automatycznego systemu nurturowania i sprzedaży, moje konwersje wzrosły z 1,5% do 8%! To ogromna różnica w moim dochodzie."</p>
+                        <div class="flex items-center">
+                            <div class="w-16 h-16 rounded-xl overflow-hidden bg-gradient-to-r from-pink-400 to-red-500 mr-5 flex items-center justify-center text-2xl font-bold text-white">A</div>
+                            <div>
+                                <p class="font-bold text-white">Anna B.</p>
+                                <p class="text-white opacity-60">Twórczyni contentu finansowego</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Pricing -->
+    <section id="cennik" class="section bg-gradient-to-b from-gray-50 to-gray-100 py-20">
+        <div class="container mx-auto px-4 lg:px-8">
+            <!-- Nagłówek -->
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <span class="inline-block px-4 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4">PAKIETY WARSZTATOWE</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Praktyczna wiedza, którą wdrożysz od zaraz</h2>
+                <p class="text-xl text-gray-600">Wybierz pakiet dostosowany do Twoich potrzeb i poziomu zaangażowania</p>
+            </div>
+    
+            <!-- Karty cenowe -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto text-white">
+                <!-- Oferta A -->
+                <div class="pricing-card rounded-2xl overflow-hidden shadow-xl border-2 border-blue-500 bg-white relative transform transition-all duration-300 hover:scale-105">
+                    <div class="bg-blue-600 text-white p-6 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Pakiet LIVE</h3>
+                        <p class="text-blue-200">Pakiet z pełnym dostępem do materiałów</p>
+                        <!-- <div class="flex justify-center items-end mb-4">
+                            <span class="text-5xl font-extrabold">2 499 zł</span>
+                            <span class="text-blue-200 ml-2">netto</span>
+                        </div> -->
+                    </div>
+                    <div class="p-10">
+                        <ul class="space-y-4 mb-10 text-white">
+                            <!-- Lista benefitów z poprawioną kolejnością -->
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>5 moduły warsztatowe na żywo</strong> (10 godzin praktycznej wiedzy)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>5 godzinnych spotkań Q&A</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>12-miesięczny dostęp</strong> do nagrań wszystkich sesji</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>Projekt końcowy</strong> z grupowym omówieniem i feedback'iem</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>Zamknięta grupa</strong> dla uczestników warsztatów (3 miesiące)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>Praktyczne ćwiczenia</strong> z każdego modułu z przykładami</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>Zestaw szablonów</strong> i narzędzi do wdrożenia</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Certyfikat ukończenia warsztatów</span>
+                            </li>
+                        </ul>
+                        <button class="block text-center py-4 px-8 rounded-lg  bg-blue-600 text-white font-bold text-lg transition duration-300 hover:bg-blue-700 transform hover:-translate-y-1 shadow-lg hover:shadow-xl w-full" onclick="openModal('pakiet-live')">WYBIERZ TEN PAKIET</button>
+                    </div>
+                </div>
+    
+                <!-- Oferta B -->
+                <div class="pricing-card rounded-2xl overflow-hidden shadow-xl bg-white relative transform transition-all duration-300 hover:scale-105">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">Tylko 8 miejsca!</div>
+                    <div class="absolute -top-4 -left-4">
+                    </div>
+                    <div class="bg-gray-800 text-white p-6 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Pakiet LIVE + MENTORING</h3>
+                        <p class="text-gray-400">Kompletny pakiet z mentoringiem</p>
+                        <!-- <div class="flex justify-center items-end mb-4">
+                            <span class="text-5xl font-extrabold">3 999 zł</span>
+                            <span class="text-gray-400 ml-2">netto</span>
+                        </div> -->
+                    </div>
+                    <div class="p-10">
+                        <p class="text-blue-600 font-semibold mb-4 border-b border-blue-200 pb-2">Zawiera wszystko z pakietu Standard, plus:</p>
+                        <ul class="space-y-4 mb-10 text-white">
+                            <!-- Lista benefitów uporządkowana + 1:1 -->
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>3 indywidualne sesje mentoringowe</strong> (60 min) z ekspertem</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>Priorytetowy dostęp</strong> do sesji Q&A i szybsza odpowiedź na pytania</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>Indywidualny audyt</strong> Twojej strategii biznesowej</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>6-miesięczny dostęp do kanału VIP</strong> dla absolwentów Premium</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>30-minutowa konsultacja</strong> przed rozpoczęciem warsztatów</span>
+                            </li>
+                        </ul>
+                        <button class="block text-center py-4 px-8 btn-primary w-full text-lg" onclick="openModal('pakiet-live-mentoring')">WYBIERZ TEN PAKIET</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+<!-- FAQ Section -->
+<section id="faq" class="section">
+    <div class="container mx-auto px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white reveal-on-scroll">
+                Najczęściej zadawane <span class="text-gradient">pytania</span>
+            </h2>
+        </div>
+        
+        <div class="max-w-3xl mx-auto">
+            <!-- FAQ Accordion -->
+            <div class="faq-accordion">
+                <!-- FAQ Item 1 - Udoskonalony -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Czy potrzebuję wcześniejszego doświadczenia z narzędziami AI?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Większość uczestników widzi pierwsze wymierne rezultaty już w ciągu pierwszego tygodnia od wdrożenia pierwszych elementów systemu. Typowe początkowe efekty to oszczędność 5-10 godzin tygodniowo na powtarzalnych zadaniach oraz zwiększenie konwersji leadów o 15-30%. Pełne korzyści zazwyczaj pojawiają się po 6 tygodniach, gdy cały system zostanie zintegrowany i zoptymalizowany pod Twoją konkretną ofertę.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 - Udoskonalony -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.3s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Jakie koszty poza kursem muszę wziąć pod uwagę?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Aby w pełni wdrożyć system, sugerujemy budżet około 300-400 zł miesięcznie na narzędzia, w tym:</p>
+                        <ul class="text-white opacity-80 list-disc pl-6 mt-2">
+                            <li>ChatGPT Plus (ok. 90 zł/mies.)</li>
+                            <li>Make.com (darmowy plan na początek, później ok. 100 zł/mies.)</li>
+                            <li>Claude (darmowy plan jest wystarczający dla większości potrzeb)</li>
+                            <li>Runaway (opcjonalnie, w zależności od Twoich potrzeb)</li>
+                        </ul>
+                        <p class="text-white opacity-80 mt-4">W trakcie kursu pokazujemy również, jak maksymalnie wykorzystać darmowe plany oraz tańsze alternatywy dla bardziej zaawansowanych narzędzi, co pozwala zacząć z minimalnym budżetem ok. 100 zł miesięcznie. W ramach kursu otrzymasz również specjalne zniżki na wybrane narzędzia, które nie są dostępne publicznie.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 - Udoskonalony -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.4s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Co jeśli już korzystam z niektórych narzędzi AI?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">To fantastycznie! Twoja istniejąca wiedza będzie cennym atutem. Nasz kurs pokaże Ci, jak strategicznie połączyć te narzędzia w spójny, zautomatyzowany system sprzedażowy, który działa 24/7. Wielu naszych uczestników już wcześniej korzystało z ChatGPT czy innych narzędzi AI, ale dopiero systemowe podejście i integracja w zautomatyzowany lejek przyniosły im przełomowe rezultaty. Nasz program skupia się na unikalnych przepływach pracy i zastosowaniach, których nie znajdziesz w typowych poradnikach online. Według ankiet, nawet zaawansowani użytkownicy AI odkrywają w naszym kursie techniki, które zwiększają ich produktywność o 40-60%.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 7 - Nowy -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.6s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Czy ten program jest odpowiedni dla mojej branży?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">
+                            Nasz program został zaprojektowany z myślą o twórcach online i przedsiębiorcach posiadających oferty high ticket — zarówno usług, jak i produktów premium. Sprawdzi się wszędzie tam, gdzie kluczowe jest skuteczne pozyskiwanie klientów i skalowanie sprzedaży.
+                            </p>    
+                    </div>
+                </div>
+
+                <!-- FAQ Item 8 - Nowy -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.7s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Jakie wsparcie otrzymam podczas programu?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">W ramach programu otrzymasz kompleksowe wsparcie na wielu poziomach:</p>
+                        <ul class="text-white opacity-80 list-disc pl-6 mt-2">
+                            <li>Cotygodniowe sesje Q&A na żywo z głównym instruktorem (nagrania dostępne, jeśli nie możesz uczestniczyć)</li>
+                            <li>Dedykowana społeczność w zamkniętej grupie, gdzie możesz zadawać pytania 24/7</li>
+                            <li>Wsparcie techniczne przez czat i e-mail</li>
+                            <li>Dodatkowe godziny konsultacji 1:1 (dostępne w zależności od wybranego pakietu)</li>
+                            <li>Biblioteka gotowych promptów i szablonów do wykorzystania w Twoim biznesie</li>
+                        </ul>
+                        <p class="text-white opacity-80 mt-4">Naszym priorytetem jest Twój sukces, dlatego zapewniamy wielopoziomowe wsparcie, które pomoże Ci pokonać każdą przeszkodę i w pełni wdrożyć system w Twoim biznesie.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 9 - Nowy -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.8s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Co jeśli nie będę mógł/mogła uczestniczyć w którejś z sesji na żywo?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Rozumiemy, że masz napięty harmonogram, dlatego zaprojektowaliśmy program z myślą o maksymalnej elastyczności. Wszystkie sesje są nagrywane i udostępniane uczestnikom po zakończeniu. Dodatkowo:</p>
+                        <ul class="text-white opacity-80 list-disc pl-6 mt-2">
+                            <li>Otrzymasz szczegółowe notatki z każdej sesji z kluczowymi punktami i czasowymi odnośnikami do nagrania</li>
+                            <li>Możesz zadawać pytania przed sesją, a my odpowiemy na nie podczas spotkania</li>
+                            <li>Masz dostęp do dedykowanego wątku w grupie społecznościowej, gdzie możesz omówić tematy z sesji</li>
+                            <li>Wszystkie materiały są podzielone na logiczne moduły, które możesz przerabiać we własnym tempie</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <!-- FAQ Item 12 - Nowy -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 1.1s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Ile czasu tygodniowo powinienem/powinnam poświęcić na program?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Rekomendujemy poświęcenie około 4-5 godzin tygodniowo dla osiągnięcia optymalnych rezultatów, co obejmuje:</p>
+                        <ul class="text-white opacity-80 list-disc pl-6 mt-2">
+                            <li>2 godziny na przerobienie materiałów szkoleniowych</li>
+                            <li>1 godzina na uczestnictwo w sesji Q&A (lub obejrzenie nagrania)</li>
+                            <li>1-2 godziny na praktyczne wdrażanie poznanych technik w Twoim biznesie</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <!-- FAQ Item 14 - Nowy -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 1.3s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Co wyróżnia ten program od innych kursów AI dostępnych online?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Nasz program wyróżnia się na kilku kluczowych płaszczyznach:</p>
+                        <ul class="text-white opacity-80 list-disc pl-6 mt-2">
+                            <li><strong>Systemowe podejście:</strong> Nie uczymy pojedynczych narzędzi, ale kompletnego systemu, który łączy różne technologie AI w zautomatyzowany lejek sprzedażowy</li>
+                            <li><strong>Praktyczne wdrożenie:</strong> Ponad 80% kursu to praktyczne ćwiczenia i rzeczywiste wdrożenia, nie teoretyczne wykłady</li>
+                            <li><strong>Wsparcie na żywo:</strong> Cotygodniowe sesje Q&A i aktywna społeczność, gdzie otrzymasz odpowiedzi na Twoje specyficzne pytania</li>
+                        </ul>
+                        <p class="text-white opacity-80 mt-4">Podczas gdy większość kursów skupia się na podstawach obsługi narzędzi AI, my pokazujemy, jak strategicznie wykorzystać AI jako przewagę konkurencyjną w Twoim biznesie, aby generować więcej leadów, konwertować więcej klientów i zwiększać przychody – wszystko przy mniejszym nakładzie Twojego czasu.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 15 - Nowy -->
+                <div class="faq-item glass rounded-2xl reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 1.4s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Jak duża będzie kohorta programu?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Aby zapewnić najwyższą jakość wsparcia i interakcji, ograniczamy wielkość każdej kohorty do maksymalnie 40 uczestników. Dzięki temu:</p>
+                        <ul class="text-white opacity-80 list-disc pl-6 mt-2">
+                            <li>Każdy uczestnik otrzymuje odpowiednią ilość indywidualnej uwagi podczas sesji Q&A</li>
+                            <li>Możemy dokładnie monitorować postępy każdej osoby i oferować spersonalizowane wsparcie</li>
+                            <li>Tworzy się spójna społeczność, gdzie uczestnicy mogą nawiązywać wartościowe kontakty</li>
+                            <li>Instruktorzy mogą dostosowywać tempo i zakres materiału do potrzeb grupy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Final CTA Section -->
+    <section class="section relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-primary/30 to-secondary/30 z-0"></div>
+        <div class="container mx-auto px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white reveal-on-scroll">
+                Gotowy zwiększyć i zautomatyzować swoją sprzedaż o <span class="text-gradient">dzięki AI</span>?
+            </h2>
+            <p class="text-xl text-white opacity-90 max-w-3xl mx-auto mb-8 reveal-on-scroll">
+                W zaledwie 6 tygodni możesz zamienić nieregularne dochody w stabilny, przewidywalny system. Dołącz do twórców, którzy dzięki AI tworzą treści szybciej i z przyjemnością rozwijają swój marketing oraz sprzedaż na nowym poziomie.
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center mb-10 reveal-on-scroll">
+                <div class="bg-white bg-opacity-10 rounded-xl px-6 py-4 mb-6 md:mb-0 md:mr-8">
+                    <p class="text-white mb-1">Gwarantowane miejsca kończą się za:</p>
+                    <div class="text-gradient font-bold text-xl">3 dni, 11 godzin, 43 minuty</div>
+                </div>
+                <button class="btn-primary inline-block" onclick="openModal()">Dowiedz się o programie</button>
+            </div>
+        
+            
+            <p class="text-white opacity-80 text-lg reveal-on-scroll">Nie czekaj, aż Twoja konkurencja zacznie korzystać z AI. <strong>Liczba miejsc jest ograniczona</strong>, aby zapewnić najwyższą jakość wsparcia.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark py-16 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-gradient">AI Funnel Accelerator</h3>
+                    <p class="text-white opacity-70">Zmieniamy sposób, w jaki niezależni twórcy i przedsiębiorcy sprzedają swoje produkty i usługi High-Ticket.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-5 text-white">Szybkie linki</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#o-programie" class="text-white opacity-70 hover:opacity-100 transition-opacity">Co zmienisz?</a></li>
+                        <li><a href="#dla-kogo" class="text-white opacity-70 hover:opacity-100 transition-opacity">Dla kogo?</a></li>
+                        <li><a href="#program" class="text-white opacity-70 hover:opacity-100 transition-opacity">O Programie</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-5 text-white">Zasoby</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#faq" class="text-white opacity-70 hover:opacity-100 transition-opacity">FAQ</a></li>
+                        <li><a href="#" class="text-white opacity-70 hover:opacity-100 transition-opacity">Polityka prywatności</a></li>
+                        <li><a href="#" class="text-white opacity-70 hover:opacity-100 transition-opacity">Regulamin</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-5 text-white">Kontakt</h3>
+                    <p class="text-white opacity-70 mb-3">kontakt@automatyzacjaai.pl</p>
+                    <p class="text-white opacity-70 mb-6">+48 500 600 700</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-16 pt-10 text-center text-white opacity-60">
+                <p>&copy; 2025 ContentGrowth.AI | Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Registration Form -->
+    <div id="registrationModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="text-3xl font-bold text-white mb-4">
+                    Dowiedz się więcej o programie<br/><span class="text-gradient">AI Funnel Accelerator</span>
+                </h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <p class="text-lg text-white opacity-80 mb-8 text-center">
+                    Po wypełnieniu formularza nasz doradca skontaktuje się z Tobą w celu przedstawienia szczegółowych informacji dotyczących przebiegu programu oraz jego kosztów.
+                </p>
+                
+                <form id="registrationForm" class="space-y-6">
+                    <div>
+                        <label for="name" class="form-label">Imię i Nazwisko</label>
+                        <input type="text" id="name" class="form-input" placeholder="Twoje imię" required>
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-input" placeholder="twoj@email.pl" required>
+                    </div>
+                    
+                    <div>
+                        <label for="phone" class="form-label">Telefon</label>
+                        <input type="tel" id="phone" class="form-input" placeholder="+48 000 000 000" required>
+                    </div>
+                    
+                    <div>
+                        <label for="package" class="form-label">Wybierz pakiet</label>
+                        <select id="package" class="form-input">
+                            <option value="" disabled selected>Wybierz pakiet</option>
+                            <option value="pakiet-live">Pakiet LIVE</option>
+                            <option value="pakiet-live-mentoring">Pakiet LIVE & MENTORING</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <label class="flex items-start cursor-pointer group">
+                            <div class="relative flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input type="checkbox" class="opacity-0 absolute h-5 w-5" required>
+                                    <div class="bg-transparent border-2 border-gray-500 rounded w-5 h-5 flex flex-shrink-0 justify-center items-center mr-3 group-hover:border-primary transition-colors">
+                                        <svg class="fill-current hidden w-3 h-3 text-white pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-sm text-white opacity-70 ml-2">Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z polityką prywatności. Rozumiem, że mogę otrzymywać komunikację związaną z programem.</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary w-full text-lg py-4">
+                        Wyślij formularz
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html> fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Absolutnie nie! Nasz program zaprojektowany jest specjalnie dla osób bez technicznej wiedzy. Prowadzimy Cię krok po kroku przez wszystkie niezbędne narzędzia – od ChatGPT, przez Claude, po Make.com (dawniej Integromat) – używając prostego, zrozumiałego języka. Każdy etap jest dokładnie pokazany na ekranie, więc możesz łatwo powtórzyć wszystkie czynności we własnym tempie.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 - Udoskonalony -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.1s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Kiedy zacznie się  programu?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Przewidywany start programu to koniec czerwca. Dokładny termin oraz harmonogram zostaną podane po zakończeniu zapisów i ustaleniu dogodnych dat z grupą szkoleniową.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 - Udoskonalony -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.2s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Jak szybko mogę oczekiwać rezultatów?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8"
