@@ -154,7 +154,15 @@ async function sendFormDataToWebhook(formData, formType = 'unknown') {
             referrer: document.referrer || 'direct'
         };
 
+        // Debug: Log what we're sending
         console.log('Sending data to webhook:', submissionData);
+        
+        // Specifically log package info for debugging
+        if (submissionData.package) {
+            console.log('Package included:', submissionData.package);
+        } else {
+            console.warn('No package found in submission data!');
+        }
 
         const response = await fetch(WEBHOOK_URL, {
             method: 'POST',
@@ -622,13 +630,29 @@ function initModalFunctionality() {
         setButtonLoading(submitButton, true);
         
         try {
-            // Get form data
+            // Get form data - including all fields and hidden inputs
             const formData = new FormData(form);
             const data = Object.fromEntries(formData);
+            
+            // Extra validation for package selection
+            const packageSelect = document.getElementById('package');
+            if (packageSelect) {
+                if (packageSelect.value) {
+                    data.package = packageSelect.value;
+                    console.log('Package captured from select:', data.package);
+                } else {
+                    console.warn('No package selected');
+                    // Optionally show warning to user
+                    showMessage('Proszę wybrać pakiet przed wysłaniem formularza.', false);
+                    return;
+                }
+            }
             
             // Add UTM data to submission
             const utmData = getUtmDataForSubmission();
             const submissionData = { ...data, ...utmData };
+            
+            console.log('Final submission data:', submissionData); // Debug log
             
             // Send to webhook
             const result = await sendFormDataToWebhook(submissionData, 'program_registration');
@@ -643,7 +667,13 @@ function initModalFunctionality() {
                 
                 // Close modal and reset form
                 closeModal();
+                
+                // Reset form but preserve package selection for next time
+                const selectedPackage = data.package;
                 form.reset();
+                if (selectedPackage && packageSelect) {
+                    packageSelect.value = selectedPackage;
+                }
                 
                 // Optional: redirect to thank you page after delay
                 // setTimeout(() => {
@@ -677,6 +707,15 @@ function initModalFunctionality() {
             closeModal();
         }
     });
+    
+    // Add package select change handler
+    const packageSelect = document.getElementById('package');
+    if (packageSelect) {
+        packageSelect.addEventListener('change', function() {
+            this.classList.add('has-value');
+            console.log('Package changed to:', this.value); // Debug log
+        });
+    }
 }
 
 // Modal functionality for opt-in (index.html) - UPDATED WITH WEBHOOK INTEGRATION
@@ -711,7 +750,7 @@ function initOptinModalFunctionality() {
                 setCookie('userEmail', data.optinEmail || '', 30);
                 setCookie('userPhone', data.optinPhone || '', 30);
                 
-                showMessage('Dziękujemy! Sprawdź swoją skrzynkę e-mail.', true);
+                showMessage('Dziękujemy! Zaraz zostaniesz przekierowany na stronę z szkoleniem.', true);
                 
                 // Close modal
                 closeOptinModal();
@@ -1077,6 +1116,8 @@ function openModal(selectedPackage = null) {
     // Set selected package if provided
     if (selectedPackage && packageSelect) {
         packageSelect.value = selectedPackage;
+        packageSelect.classList.add('has-value'); // Add visual indicator
+        console.log('Package selected:', selectedPackage); // Debug log
     }
 
     // Show modal
