@@ -691,10 +691,10 @@ function initModalFunctionality() {
                     packageSelect.value = selectedPackage;
                 }
                 
-                // Optional: redirect to thank you page after delay
-                // setTimeout(() => {
-                //     window.location.href = '/dziekujemy.html';
-                // }, 2000);
+                // Redirect to thank you page after delay
+                setTimeout(() => {
+                    window.location.href = '/dziekujemy.html';
+                }, 2000);
                 
             } else {
                 showMessage('Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie.', false);

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dziękujemy za zgłoszenie | AI Funnel Accelerator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="./styles.css"/>
+</head>
+<body class="dark-theme">
+    <!-- Background Effects -->
+    <div class="gl-wrapper" id="scene-container"></div>
+    <div class="noise-bg"></div>
+    
+    <!-- Navigation -->
+    <nav class="sticky-nav py-5">
+        <div class="container mx-auto px-6 lg:px-8 flex justify-between items-center">
+            <div class="font-bold text-2xl">
+                <img src="./logo.png" alt="Logo" class="h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 w-auto" />
+            </div>
+            <div class="hidden md:flex space-x-10">
+                <a href="/program.html#o-programie" class="nav-link">O programie</a>
+                <a href="/program.html#dla-kogo" class="nav-link">Dla kogo</a>
+                <a href="/program.html#program" class="nav-link">Program</a>
+            </div>
+            <a href="/program.html" class="hidden md:flex btn-primary py-3 px-6 text-sm">Wróć do programu</a>
+            <a href="/program.html" class="flex md:hidden btn-primary py-3 px-6 text-sm">Wróć</a>
+        </div>
+    </nav>
+
+    <!-- Thank You Hero Section -->
+    <section class="hero">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        
+        <div class="container mx-auto px-4 lg:px-8 hero-content py-8 lg:py-16">
+            <div class="max-w-4xl mx-auto text-center">
+                <!-- Success Icon -->
+                <div class="mb-8 reveal-on-scroll fade-in-up">
+                    <div class="w-24 h-24 mx-auto bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Main Message -->
+                <div class="reveal-on-scroll fade-in-up" style="transition-delay: 0.2s">
+                    <h1 class="text-4xl md:text-6xl font-black leading-tight mb-8 text-white">
+                        <span class="text-gradient">Dziękujemy</span> za zgłoszenie!
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-10 text-white opacity-90 font-light">
+                        Twoja aplikacja została <strong>pomyślnie wysłana</strong>. Nasz doradca skontaktuje się z Tobą <strong>w ciągu 24 godzin</strong>, aby omówić szczegóły programu.
+                    </p>
+                </div>
+
+                <!-- What Happens Next -->
+                <div class="glass p-8 md:p-12 rounded-2xl mb-12 reveal-on-scroll fade-in-up" style="transition-delay: 0.4s">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-8 text-white">Co dzieje się dalej?</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-content mx-auto mb-4 text-2xl font-bold text-white">
+                                1
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Analiza Twojej aplikacji</h3>
+                            <p class="text-white opacity-70">Nasz zespół przeanalizuje Twoje potrzeby i dopasuje najlepszy pakiet.</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-content mx-auto mb-4 text-2xl font-bold text-white">
+                                2
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Rozmowa z doradcą</h3>
+                            <p class="text-white opacity-70">Ekspert omówi z Tobą program, odpowie na pytania i przedstawi szczegóły.</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-content mx-auto mb-4 text-2xl font-bold text-white">
+                                3
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-2">Start transformacji</h3>
+                            <p class="text-white opacity-70">Po potwierdzeniu uczestnictwa otrzymasz dostęp do programu i materiałów.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="glass p-6 md:p-8 rounded-2xl mb-12 reveal-on-scroll fade-in-up" style="transition-delay: 0.6s">
+                    <h3 class="text-xl font-bold text-white mb-4">Masz pilne pytania?</h3>
+                    <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <span class="text-white">kontakt@automatyzacjaai.pl</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span class="text-white">+48 500 600 700</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Back to Program -->
+                <div class="mt-16 reveal-on-scroll fade-in-up" style="transition-delay: 1s">
+                    <a href="/program.html" class="btn-primary inline-block">
+                        Wróć do poprzedniej strony
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark py-16 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-gradient">AI Funnel Accelerator</h3>
+                    <p class="text-white opacity-70">Zmieniamy sposób, w jaki niezależni twórcy i przedsiębiorcy sprzedają swoje produkty i usługi High-Ticket.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-5 text-white">Szybkie linki</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/program.html#o-programie" class="text-white opacity-70 hover:opacity-100 transition-opacity">Co zmienisz?</a></li>
+                        <li><a href="/program.html#dla-kogo" class="text-white opacity-70 hover:opacity-100 transition-opacity">Dla kogo?</a></li>
+                        <li><a href="/program.html#program" class="text-white opacity-70 hover:opacity-100 transition-opacity">O Programie</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-5 text-white">Zasoby</h3>
+                    <ul class="space-y-3">
+                        <li><a href="/" class="text-white opacity-70 hover:opacity-100 transition-opacity">Bezpłatne szkolenie</a></li>
+                        <li><a href="/program.html#faq" class="text-white opacity-70 hover:opacity-100 transition-opacity">FAQ</a></li>
+                        <li><a href="#" class="text-white opacity-70 hover:opacity-100 transition-opacity">Polityka prywatności</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-5 text-white">Kontakt</h3>
+                    <p class="text-white opacity-70 mb-3">kontakt@automatyzacjaai.pl</p>
+                    <p class="text-white opacity-70 mb-6">+48 500 600 700</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-16 pt-10 text-center text-white opacity-60">
+                <p>&copy; 2025 ContentGrowth.AI | Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
