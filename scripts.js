@@ -634,6 +634,23 @@ function initModalFunctionality() {
             const formData = new FormData(form);
             const data = Object.fromEntries(formData);
             
+            // Debug: Log all captured form data
+            console.log('Raw FormData entries:');
+            for (let [key, value] of formData.entries()) {
+                console.log(`  ${key}: ${value}`);
+            }
+            console.log('Converted to object:', data);
+            
+            // Validate required fields
+            const requiredFields = ['name', 'email', 'phone'];
+            const missingFields = requiredFields.filter(field => !data[field] || data[field].trim() === '');
+            
+            if (missingFields.length > 0) {
+                console.error('Missing required fields:', missingFields);
+                showMessage(`Proszę wypełnić wszystkie wymagane pola: ${missingFields.join(', ')}`, false);
+                return;
+            }
+            
             // Extra validation for package selection
             const packageSelect = document.getElementById('package');
             if (packageSelect) {
@@ -642,7 +659,6 @@ function initModalFunctionality() {
                     console.log('Package captured from select:', data.package);
                 } else {
                     console.warn('No package selected');
-                    // Optionally show warning to user
                     showMessage('Proszę wybrać pakiet przed wysłaniem formularza.', false);
                     return;
                 }
@@ -750,7 +766,7 @@ function initOptinModalFunctionality() {
                 setCookie('userEmail', data.optinEmail || '', 30);
                 setCookie('userPhone', data.optinPhone || '', 30);
                 
-                showMessage('Dziękujemy! Zaraz zostaniesz przekierowany na stronę z szkoleniem.', true);
+                showMessage('Dziękujemy! Zaraz zobaczysz wideo z szkoleniem.', true);
                 
                 // Close modal
                 closeOptinModal();
