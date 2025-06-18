@@ -543,7 +543,7 @@ function initCountdown() {
     if (countdownElements.length === 0) return; // Exit if no countdown elements
     
     // Target date: June 15th, 2025 at 23:59:59
-    const targetDate = new Date('2025-06-15T23:59:59').getTime();
+    const targetDate = new Date('2025-07-03T23:59:59').getTime();
     
     // Calculate the total duration from now to target for progress bar
     const startDate = new Date().getTime();
