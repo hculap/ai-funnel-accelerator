@@ -29,14 +29,14 @@ function getCookie(name) {
 function extractUtmParams() {
     const urlParams = new URLSearchParams(window.location.search);
     const utmData = {};
-    
+   
     UTM_PARAMS.forEach(param => {
         const value = urlParams.get(param);
         if (value) {
             utmData[param] = value;
         }
     });
-    
+   
     return utmData;
 }
 
@@ -49,22 +49,22 @@ function storeUtmParams(utmData, days = 30) {
 
 function getStoredUtmParams() {
     const utmData = {};
-    
+   
     UTM_PARAMS.forEach(param => {
         const value = getCookie(param);
         if (value) {
             utmData[param] = value;
         }
     });
-    
+   
     return utmData;
 }
 
 function addUtmHiddenInputs(form) {
     if (!form) return;
-    
+   
     const utmData = getStoredUtmParams();
-    
+   
     // Remove existing UTM hidden inputs to avoid duplicates
     UTM_PARAMS.forEach(param => {
         const existingInput = form.querySelector(`input[name="${param}"]`);
@@ -72,7 +72,7 @@ function addUtmHiddenInputs(form) {
             existingInput.remove();
         }
     });
-    
+   
     // Add new hidden inputs for each UTM parameter
     Object.keys(utmData).forEach(param => {
         const hiddenInput = document.createElement('input');
@@ -94,16 +94,16 @@ function addUtmInputsToAllForms() {
 function initUtmTracking() {
     // Extract UTM parameters from current URL
     const currentUtmParams = extractUtmParams();
-    
+   
     // If we have UTM parameters in the URL, store them (overwrites existing)
     if (Object.keys(currentUtmParams).length > 0) {
         storeUtmParams(currentUtmParams);
         console.log('New UTM parameters detected and stored:', currentUtmParams);
     }
-    
+   
     // Add hidden inputs to existing forms
     addUtmInputsToAllForms();
-    
+   
     // Set up a MutationObserver to handle dynamically added forms
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
@@ -122,7 +122,7 @@ function initUtmTracking() {
             });
         });
     });
-    
+   
     observer.observe(document.body, {
         childList: true,
         subtree: true
@@ -138,6 +138,29 @@ function clearUtmParams() {
         document.cookie = `${param}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     });
     console.log('All UTM parameters cleared');
+}
+
+// Function to validate a Polish phone number
+function validatePhoneNumber(phone) {
+    if (!phone) return false;
+   
+    // Trim, remove spaces/dashes, and handle optional +48 prefix.
+    let cleanedPhone = phone.trim().replace(/[\s-]/g, '');
+    if (cleanedPhone.startsWith('+48')) {
+        cleanedPhone = cleanedPhone.substring(3);
+    }
+
+    // Rule 1: Exclude obviously fake numbers (repetitive or sequential).
+    // This is checked first as it's a quick filter.
+    if (/(\d)\1{8}/.test(cleanedPhone) || cleanedPhone === '123456789' || cleanedPhone === '987654321') {
+        return false;
+    }
+
+    // Rule 2: Must be a valid 9-digit Polish number based on official prefixes.
+    // This regex is based on the logic from https://github.com/skotniczny/phonePL
+    const polishPhoneRegex = /^(?:1[2-8]|2[2-69]|3[2-49]|4[1-8]|5[0-9]|6[0-35-9]|[7-8][1-9]|9[145])\d{7}$/;
+   
+    return polishPhoneRegex.test(cleanedPhone);
 }
 
 // Function to send form data to webhook
@@ -156,7 +179,7 @@ async function sendFormDataToWebhook(formData, formType = 'unknown') {
 
         // Debug: Log what we're sending
         console.log('Sending data to webhook:', submissionData);
-        
+       
         // Specifically log package info for debugging
         if (submissionData.package) {
             console.log('Package included:', submissionData.package);
@@ -218,14 +241,14 @@ function showMessage(message, isSuccess = true) {
         transform: translateX(100%);
         transition: transform 0.3s ease;
     `;
-    
+   
     document.body.appendChild(messageEl);
-    
+   
     // Show message
     setTimeout(() => {
         messageEl.style.transform = 'translateX(0)';
     }, 100);
-    
+   
     // Hide and remove message
     setTimeout(() => {
         messageEl.style.transform = 'translateX(100%)';
@@ -241,7 +264,7 @@ function autoFillFormFromCookies() {
     const userName = getCookie('userName') || getCookie('user_name');
     const userEmail = getCookie('userEmail') || getCookie('user_email');
     const userPhone = getCookie('userPhone') || getCookie('user_phone');
-    
+   
     // Fill the registration form if data exists
     if (userName || userEmail || userPhone) {
         // Wait for the form to be available
@@ -250,45 +273,45 @@ function autoFillFormFromCookies() {
             const nameField = document.getElementById('name');
             const emailField = document.getElementById('email');
             const phoneField = document.getElementById('phone');
-            
+           
             // Opt-in form fields
             const optinNameField = document.getElementById('optinName');
             const optinEmailField = document.getElementById('optinEmail');
             const optinPhoneField = document.getElementById('optinPhone');
-            
+           
             if (nameField && userName) {
                 nameField.value = userName;
                 nameField.classList.add('has-value');
             }
-            
+           
             if (emailField && userEmail) {
                 emailField.value = userEmail;
                 emailField.classList.add('has-value');
             }
-            
+           
             if (phoneField && userPhone) {
                 phoneField.value = userPhone;
                 phoneField.classList.add('has-value');
             }
-            
+           
             if (optinNameField && userName) {
                 optinNameField.value = userName;
                 optinNameField.classList.add('has-value');
             }
-            
+           
             if (optinEmailField && userEmail) {
                 optinEmailField.value = userEmail;
                 optinEmailField.classList.add('has-value');
             }
-            
+           
             if (optinPhoneField && userPhone) {
                 optinPhoneField.value = userPhone;
                 optinPhoneField.classList.add('has-value');
             }
-            
+           
             console.log('Form auto-filled from cookies:', { userName, userEmail, userPhone });
         };
-        
+       
         // Try to fill immediately, then with a small delay if form isn't ready
         fillForm();
         setTimeout(fillForm, 100);
@@ -298,19 +321,19 @@ function autoFillFormFromCookies() {
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize UTM tracking FIRST
     initUtmTracking();
-    
+   
     // Initialize Three.js background
     initThreeJsBackground();
-    
+   
     // Reveal animations on scroll
     initScrollReveal();
-    
+   
     // Sticky header (only if it exists)
     initStickyHeader();
-    
+   
     // Form input effects
     initFormEffects();
-    
+   
     // Countdown timer (only if countdown elements exist)
     initCountdown();
 
@@ -327,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize Video Players
     initVideoPlayers();
-    
+   
     // Auto-fill form on page load
     autoFillFormFromCookies();
 
@@ -335,10 +358,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('optinModal')) {
         initOptinModalFunctionality();
     }
-    
+   
     // Initialize tilt effects (if on desktop)
     initTiltEffects();
-    
+   
     // Initialize pulse animations
     initPulseAnimations();
 });
@@ -347,27 +370,27 @@ document.addEventListener('DOMContentLoaded', function() {
 function initThreeJsBackground() {
     const container = document.getElementById('scene-container');
     if (!container) return;
-    
+   
     // Scene, camera, and renderer setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    
+   
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     container.appendChild(renderer.domElement);
-    
+   
     // Create particles
     const particlesGeometry = new THREE.BufferGeometry();
     const particlesCount = 1500;
-    
+   
     const posArray = new Float32Array(particlesCount * 3);
     for (let i = 0; i < particlesCount * 3; i++) {
         posArray[i] = (Math.random() - 0.5) * 15;
     }
-    
+   
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    
+   
     // Material
     const particlesMaterial = new THREE.PointsMaterial({
         size: 0.02,
@@ -376,44 +399,44 @@ function initThreeJsBackground() {
         opacity: 0.8,
         blending: THREE.AdditiveBlending
     });
-    
+   
     // Mesh
     const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particlesMesh);
-    
+   
     // Position camera
     camera.position.z = 5;
-    
+   
     // Mouse move effect
     let mouseX = 0;
     let mouseY = 0;
-    
+   
     document.addEventListener('mousemove', (event) => {
         mouseX = (event.clientX / window.innerWidth) - 0.5;
         mouseY = (event.clientY / window.innerHeight) - 0.5;
     });
-    
+   
     // Handle resize
     window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
     });
-    
+   
     // Animation
     const animate = () => {
         requestAnimationFrame(animate);
-        
+       
         particlesMesh.rotation.x += 0.0003;
         particlesMesh.rotation.y += 0.0003;
-        
+       
         // Follow mouse with slight delay
         particlesMesh.rotation.x += mouseY * 0.001;
         particlesMesh.rotation.y += mouseX * 0.001;
-        
+       
         renderer.render(scene, camera);
     };
-    
+   
     animate();
 }
 
@@ -421,7 +444,7 @@ function initThreeJsBackground() {
 function initScrollReveal() {
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
     const fadeElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right');
-    
+   
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -441,11 +464,11 @@ function initScrollReveal() {
         threshold: 0.15,
         rootMargin: '0px 0px -100px 0px'
     });
-    
+   
     revealElements.forEach(element => {
         observer.observe(element);
     });
-    
+   
     fadeElements.forEach(element => {
         observer.observe(element);
     });
@@ -455,7 +478,7 @@ function initScrollReveal() {
 function initStickyHeader() {
     const nav = document.querySelector('.sticky-nav');
     if (!nav) return;
-    
+   
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             nav.classList.add('nav-scrolled');
@@ -468,16 +491,16 @@ function initStickyHeader() {
 // Form input animations and validation
 function initFormEffects() {
     const formInputs = document.querySelectorAll('.form-input');
-    
+   
     formInputs.forEach(input => {
         // Focus effect
         input.addEventListener('focus', () => {
             input.parentElement.classList.add('input-focused');
         });
-        
+       
         input.addEventListener('blur', () => {
             input.parentElement.classList.remove('input-focused');
-            
+           
             // Simple validation
             if (input.value.trim() !== '') {
                 input.classList.add('has-value');
@@ -485,7 +508,7 @@ function initFormEffects() {
                 input.classList.remove('has-value');
             }
         });
-        
+       
         // Check if input already has value on page load
         if (input.value.trim() !== '') {
             input.classList.add('has-value');
@@ -497,28 +520,28 @@ function initFormEffects() {
 function initFaqAccordion() {
     const faqQuestions = document.querySelectorAll('.faq-question');
     if (faqQuestions.length === 0) return; // Exit if no FAQ elements
-    
+   
     faqQuestions.forEach(question => {
         question.addEventListener('click', () => {
             const faqItem = question.parentElement;
             const answer = question.nextElementSibling;
             const icon = question.querySelector('.faq-icon');
             const isOpen = question.getAttribute('aria-expanded') === 'true';
-            
+           
             // Close all other FAQ items
             document.querySelectorAll('.faq-item').forEach(item => {
                 if (item !== faqItem) {
                     const itemQuestion = item.querySelector('.faq-question');
                     const itemAnswer = item.querySelector('.faq-answer');
                     const itemIcon = item.querySelector('.faq-icon');
-                    
+                   
                     itemQuestion.setAttribute('aria-expanded', 'false');
                     itemAnswer.style.maxHeight = '0';
                     itemAnswer.classList.add('hidden');
                     itemIcon.style.transform = 'rotate(0deg)';
                 }
             });
-            
+           
             // Toggle current FAQ item
             if (isOpen) {
                 question.setAttribute('aria-expanded', 'false');
@@ -541,10 +564,10 @@ function initFaqAccordion() {
 function initCountdown() {
     const countdownElements = document.querySelectorAll('.countdown-number');
     if (countdownElements.length === 0) return; // Exit if no countdown elements
-    
+   
     // Target date: June 15th, 2025 at 23:59:59
-    const targetDate = new Date('2025-07-03T23:59:59').getTime();
-    
+    const targetDate = new Date('2025-07-26T23:59:59').getTime();
+   
     // Calculate the total duration from now to target for progress bar
     const startDate = new Date().getTime();
     const totalDuration = targetDate - startDate;
@@ -580,7 +603,7 @@ function initCountdown() {
     // Initial call to avoid delay
     const now = new Date().getTime();
     const timeRemaining = targetDate - now;
-    
+   
     if (timeRemaining > 0) {
         const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -600,7 +623,7 @@ function initCountdown() {
 // Checkbox animation
 function initCheckboxAnimation() {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    
+   
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function() {
             const checkmark = this.parentElement.querySelector('svg');
@@ -619,38 +642,44 @@ function initCheckboxAnimation() {
 function initModalFunctionality() {
     const modal = document.getElementById('registrationModal');
     const form = document.getElementById('registrationForm');
-    
+   
     if (!form) return; // Exit if form doesn't exist
-    
+   
     // Form submission
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
+       
         const submitButton = form.querySelector('button[type="submit"]');
         setButtonLoading(submitButton, true);
-        
+       
         try {
             // Get form data - including all fields and hidden inputs
             const formData = new FormData(form);
             const data = Object.fromEntries(formData);
-            
+           
             // Debug: Log all captured form data
             console.log('Raw FormData entries:');
             for (let [key, value] of formData.entries()) {
                 console.log(`  ${key}: ${value}`);
             }
             console.log('Converted to object:', data);
-            
+           
             // Validate required fields
             const requiredFields = ['name', 'email', 'phone'];
             const missingFields = requiredFields.filter(field => !data[field] || data[field].trim() === '');
-            
+           
             if (missingFields.length > 0) {
                 console.error('Missing required fields:', missingFields);
                 showMessage(`Proszę wypełnić wszystkie wymagane pola: ${missingFields.join(', ')}`, false);
                 return;
             }
-            
+           
+            // Validate phone number
+            if (!validatePhoneNumber(data.phone)) {
+                showMessage('Proszę podać poprawny, 9-cyfrowy numer telefonu.', false);
+                return;
+            }
+           
             // Extra validation for package selection
             const packageSelect = document.getElementById('package');
             if (packageSelect) {
@@ -663,43 +692,43 @@ function initModalFunctionality() {
                     return;
                 }
             }
-            
+           
             // Add UTM data to submission
             const utmData = getUtmDataForSubmission();
             const submissionData = { ...data, ...utmData };
-            
+           
             console.log('Final submission data:', submissionData); // Debug log
-            
+           
             // Send to webhook
             const result = await sendFormDataToWebhook(submissionData, 'program_registration');
-            
+           
             if (result.success) {
                 // Store user data in cookies for future use
                 setCookie('userName', data.name || '', 30);
                 setCookie('userEmail', data.email || '', 30);
                 setCookie('userPhone', data.phone || '', 30);
-                
+               
                 showMessage('Dziękujemy za zgłoszenie! Nasz doradca skontaktuje się z Tobą wkrótce.', true);
-                
+               
                 // Close modal and reset form
                 closeModal();
-                
+               
                 // Reset form but preserve package selection for next time
                 const selectedPackage = data.package;
                 form.reset();
                 if (selectedPackage && packageSelect) {
                     packageSelect.value = selectedPackage;
                 }
-                
+               
                 // Redirect to thank you page after delay
                 setTimeout(() => {
                     window.location.href = '/dziekujemy.html';
                 }, 2000);
-                
+               
             } else {
                 showMessage('Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie.', false);
             }
-            
+           
         } catch (error) {
             console.error('Form submission error:', error);
             showMessage('Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie.', false);
@@ -707,7 +736,7 @@ function initModalFunctionality() {
             setButtonLoading(submitButton, false);
         }
     });
-    
+   
     // Close modal when clicking outside
     if (modal) {
         modal.addEventListener('click', function(e) {
@@ -716,14 +745,14 @@ function initModalFunctionality() {
             }
         });
     }
-    
+   
     // Close modal with Escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
             closeModal();
         }
     });
-    
+   
     // Add package select change handler
     const packageSelect = document.getElementById('package');
     if (packageSelect) {
@@ -738,48 +767,63 @@ function initModalFunctionality() {
 function initOptinModalFunctionality() {
     const modal = document.getElementById('optinModal');
     const form = document.getElementById('optinForm');
-    
+   
     if (!form) return; // Exit if form doesn't exist
-    
+   
     // Form submission
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
+       
         const submitButton = form.querySelector('button[type="submit"]');
         setButtonLoading(submitButton, true);
-        
+       
         try {
             // Get form data
             const formData = new FormData(form);
             const data = Object.fromEntries(formData);
-            
+           
+            // Validate required fields
+            const requiredFields = ['optinName', 'optinEmail', 'optinPhone'];
+            const missingFields = requiredFields.filter(field => !data[field] || data[field].trim() === '');
+           
+            if (missingFields.length > 0) {
+                showMessage('Proszę wypełnić wszystkie wymagane pola.', false);
+                return;
+            }
+           
+            // Validate phone number
+            if (!validatePhoneNumber(data.optinPhone)) {
+                showMessage('Proszę podać poprawny, 9-cyfrowy numer telefonu.', false);
+                return;
+            }
+           
             // Add UTM data to submission
             const utmData = getUtmDataForSubmission();
             const submissionData = { ...data, ...utmData };
-            
+           
             // Send to webhook
             const result = await sendFormDataToWebhook(submissionData, 'lead_optin');
-            
+           
             if (result.success) {
                 // Store user data in cookies for future use
                 setCookie('userName', data.optinName || '', 30);
                 setCookie('userEmail', data.optinEmail || '', 30);
                 setCookie('userPhone', data.optinPhone || '', 30);
-                
+               
                 showMessage('Dziękujemy! Zaraz zobaczysz wideo z szkoleniem.', true);
-                
+               
                 // Close modal
                 closeOptinModal();
-                
+               
                 // Redirect to program page after a short delay
                 setTimeout(() => {
                     window.location.href = '/program.html';
                 }, 1500);
-                
+               
             } else {
                 showMessage('Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie.', false);
             }
-            
+           
         } catch (error) {
             console.error('Opt-in form submission error:', error);
             showMessage('Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie.', false);
@@ -787,7 +831,7 @@ function initOptinModalFunctionality() {
             setButtonLoading(submitButton, false);
         }
     });
-    
+   
     // Close modal when clicking outside
     if (modal) {
         modal.addEventListener('click', function(e) {
@@ -796,7 +840,7 @@ function initOptinModalFunctionality() {
             }
         });
     }
-    
+   
     // Close modal with Escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
@@ -809,7 +853,7 @@ function initOptinModalFunctionality() {
 function initVideoPlayers() {
     // Get all video players
     const videoPlayers = document.querySelectorAll('.custom-video-player');
-    
+   
     videoPlayers.forEach(player => {
         const video = player.querySelector('video');
         const playOverlay = player.querySelector('.play-overlay');
@@ -823,33 +867,33 @@ function initVideoPlayers() {
         const progressHandle = player.querySelector('.progress-handle');
         const currentTimeEl = player.querySelector('[id*="currentTime"]');
         const durationEl = player.querySelector('[id*="duration"]');
-        
+       
         if (!video) return;
-        
+       
         let isDragging = false;
         let controlsTimeout;
         let lastTime = 0;
-        
+       
         // Format time function
         function formatTime(seconds) {
             const mins = Math.floor(seconds / 60);
             const secs = Math.floor(seconds % 60);
             return `${mins}:${secs.toString().padStart(2, '0')}`;
         }
-        
+       
         // Update progress bar
         function updateProgress() {
             if (!isDragging && video.duration) {
                 const percentage = (video.currentTime / video.duration) * 100;
                 progressFilled.style.width = `${percentage}%`;
                 progressHandle.style.left = `${percentage}%`;
-                
+               
                 if (currentTimeEl) {
                     currentTimeEl.textContent = formatTime(video.currentTime);
                 }
             }
         }
-        
+       
         // Toggle play/pause
         function togglePlayPause() {
             if (video.paused) {
@@ -858,18 +902,18 @@ function initVideoPlayers() {
                 video.pause();
             }
         }
-        
+       
         // Toggle mute
         function toggleMute() {
             video.muted = !video.muted;
             updateVolumeIcon();
         }
-        
+       
         // Update volume icon
         function updateVolumeIcon() {
             const volumeUp = volumeBtn.querySelector('.volume-up');
             const volumeMuted = volumeBtn.querySelector('.volume-muted');
-            
+           
             if (video.muted || video.volume === 0) {
                 volumeUp.classList.add('hidden');
                 volumeMuted.classList.remove('hidden');
@@ -878,12 +922,12 @@ function initVideoPlayers() {
                 volumeMuted.classList.add('hidden');
             }
         }
-        
+       
         // Update play/pause icon
         function updatePlayPauseIcon() {
             const playIcon = playPauseBtn.querySelector('.play-icon');
             const pauseIcon = playPauseBtn.querySelector('.pause-icon');
-            
+           
             if (video.paused) {
                 playIcon.classList.remove('hidden');
                 pauseIcon.classList.add('hidden');
@@ -894,14 +938,14 @@ function initVideoPlayers() {
                 player.classList.add('video-playing');
             }
         }
-        
+       
         // Update fullscreen icon
         function updateFullscreenIcon() {
             const openIcon = fullscreenBtn.querySelector('.fullscreen-open');
             const closeIcon = fullscreenBtn.querySelector('.fullscreen-close');
-            
-            if (document.fullscreenElement || 
-                document.webkitFullscreenElement || 
+           
+            if (document.fullscreenElement ||
+                document.webkitFullscreenElement ||
                 document.mozFullScreenElement) {
                 openIcon.classList.add('hidden');
                 closeIcon.classList.remove('hidden');
@@ -910,11 +954,11 @@ function initVideoPlayers() {
                 closeIcon.classList.add('hidden');
             }
         }
-        
+       
         // Toggle fullscreen
         function toggleFullscreen() {
-            if (document.fullscreenElement || 
-                document.webkitFullscreenElement || 
+            if (document.fullscreenElement ||
+                document.webkitFullscreenElement ||
                 document.mozFullScreenElement) {
                 // Exit fullscreen
                 if (document.exitFullscreen) {
@@ -935,13 +979,13 @@ function initVideoPlayers() {
                 }
             }
         }
-        
+       
         // Show/hide controls
         function showControls() {
             if (controls) {
                 controls.classList.add('show');
                 clearTimeout(controlsTimeout);
-                
+               
                 if (!video.paused) {
                     controlsTimeout = setTimeout(() => {
                         controls.classList.remove('show');
@@ -949,58 +993,58 @@ function initVideoPlayers() {
                 }
             }
         }
-        
+       
         // Handle progress bar click/drag
         function handleProgressInteraction(e) {
             const rect = progressBar.getBoundingClientRect();
             const percentage = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
             const newTime = percentage * video.duration;
-            
+           
             if (video.duration) {
                 video.currentTime = newTime;
                 progressFilled.style.width = `${percentage * 100}%`;
                 progressHandle.style.left = `${percentage * 100}%`;
             }
         }
-        
+       
         // Event listeners
         video.addEventListener('loadedmetadata', () => {
             if (durationEl) {
                 durationEl.textContent = formatTime(video.duration);
             }
         });
-        
+       
         video.addEventListener('timeupdate', updateProgress);
         video.addEventListener('play', updatePlayPauseIcon);
         video.addEventListener('pause', updatePlayPauseIcon);
         video.addEventListener('volumechange', updateVolumeIcon);
-        
+       
         // Large play button
         if (playButtonLarge) {
             playButtonLarge.addEventListener('click', togglePlayPause);
         }
-        
+       
         // Control buttons
         if (playPauseBtn) {
             playPauseBtn.addEventListener('click', togglePlayPause);
         }
-        
+       
         if (volumeBtn) {
             volumeBtn.addEventListener('click', toggleMute);
         }
-        
+       
         if (fullscreenBtn) {
             fullscreenBtn.addEventListener('click', toggleFullscreen);
         }
-        
+       
         // Progress bar interactions
         if (progressBar) {
             progressBar.addEventListener('click', handleProgressInteraction);
-            
+           
             // Progress handle dragging
             let startX = 0;
             let startLeft = 0;
-            
+           
             progressHandle.addEventListener('mousedown', (e) => {
                 isDragging = true;
                 progressHandle.classList.add('dragging');
@@ -1008,51 +1052,51 @@ function initVideoPlayers() {
                 startLeft = progressHandle.offsetLeft;
                 e.preventDefault();
             });
-            
+           
             document.addEventListener('mousemove', (e) => {
                 if (!isDragging) return;
-                
+               
                 const rect = progressBar.getBoundingClientRect();
                 const percentage = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-                
+               
                 progressFilled.style.width = `${percentage * 100}%`;
                 progressHandle.style.left = `${percentage * 100}%`;
-                
+               
                 if (video.duration) {
                     video.currentTime = percentage * video.duration;
                 }
             });
-            
+           
             document.addEventListener('mouseup', () => {
                 if (isDragging) {
                     isDragging = false;
                     progressHandle.classList.remove('dragging');
                 }
             });
-            
+           
             // Touch events for mobile
             progressHandle.addEventListener('touchstart', (e) => {
                 isDragging = true;
                 progressHandle.classList.add('dragging');
                 e.preventDefault();
             });
-            
+           
             document.addEventListener('touchmove', (e) => {
                 if (!isDragging) return;
-                
+               
                 const touch = e.touches[0];
                 const rect = progressBar.getBoundingClientRect();
                 const percentage = Math.max(0, Math.min(1, (touch.clientX - rect.left) / rect.width));
-                
+               
                 progressFilled.style.width = `${percentage * 100}%`;
                 progressHandle.style.left = `${percentage * 100}%`;
-                
+               
                 if (video.duration) {
                     video.currentTime = percentage * video.duration;
                 }
                 e.preventDefault();
             });
-            
+           
             document.addEventListener('touchend', () => {
                 if (isDragging) {
                     isDragging = false;
@@ -1060,7 +1104,7 @@ function initVideoPlayers() {
                 }
             });
         }
-        
+       
         // Player interactions
         player.addEventListener('click', (e) => {
             // Don't toggle play/pause if clicking on controls
@@ -1068,7 +1112,7 @@ function initVideoPlayers() {
                 togglePlayPause();
             }
         });
-        
+       
         player.addEventListener('mousemove', showControls);
         player.addEventListener('mouseenter', showControls);
         player.addEventListener('mouseleave', () => {
@@ -1080,7 +1124,7 @@ function initVideoPlayers() {
                 }, 1000);
             }
         });
-        
+       
         // Keyboard controls
         video.addEventListener('keydown', (e) => {
             switch(e.code) {
@@ -1102,20 +1146,20 @@ function initVideoPlayers() {
                     break;
             }
         });
-        
+       
         // Fullscreen change events
         document.addEventListener('fullscreenchange', updateFullscreenIcon);
         document.addEventListener('webkitfullscreenchange', updateFullscreenIcon);
         document.addEventListener('mozfullscreenchange', updateFullscreenIcon);
-        
+       
         // Double-click to fullscreen
         video.addEventListener('dblclick', toggleFullscreen);
-        
+       
         // Initialize icons
         updatePlayPauseIcon();
         updateVolumeIcon();
         updateFullscreenIcon();
-        
+       
         // Set video to be focusable for keyboard controls
         video.setAttribute('tabindex', '0');
     });
@@ -1126,9 +1170,9 @@ function openModal(selectedPackage = null) {
     const modal = document.getElementById('registrationModal');
     const packageSelect = document.getElementById('package');
     const form = document.getElementById('registrationForm');
-    
+   
     if (!modal) return;
-    
+   
     // Set selected package if provided
     if (selectedPackage && packageSelect) {
         packageSelect.value = selectedPackage;
@@ -1140,15 +1184,15 @@ function openModal(selectedPackage = null) {
     modal.classList.remove('hidden');
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
-    
+   
     // Add UTM inputs to the form
     if (form) {
         addUtmHiddenInputs(form);
     }
-    
+   
     // Auto-fill form from cookies
     autoFillFormFromCookies();
-    
+   
     // Focus on first empty input
     setTimeout(() => {
         const inputs = modal.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
@@ -1168,12 +1212,12 @@ function openModal(selectedPackage = null) {
 
 function closeModal() {
     const modal = document.getElementById('registrationModal');
-    
+   
     if (!modal) return;
-    
+   
     modal.classList.remove('active');
     document.body.style.overflow = 'auto';
-    
+   
     // Hide modal after animation
     setTimeout(() => {
         modal.classList.add('hidden');
@@ -1184,22 +1228,22 @@ function closeModal() {
 function openOptinModal() {
     const modal = document.getElementById('optinModal');
     const form = document.getElementById('optinForm');
-    
+   
     if (!modal) return;
-    
+   
     // Show modal
     modal.classList.remove('hidden');
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
-    
+   
     // Add UTM inputs to the form
     if (form) {
         addUtmHiddenInputs(form);
     }
-    
+   
     // Auto-fill form from cookies
     autoFillFormFromCookies();
-    
+   
     // Focus on first empty input
     setTimeout(() => {
         const inputs = modal.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
@@ -1214,12 +1258,12 @@ function openOptinModal() {
 
 function closeOptinModal() {
     const modal = document.getElementById('optinModal');
-    
+   
     if (!modal) return;
-    
+   
     modal.classList.remove('active');
     document.body.style.overflow = 'auto';
-    
+   
     // Hide modal after animation
     setTimeout(() => {
         modal.classList.add('hidden');
@@ -1230,12 +1274,12 @@ function closeOptinModal() {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        
+       
         const targetId = this.getAttribute('href');
         if (targetId === '#') return;
-        
+       
         const targetElement = document.querySelector(targetId);
-        
+       
         if (targetElement) {
             window.scrollTo({
                 top: targetElement.offsetTop - 80, // Offset for the sticky header
@@ -1250,25 +1294,25 @@ function initTiltEffects() {
     // Only apply tilt effects on desktop devices
     if (window.innerWidth > 1024) {
         const tiltCards = document.querySelectorAll('.tilt-card');
-        
+       
         tiltCards.forEach(card => {
             const cardInner = card.querySelector('.tilt-card-inner');
             if (!cardInner) return;
-            
+           
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                
+               
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                
+               
                 const rotateX = (y - centerY) / centerY * -10;
                 const rotateY = (x - centerX) / centerX * 10;
-                
+               
                 cardInner.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             });
-            
+           
             card.addEventListener('mouseleave', () => {
                 cardInner.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
             });
@@ -1290,7 +1334,7 @@ function getPageType() {
 // Pulse animation for CTA buttons
 function initPulseAnimations() {
     const pulseButtons = document.querySelectorAll('.pulse-btn');
-    
+   
     pulseButtons.forEach(button => {
         // Add CSS animation class if not already present
         if (!button.style.animation) {
