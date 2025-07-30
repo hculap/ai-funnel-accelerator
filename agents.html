@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zbuduj Swoją Cyfrową Armię: Kurs Automatyzacji Marketingu i Sprzedaży z Agentami AI i No-Code</title>
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.appley(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '719796276554165');
+        fbq('track', 'PageView');
+        fbq('track', 'CompleteRegistration');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=719796276554165&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="./styles.css"/>
+</head>
+<body class="dark-theme">
+    <!-- Background Effects -->
+    <div class="gl-wrapper" id="scene-container"></div>
+    <div class="noise-bg"></div>
+    
+    <!-- Navigation -->
+    <nav class="sticky-nav py-5">
+        <div class="container mx-auto px-6 lg:px-8 flex justify-between items-center">
+            <div class="font-bold text-2xl">
+                <img src="./logo.png" alt="Logo" class="h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 w-auto" />
+            </div>
+            <div class="hidden md:flex space-x-10">
+                <a href="#o-programie" class="nav-link">O programie</a>
+                <a href="#program" class="nav-link">Program</a>
+                <a href="#mentor" class="nav-link">Mentor</a>
+            </div>
+            <button class="hidden md:flex btn-primary py-3 px-6 text-sm" onclick="openModal()">Aplikuj teraz</button>
+            <button class="flex md:hidden btn-primary py-3 px-6 text-sm" onclick="openModal()">Dołącz</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="glow glow-3"></div>
+        
+        <div class="container mx-auto px-4 lg:px-8 hero-content py-12 lg:py-20">
+            <!-- Mobile Layout (default) -->
+            <div class="lg:hidden flex flex-col gap-8">
+                <!-- Badge and Heading Section -->
+                <div class="text-center">
+                    <div class="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-white/20 backdrop-blur-sm text-white text-sm font-medium mb-6 animate-pulse">
+                        <span class="w-2 h-2 bg-green-400 rounded-full mr-3 animate-ping"></span>
+                        Jedyny kurs w Polsce prowadzony przez lidera technologicznego
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.1] mb-6 text-white">
+                        <span class="text-gradient block mb-2">Przyśpiesz Swoją Pracę</span>
+                        <span class="text-gradient block mb-2">z Narzędziami AI</span>
+                        <span class="text-white/90 text-2xl sm:text-3xl md:text-4xl font-light block">
+                            Zostań Specjalistą w Swojej Dziedzinie i Używaj AI do Usprawnienia Codziennych Zadań
+                        </span>
+                    </h1>
+                    <div class="flex items-center justify-center space-x-3 mb-8">
+                        <div class="bubble-stat">
+                            <span class="bubble-text">10+ lat doświadczenia</span>
+                        </div>
+                        <div class="bubble-stat">
+                            <span class="bubble-text">Były CTO</span>
+                        </div>
+                        <div class="bubble-stat">
+                            <span class="bubble-text">Prelegent międzynarodowy</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Description Section -->
+                <div class="text-center">
+                    <p class="text-lg text-white/90 font-light mb-8 leading-relaxed max-w-2xl mx-auto">
+                        Nie musisz zostać specjalistą od automatyzacji - <strong class="text-gradient">zostań lepszy w tym, co już robisz</strong>. Poznaj narzędzia, które usprawniają Twoją codzienną pracę, 
+                        oszczędzają czas i zwiększają efektywność. <strong class="text-gradient">Praktyczne rozwiązania, nie teoria</strong> - to droga do sukcesu.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                        <button class="btn-primary text-center font-bold px-8 py-4 text-lg w-full sm:w-auto" onclick="openModal()">
+                            <i class="fas fa-rocket mr-2"></i>Aplikuj teraz
+                        </button>
+                        <a href="#o-programie" class="glass text-white font-bold py-4 px-8 rounded-2xl text-center hover:bg-white hover:bg-opacity-5 transition-all duration-500 w-full sm:w-auto">
+                            <i class="fas fa-book-open mr-2"></i>Poznaj Program
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+            
+            <!-- Desktop Layout -->
+            <div class="hidden lg:block">
+                <div class="text-center max-w-5xl mx-auto">
+                    <!-- Badge -->
+                    <div class="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-white/20 backdrop-blur-sm text-white text-sm font-medium mb-8 animate-pulse">
+                        <span class="w-2 h-2 bg-green-400 rounded-full mr-3 animate-ping"></span>
+                        Jedyny kurs w Polsce prowadzony przez lidera technologicznego
+                    </div>
+                    
+                    <!-- Main Heading -->
+                    <h1 class="text-6xl xl:text-7xl font-black leading-[1.1] mb-8 text-white">
+                        <span class="text-gradient block mb-3">Przyśpiesz Swoją Pracę z Narzędziami AI</span>
+                        <span class="text-white/90 text-3xl xl:text-4xl font-light block">
+                            Zostań Specjalistą w Swojej Dziedzinie i Używaj AI do Usprawnienia Codziennych Zadań
+                        </span>
+                    </h1>
+                    
+                    <!-- Stats Bar -->
+                    <div class="flex items-center justify-center space-x-6 mb-10">
+                        <div class="bubble-stat-desktop">
+                            <span class="bubble-text-desktop">10+ lat doświadczenia</span>
+                        </div>
+                        <div class="bubble-stat-desktop">
+                            <span class="bubble-text-desktop">Były CTO</span>
+                        </div>
+                        <div class="bubble-stat-desktop">
+                            <span class="bubble-text-desktop">Prelegent międzynarodowy</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Description -->
+                    <p class="text-xl xl:text-2xl text-white/90 font-light mb-12 leading-relaxed max-w-4xl mx-auto">
+                        Nie musisz zostać specjalistą od automatyzacji - <strong class="text-gradient">zostań lepszy w tym, co już robisz</strong>. Poznaj narzędzia, które usprawniają Twoją codzienną pracę, 
+                        oszczędzają czas i zwiększają efektywność. <strong class="text-gradient">Praktyczne rozwiązania, nie teoria</strong> - to droga do sukcesu.
+                    </p>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-row space-x-6 justify-center mb-16">
+                        <button class="btn-primary text-center font-bold px-10 py-5 text-lg" onclick="openModal()">
+                            <i class="fas fa-rocket mr-2"></i>Aplikuj teraz
+                        </button>
+                        <a href="#o-programie" class="glass text-white font-bold py-5 px-10 rounded-2xl text-center hover:bg-white hover:bg-opacity-5 transition-all duration-500 text-lg">
+                            <i class="fas fa-book-open mr-2"></i>Poznaj Program
+                        </a>
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agents Working For You Section -->
+    <section class="section section-dark relative overflow-hidden py-20">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-20 left-20 w-64 h-64 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-l from-purple-600 to-blue-500 rounded-full filter blur-3xl"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-purple-500/20 rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500/20 to-purple-600/20 rounded-full border border-blue-500/30 mb-8">
+                    <span class="text-blue-400 mr-3">🤖</span>
+                    <span class="text-white/80 text-sm font-medium">Cyfrowa siła robocza przyszłości</span>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-black mb-8 text-white">
+                    Agenci AI, którzy <span class="text-gradient">pracują za Ciebie</span>
+                </h2>
+                <p class="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed">
+                    Wyobraź sobie zespół cyfrowych specjalistów, którzy <strong class="text-gradient">nigdy nie śpią, nie biorą urlopów i nie popełniają błędów</strong>. 
+                    Pracują 24/7, ucząc się z każdą interakcją i stając się lepsi w tym, co robią.
+                </p>
+            </div>
+            
+            <!-- Agent Cards Grid -->
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                    
+                    <!-- Agent Danych -->
+                    <div class="glass p-8 rounded-2xl hover:transform hover:scale-105 transition-all duration-500 border-l-4 border-blue-500 group">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg group-hover:shadow-blue-500/30 transition-all duration-500">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Agent Danych</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <p class="text-white/90 leading-relaxed">
+                                <strong class="text-blue-400">Zbiera i organizuje</strong> wszystkie Twoje kontakty, leady i pomysły z maili, notatek i rozmów.
+                            </p>
+                            <div class="bg-blue-500/10 rounded-lg p-4">
+                                <p class="text-white/80 text-sm">
+                                    "Każdy mail automatycznie trafia do odpowiedniej kategorii. Leady są oceniane i priorytetyzowane. Nigdy więcej nie zgubisz ważnego kontaktu."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Agent Strategii -->
+                    <div class="glass p-8 rounded-2xl hover:transform hover:scale-105 transition-all duration-500 border-l-4 border-purple-600 group">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl flex items-center justify-center mr-4 shadow-lg group-hover:shadow-purple-500/30 transition-all duration-500">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                </svg>
+                            </div>     
+                            <h3 class="text-2xl font-bold text-white">Agent Strategii</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <p class="text-white/90 leading-relaxed">
+                                <strong class="text-purple-400">Analizuje rynek i konkurencję,</strong> tworzy persony klientów i opracowuje strategie sprzedażowe w godzinę zamiast w tygodnie.
+                            </p>
+                            <div class="bg-purple-500/10 rounded-lg p-4">
+                                <p class="text-white/80 text-sm">
+                                    "Podajesz branżę i otrzymujesz kompletną analizę rynku, mapę konkurencji i gotową strategię pozycjonowania."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Agent Treści -->
+                    <div class="glass p-8 rounded-2xl hover:transform hover:scale-105 transition-all duration-500 border-l-4 border-green-500 group">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg group-hover:shadow-green-500/30 transition-all duration-500">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Agent Treści</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <p class="text-white/90 leading-relaxed">
+                                <strong class="text-green-400">Tworzy artykuły, posty i grafiki</strong> w Twoim stylu. Z jednego briefu powstaje kompletna kampania marketingowa.
+                            </p>
+                            <div class="bg-green-500/10 rounded-lg p-4">
+                                <p class="text-white/80 text-sm">
+                                    "Opisujesz temat w dwóch zdaniach, a otrzymujesz artykuł na blog, 10 postów na social media i dopasowane grafiki."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Agent Sprzedaży -->
+                    <div class="glass p-8 rounded-2xl hover:transform hover:scale-105 transition-all duration-500 border-l-4 border-orange-500 group">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg group-hover:shadow-orange-500/30 transition-all duration-500">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Agent Sprzedaży</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <p class="text-white/90 leading-relaxed">
+                                <strong class="text-orange-400">Generuje oferty i prowadzi follow-up</strong> automatycznie. Personalizuje komunikację dla każdego klienta w czasie rzeczywistym.
+                            </p>
+                            <div class="bg-orange-500/10 rounded-lg p-4">
+                                <p class="text-white/80 text-sm">
+                                    "Lead wysyła zapytanie o 2 rano? Agent natychmiast przygotowuje spersonalizowaną ofertę i wysyła wraz z follow-up."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Agent Obsługi -->
+                    <div class="glass p-8 rounded-2xl hover:transform hover:scale-105 transition-all duration-500 border-l-4 border-pink-500 group">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg group-hover:shadow-pink-500/30 transition-all duration-500">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Agent Obsługi</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <p class="text-white/90 leading-relaxed">
+                                <strong class="text-pink-400">Obsługuje klientów 24/7,</strong> odpowiada na pytania, zbiera opinie i buduje programy lojalnościowe.
+                            </p>
+                            <div class="bg-pink-500/10 rounded-lg p-4">
+                                <p class="text-white/80 text-sm">
+                                    "Klient ma problem o północy? Agent rozwiązuje go natychmiast, a Ty dowiadujesz się rano wraz z raportem."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Agent Prospectingu -->
+                    <div class="glass p-8 rounded-2xl hover:transform hover:scale-105 transition-all duration-500 border-l-4 border-cyan-500 group">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg group-hover:shadow-cyan-500/30 transition-all duration-500">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Agent Prospectingu</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <p class="text-white/90 leading-relaxed">
+                                <strong class="text-cyan-400">Wyszukuje potencjalnych klientów</strong> w internecie, zbiera dane kontaktowe i ocenia jakość leadów automatycznie.
+                            </p>
+                            <div class="bg-cyan-500/10 rounded-lg p-4">
+                                <p class="text-white/80 text-sm">
+                                    "Definiujesz idealnego klienta, a Agent znajduje 100 takich firm dziennie wraz z danymi kontaktowymi."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- How They Work Together -->
+                <div class="bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-blue-500/10 rounded-3xl p-12 text-center">
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                        Jak współpracują ze sobą?
+                    </h3>
+                    <div class="max-w-4xl mx-auto">
+                        <p class="text-xl text-white/90 mb-8 leading-relaxed">
+                            To nie są oddzielne narzędzia - to <strong class="text-gradient">zintegrowany ekosystem</strong>, gdzie każdy agent przekazuje informacje kolejnemu:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                            <div class="bg-white/5 rounded-2xl p-6">
+                                <div class="text-2xl mb-3">🔄</div>
+                                <h4 class="text-lg font-bold text-white mb-2">Ciągły przepływ danych</h4>
+                                <p class="text-white/80 text-sm">Agent Prospectingu znajduje lead → Agent Strategii go ocenia → Agent Sprzedaży wysyła ofertę</p>
+                            </div>
+                            <div class="bg-white/5 rounded-2xl p-6">
+                                <div class="text-2xl mb-3">🧠</div>
+                                <h4 class="text-lg font-bold text-white mb-2">Uczenie się z każdej interakcji</h4>
+                                <p class="text-white/80 text-sm">Każda odpowiedź klienta uczy wszystkich agentów, poprawiając jakość przyszłych działań</p>
+                            </div>
+                            <div class="bg-white/5 rounded-2xl p-6">
+                                <div class="text-2xl mb-3">⚡</div>
+                                <h4 class="text-lg font-bold text-white mb-2">Działanie w czasie rzeczywistym</h4>
+                                <p class="text-white/80 text-sm">Gdy jeden agent wykryje okazję, natychmiast aktywuje pozostałych do działania</p>
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <p class="text-xl text-white/90 font-light">
+                                <strong class="text-gradient">Rezultat?</strong> Twój biznes działa jak duża korporacja z pełnym działem marketingu, sprzedaży i obsługi klienta - 
+                                ale to tylko Ty i Twoja cyfrowa armia agentów AI.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New About Course Section -->
+<section id="opis" class="section bg-gray-50">
+    <div class="container mx-auto px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 text-gray-800 reveal-on-scroll">
+            Główny Stos Technologiczny: <br/><span class="text-gradient">Narzędzia Twojej Siły Roboczej AI</span>
+            </h2>
+            <p class="text-xl text-gray-800 reveal-on-scroll">
+            Ten kurs koncentruje się na starannie wyselekcjonowanym zestawie platform, które razem tworzą potężny silnik automatyzacji. Każde narzędzie zostało wybrane ze względu na swoją moc i dostępność dla użytkowników nietechnicznych, tworząc fundament dla "solopreneurskiego stosu technologicznego".
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-1 gap-16 items-center">
+            <div class="fade-in-left reveal-on-scroll">
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Nazwa Narzędzia
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Główna Funkcja
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Uzasadnienie Wyboru
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Wykorzystanie w Modułach
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Make.com
+                                </th>
+                                <td class="px-6 py-4">
+                                    Hub Automatyzacji i Integracji
+                                </td>
+                                <td class="px-6 py-4">
+                                    Wizualny kreator przepływów pracy umożliwiający budowę złożonej, nieliniowej logiki. Bardziej elastyczny i opłacalny przy skomplikowanych scenariuszach niż alternatywy takie jak Zapier.
+                                </td>
+                                <td class="px-6 py-4">
+                                    1, 2, 3, 4, 5, 6
+                                </td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    OpenAI API
+                                </th>
+                                <td class="px-6 py-4">
+                                    Warstwa Inteligencji
+                                </td>
+                                <td class="px-6 py-4">
+                                    Dostęp do zaawansowanych modeli językowych (np. GPT-4) do generowania treści, personalizacji i analizy. Zintegrowany poprzez Make.com, co eliminuje potrzebę kodowania.
+                                </td>
+                                <td class="px-6 py-4">
+                                    2, 5, 6
+                                </td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Airtable
+                                </th>
+                                <td class="px-6 py-4">
+                                    Hub Danych (CRM/CMS)
+                                </td>
+                                <td class="px-6 py-4">
+                                    Hybryda arkusza kalkulacyjnego i bazy danych. Intuicyjny interfejs idealny do zarządzania leadami, kalendarzem treści i danymi klientów w sposób ustrukturyzowany.
+                                </td>
+                                <td class="px-6 py-4">
+                                    1, 2, 3, 5, 6
+                                </td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Browse AI
+                                </th>
+                                <td class="px-6 py-4">
+                                    Narzędzie do Prospectingu
+                                </td>
+                                <td class="px-6 py-4">
+                                    Platforma no-code do web scrapingu z interfejsem "wskaż i kliknij". Umożliwia łatwe wyodrębnianie publicznie dostępnych danych bez wiedzy technicznej, co stanowi przyjazną alternatywę dla narzędzi takich jak Apify.
+                                </td>
+                                <td class="px-6 py-4">
+                                    3
+                                </td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Voiceflow
+                                </th>
+                                <td class="px-6 py-4">
+                                    Agent Konwersacyjny
+                                </td>
+                                <td class="px-6 py-4">
+                                    Przyjazny dla użytkownika, wizualny kreator zaawansowanych chatbotów i asystentów głosowych. Idealny dla nietechnicznych użytkowników do projektowania i wdrażania inteligentnych konwersacji opartych na bazie wiedzy.
+                                </td>
+                                <td class="px-6 py-4">
+                                    4, 6
+                                </td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Zewnętrzni Agenci
+                                </th>
+                                <td class="px-6 py-4">
+                                    Rozszerzenie Możliwości
+                                </td>
+                                <td class="px-6 py-4">
+                                    Integracja z zewnętrznymi agentami AI i narzędziami specjalistycznymi, które rozszerzają możliwości głównego stosu technologicznego o dodatkowe funkcjonalności i automatyzacje.
+                                </td>
+                                <td class="px-6 py-4">
+                                    1, 2, 3, 4, 5, 6
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                                </div>
+                            </div>
+                            </div>
+    </div>
+</section>
+
+    <!-- Who is this program for? Section -->
+    <section id="dla-kogo" class="section section-dark">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold mb-8 reveal-on-scroll">
+                    Dla kogo jest ten program? <span class="text-gradient">Precyzyjne Profil Uczestnika</span>
+                </h2>
+                <p class="text-xl text-white/90 reveal-on-scroll">
+                    Nie dla każdego. Ten kurs jest dla osób, które <strong class="text-gradient">myślą strategicznie</strong> i chcą budować systemy, 
+                    nie tylko używać narzędzi. Sprawdź, czy to Ty:
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Marketing Manager Overwhelmed -->
+                <div class="target-card fade-in-up reveal-on-scroll">
+                    <div class="target-icon mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-orange-600 rounded-full flex items-center justify-center mx-auto">
+                            <i class="fas fa-exclamation-triangle text-2xl text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Menedżer Marketingu</h3>
+                    <p class="text-white/90 text-sm mb-4 italic">"Przytłoczony żonglowaniem dziesięcioma różnymi narzędziami"</p>
+                    <div class="space-y-3 text-white/80 text-sm">
+                        <div class="flex items-start">
+                            <span class="text-red-400 mr-2 mt-1">💔</span>
+                            <span><strong>Ból:</strong> Chaos narzędzi, brak integracji, duplikowanie danych</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-400 mr-2 mt-1">✅</span>
+                            <span><strong>Rozwiązanie:</strong> Jeden zintegrowany ekosystem AI</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-blue-400 mr-2 mt-1">🎯</span>
+                            <span><strong>Rezultat:</strong> 80% mniej czasu na administrację, więcej na strategię</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Solopreneur One-Person Army -->
+                <div class="target-card fade-in-up reveal-on-scroll" style="transition-delay: 0.2s">
+                    <div class="target-icon mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto">
+                            <i class="fas fa-user-ninja text-2xl text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Solopreneur</h3>
+                    <p class="text-white/90 text-sm mb-4 italic">"Musi być swoim własnym, jednoosobowym działem sprzedaży"</p>
+                    <div class="space-y-3 text-white/80 text-sm">
+                        <div class="flex items-start">
+                            <span class="text-red-400 mr-2 mt-1">💔</span>
+                            <span><strong>Ból:</strong> Brak czasu na wszystko, spalenie, ograniczenia skalowania</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-400 mr-2 mt-1">✅</span>
+                            <span><strong>Rozwiązanie:</strong> Cyfrowa armia pracująca 24/7</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-blue-400 mr-2 mt-1">🎯</span>
+                            <span><strong>Rezultat:</strong> Skalowanie bez zespołu, więcej wolnego czasu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agency Owner High-Margin Services -->
+                <div class="target-card fade-in-up reveal-on-scroll" style="transition-delay: 0.4s">
+                    <div class="target-icon mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto">
+                            <i class="fas fa-building text-2xl text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Właściciel Agencji</h3>
+                    <p class="text-white/90 text-sm mb-4 italic">"Chce oferować wysokomarżowe usługi wdrożeń automatyzacji"</p>
+                    <div class="space-y-3 text-white/80 text-sm">
+                        <div class="flex items-start">
+                            <span class="text-red-400 mr-2 mt-1">💔</span>
+                            <span><strong>Ból:</strong> Konkurencja cenowa, niskie marże, trudność w skalowaniu</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-400 mr-2 mt-1">✅</span>
+                            <span><strong>Rozwiązanie:</strong> Premium usługi automatyzacji AI</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-blue-400 mr-2 mt-1">🎯</span>
+                            <span><strong>Rezultat:</strong> 3x wyższe marże, unikalna pozycja rynkowa</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center mt-16">
+                <p class="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+                    Rozpoznajesz się w którymś z profili? To znaczy, że <strong class="text-gradient">myślisz strategicznie</strong> i jesteś gotowy na transformację. 
+                    Nie szukasz kolejnego kursu o narzędziach - szukasz <strong class="text-gradient">systemu myślenia</strong>.
+                </p>
+                <button class="btn-primary text-center font-bold px-8 py-4 text-lg" onclick="openModal()">
+                    <i class="fas fa-rocket mr-2"></i>Tak, to ja - aplikuję
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- Meet Your Mentor Section -->
+    <section id="mentor" class="section section-dark relative overflow-hidden py-16">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-10 left-10 w-48 h-48 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-64 h-64 bg-gradient-to-l from-blue-600 to-blue-500 rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-600/20 rounded-full border border-blue-500/30 mb-6">
+                    <span class="text-blue-400 mr-2">🚀</span>
+                    <span class="text-white/80 text-sm font-medium">Jedyny kurs prowadzony przez lidera technologicznego</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-black mb-6 text-white">
+                    Poznaj swojego <span class="text-gradient">mentora</span>
+                </h2>
+                <p class="text-xl text-white/90 max-w-3xl mx-auto">
+                    Nie uczysz się od marketera, który odkrył AI. Uczysz się od <strong class="text-gradient">technologa z 10-letnim doświadczeniem</strong>, 
+                    który budował systemy dla dziesiątek tysięcy użytkowników.
+                </p>
+            </div>
+            
+            <!-- Main Layout: Profile + Experience in asymmetric grid -->
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-stretch">
+                    
+                    <!-- Left side: Profile Card (spans 4 columns) -->
+                    <div class="lg:col-span-4">
+                        <div class="glass p-8 rounded-2xl h-full relative overflow-hidden flex flex-col">
+                            <!-- Decorative elements -->
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-blue-500/20 to-transparent rounded-bl-2xl"></div>
+                            <div class="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-purple-600/20 to-transparent rounded-tr-2xl"></div>
+                            
+                            <!-- Profile Image -->
+                            <div class="text-center mb-6 flex-shrink-0">
+                                <div class="relative inline-block">
+                                    <div class="w-40 h-40 rounded-full overflow-hidden bg-gradient-to-r from-blue-500 via-purple-600 to-blue-600 p-1 transform hover:scale-105 transition-all duration-500">
+                                        <div class="w-full h-full rounded-full overflow-hidden shadow-2xl">
+                                            <img src="./avatar.png" alt="Szymon Paluch" class="w-full h-full object-cover">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Profile Info -->
+                            <div class="text-center flex-grow flex flex-col justify-center">
+                                <h3 class="text-3xl font-black text-white mb-3">Szymon Paluch</h3>
+                                <div class="inline-block px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-6">
+                                    <p class="text-sm font-bold text-white">Web3 Product & Strategy Executive</p>
+                                </div>
+                                <div class="space-y-2 mb-6">
+                                    <p class="text-white/90 text-sm leading-relaxed">
+                                        <span class="text-gradient font-bold">Były CTO</span> w Diagnostyka Digital HUB
+                                    </p>
+                                    <p class="text-white/90 text-sm leading-relaxed">
+                                        <span class="text-gradient font-bold">10+ lat kodowania</span> (JavaScript, Python)
+                                    </p>
+                                    <p class="text-white/90 text-sm leading-relaxed">
+                                        <span class="text-gradient font-bold">Prelegent międzynarodowy</span> (AI, Web3, UX)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right side: Experience Cards (spans 8 columns) -->
+                    <div class="lg:col-span-8">
+                        <div class="h-full flex flex-col">
+                            <!-- Top row: 2 cards -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1 mb-6">
+                                <!-- AI Business Transformation -->
+                                <div class="glass p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-300 border-l-4 border-blue-500 group h-full flex flex-col">
+                                    <div class="flex items-start flex-grow">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 shadow-lg">
+                                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="flex-grow">
+                                            <h4 class="text-lg font-bold text-white mb-2">Myślenie systemowe</h4>
+                                            <p class="text-white/90 text-sm leading-relaxed">Buduje <span class="text-blue-400 font-bold">zintegrowane ekosystemy</span>, nie pojedyncze automatyzacje. Strategia przed technologią.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Practical AI Implementation -->
+                                <div class="glass p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-300 border-l-4 border-purple-600 group h-full flex flex-col">
+                                    <div class="flex items-start flex-grow">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 shadow-lg">
+                                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                            </svg>
+                                        </div>
+                                        <div class="flex-grow">
+                                            <h4 class="text-lg font-bold text-white mb-2">Doświadczenie na skalę</h4>
+                                            <p class="text-white/90 text-sm leading-relaxed">Budował platformy obsługujące <span class="text-purple-400 font-bold">80,000+ aktywnych użytkowników</span>. Wie, co działa w praktyce.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Bottom row: 2 cards -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
+                                <!-- Scaling Success Stories -->
+                                <div class="glass p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-300 border-l-4 border-blue-600 group h-full flex flex-col">
+                                    <div class="flex items-start flex-grow">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-500 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 shadow-lg">
+                                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                            </svg>
+                                        </div>
+                                        <div class="flex-grow">
+                                            <h4 class="text-lg font-bold text-white mb-2">Transformacja biznesowa</h4>
+                                            <p class="text-white/90 text-sm leading-relaxed">Nie tylko automatyzacja - <span class="text-blue-400 font-bold">całkowita transformacja</span> sposobu działania biznesu.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- AI Education & Mentoring -->
+                                <div class="glass p-6 rounded-xl hover:transform hover:scale-105 transition-all duration-300 border-l-4 border-blue-500 group h-full flex flex-col">
+                                    <div class="flex items-start flex-grow">
+                                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 shadow-lg">
+                                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                            </svg>
+                                        </div>
+                                        <div class="flex-grow">
+                                            <h4 class="text-lg font-bold text-white mb-2">Uznany ekspert</h4>
+                                            <p class="text-white/90 text-sm leading-relaxed">Dzieli się wiedzą na <span class="text-blue-400 font-bold">konferencjach międzynarodowych</span> w Ameryce, Europie i Azji.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                
+                <!-- CTA -->
+                <div class="text-center">
+                    <div class="inline-block relative">
+                        <a class="btn-primary inline-block" href="#cennik">
+                            Zacznij pracę z mentorem
+                        </a>
+                    </div>
+                    <p class="text-white/70 mt-4">Dołącz do tysięcy twórców i przedsiębiorców, którzy już skalują swoje biznesy z AI</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Course Agenda Section -->
+<section id="program" class="section section-dark">
+    <div class="container mx-auto px-6 lg:px-8">
+  
+      <!-- ======= Nagłówek sekcji ======= -->
+      <div id="agenda" class="max-w-3xl mx-auto text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-bold mb-8 reveal-on-scroll">
+          <span class="text-gradient">Program Modułowy</span>
+        </h2>
+        <div class="inline-block px-6 py-3 bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/30 rounded-full mb-8">
+          <span class="text-orange-400 font-bold">⚡ Strategia systemowa: kompletny ekosystem automatyzacji</span>
+        </div>
+        <p class="text-xl text-white/90 reveal-on-scroll mb-8">
+        Każdy moduł to <strong class="text-gradient">konkretne kompetencje</strong> i gotowy element systemu. Uczysz się zasad, implementujesz rozwiązania, osiągasz mierzalne rezultaty.
+        </p>
+
+      </div>
+  
+      <div class="max-w-5xl mx-auto">
+        
+        <!-- ======================== Moduł 1 ======================== -->
+        <div class="agenda-item pb-16 reveal-on-scroll fade-in-up">
+          <div class="glass px-8 py-10 rounded-2xl border-l-4 border-green-500">
+            <!-- Module Header -->
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4">1</div>
+              <div>
+                <h3 class="text-3xl font-bold text-white"><span class="text-green-400">🟢</span> Moduł 1 — <span class="text-gradient">Centrum Danych 24/7</span></h3>
+              </div>
+            </div>
+            
+            <!-- Goal -->
+            <div class="bg-green-500/10 rounded-xl p-6 mb-8">
+              <h4 class="text-lg font-bold text-white mb-3">🎯 Cel</h4>
+              <p class="text-white/90">Twoja skrzynka i notatki zaczynają wreszcie grać do jednej bramki. W kilku kliknięciach budujesz centralny rejestr kontaktów i pomysłów, który aktualizuje się sam, nawet gdy śpisz.</p>
+            </div>
+            
+            <!-- What we do -->
+            <div class="mb-8">
+              <h4 class="text-xl font-bold text-white mb-4">🔧 Co robimy</h4>
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <span class="text-green-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Łączymy Gmail z Make, aby pobierać przychodzące maile</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-green-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">OpenAI etykietuje wiadomości i rozpoznaje leady</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-green-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Make zapisuje leady oraz szybkie notatki w Airtable</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-green-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Budujemy widoki i filtry do błyskawicznego wyszukiwania</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Tools -->
+            <div class="mb-8">
+              <h4 class="text-xl font-bold text-white mb-4">🛠️ Narzędzia</h4>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm font-medium border border-blue-500/30">Gmail</span>
+                <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm font-medium border border-purple-500/30">Make</span>
+                <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full text-sm font-medium border border-orange-500/30">Airtable</span>
+                <span class="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm font-medium border border-green-500/30">OpenAI</span>
+              </div>
+            </div>
+            
+            <div class="result-section bg-gradient-to-r from-green-500/10 to-transparent rounded-xl p-6">
+              <h4 class="text-xl font-bold text-white mb-3">🏆 Efekt</h4>
+              <p class="text-white/90">Masz jedno, zawsze aktualne źródło danych o klientach i pomysłach. Koniec z przekopywaniem się przez skrzynkę i karteczki samoprzylepne.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- ======================== Moduł 2 ======================== -->
+        <div class="agenda-item pb-16 reveal-on-scroll fade-in-up" style="transition-delay:0.15s">
+          <div class="glass px-8 py-10 rounded-2xl border-l-4 border-yellow-500">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4">2</div>
+              <div>
+                <h3 class="text-3xl font-bold text-white"><span class="text-yellow-400">🟡</span> Moduł 2 — <span class="text-gradient">Strategia na Sterydach AI</span></h3>
+              </div>
+            </div>
+            
+            <div class="bg-yellow-500/10 rounded-xl p-6 mb-8">
+              <h4 class="text-lg font-bold text-white mb-3">🎯 Cel</h4>
+              <p class="text-white/90">Zamiast dniami wertować raporty, włączasz agentów, którzy w godzinę robią za Ciebie rynkowy rekonesans. Na jego bazie powstaje precyzyjny plan sprzedaży i komunikacji.</p>
+            </div>
+            
+            <div class="mb-8">
+              <h4 class="text-xl font-bold text-white mb-4">🔧 Co robimy</h4>
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <span class="text-yellow-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Agent Research skanuje rynek, konkurencję i persony</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-yellow-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Agent Strategy tworzy propozycję wartości i WSL</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-yellow-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Wyznaczamy kluczowe KPI i ramy cenowe</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-yellow-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Mapujemy lejki: od pierwszego kontaktu do zakupu</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-8">
+              <h4 class="text-xl font-bold text-white mb-4">🛠️ Narzędzia</h4>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm font-medium border border-blue-500/30">Agenci Research & Strategy (gotowi)</span>
+                <span class="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm font-medium border border-green-500/30">OpenAI API</span>
+                <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full text-sm font-medium border border-orange-500/30">Airtable (plan działań)</span>
+              </div>
+            </div>
+            
+            <div class="result-section bg-gradient-to-r from-yellow-500/10 to-transparent rounded-xl p-6">
+              <h4 class="text-xl font-bold text-white mb-3">🏆 Efekt</h4>
+              <p class="text-white/90">Kończysz z krystalicznie jasną mapą „kto-co-jak-za ile". Decyzje podejmujesz na danych, nie na przeczuciu.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- ======================== Moduł 3 ======================== -->
+        <div class="agenda-item pb-16 reveal-on-scroll fade-in-up" style="transition-delay:0.3s">
+          <div class="glass px-8 py-10 rounded-2xl border-l-4 border-orange-500">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4">3</div>
+              <div>
+                <h3 class="text-3xl font-bold text-white"><span class="text-orange-400">🟠</span> Moduł 3 — <span class="text-gradient">Oferta, która Sprzedaje Sama</span></h3>
+              </div>
+            </div>
+            
+            <div class="bg-orange-500/10 rounded-xl p-6 mb-8">
+              <h4 class="text-lg font-bold text-white mb-3">🎯 Cel</h4>
+              <p class="text-white/90">Twoja strategia zamienia się w konkret, który ląduje u klienta szybciej, niż zdąży poprosić o wycenę. Follow-upy i przypomnienia idą w tło, bo ogarnia je automat.</p>
+            </div>
+            
+            <div class="mb-8">
+              <h4 class="text-xl font-bold text-white mb-4">🔧 Co robimy</h4>
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <span class="text-orange-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Generator ofert tworzy PDF lub WSL w minutę</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-orange-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Make personalizuje i wysyła maile z ofertą</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-orange-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">System śledzi otwarcia i planowo wysyła follow-up</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-orange-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Zapisy aktywności trafiają do CRM w Airtable</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-8">
+              <h4 class="text-xl font-bold text-white mb-4">🛠️ Narzędzia</h4>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm font-medium border border-purple-500/30">Make</span>
+                <span class="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm font-medium border border-green-500/30">OpenAI</span>
+                <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full text-sm font-medium border border-orange-500/30">Airtable</span>
+              </div>
+            </div>
+            
+            <div class="result-section bg-gradient-to-r from-orange-500/10 to-transparent rounded-xl p-6">
+              <h4 class="text-xl font-bold text-white mb-3">🏆 Efekt</h4>
+              <p class="text-white/90">Profesjonalna oferta trafia do klienta błyskawicznie, a automatyczne follow-upy dbają o ciągłość rozmowy sprzedażowej bez Twojego udziału.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- ======================== Moduł 4 ======================== -->
+        <div class="agenda-item pb-16 reveal-on-scroll fade-in-up" style="transition-delay:0.45s">
+          <div class="glass px-8 py-10 rounded-2xl border-l-4 border-yellow-500">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4">4</div>
+              <div>
+                <h3 class="text-3xl font-bold text-white"><span class="text-yellow-400">🟡</span> Moduł 4 — <span class="text-gradient">Fabryka Treści & Obrazów</span></h3>
+              </div>
+            </div>
+            
+            <div class="bg-yellow-500/10 rounded-xl p-6 mb-8">
+              <h4 class="text-lg font-bold text-white mb-3">🎯 Cel</h4>
+              <p class="text-white/90">Z jednego briefu powstaje cała kampania: artykuł, posty, grafiki. Ty podajesz temat, a agenci produkują i planują publikacje, zachowując spójność marki.</p>
+            </div>
+            
+            <div class="mb-8">
+              <h4 class="text-xl font-bold text-white mb-4">🔧 Co robimy</h4>
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <span class="text-yellow-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Generujemy artykuł, a potem skracamy go do social-postów</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-yellow-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Tworzymy dopasowane grafiki i podrzucamy hashtagi</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-yellow-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Automatycznie wypełniamy kalendarz treści w Airtable</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-yellow-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Ustawiamy Make, by publikował w blogu i social media</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-8">
+              <h4 class="text-xl font-bold text-white mb-4">🛠️ Narzędzia</h4>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm font-medium border border-blue-500/30">Agenci Content</span>
+                <span class="px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm font-medium border border-green-500/30">OpenAI</span>
+                <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full text-sm font-medium border border-orange-500/30">Airtable (kalendarz)</span>
+                <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm font-medium border border-purple-500/30">Make</span>
+              </div>
+            </div>
+            
+            <div class="result-section bg-gradient-to-r from-yellow-500/10 to-transparent rounded-xl p-6">
+              <h4 class="text-xl font-bold text-white mb-3">🏆 Efekt</h4>
+              <p class="text-white/90">Twój kalendarz publikacji pęka w szwach, a spójny styl komunikacji utrzymuje się bez ręcznego pilnowania każdego posta.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- ======================== Moduł 5 ======================== -->
+        <div class="agenda-item pb-16 reveal-on-scroll fade-in-up" style="transition-delay:0.6s">
+          <div class="glass px-8 py-10 rounded-2xl border-l-4 border-green-500">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4">5</div>
+              <div>
+                <h3 class="text-3xl font-bold text-white"><span class="text-green-400">🟢</span> Moduł 5 — <span class="text-gradient">Strona + Chatbot = Lead Magnet</span></h3>
+              </div>
+            </div>
+            
+            <div class="bg-green-500/10 rounded-xl p-6 mb-8">
+              <h4 class="text-lg font-bold text-white mb-3">🎯 Cel</h4>
+              <p class="text-white/90">Landing page i chatbot pracują jak duet sprzedawcy i asystenta, który kwalifikuje gości 24/7. Każdy wartościowy kontakt trafia prosto do lejka.</p>
+            </div>
+            
+            <div class="mb-8">
+              <h4 class="text-xl font-bold text-white mb-4">🔧 Co robimy</h4>
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <span class="text-green-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Budujemy stronę typu landing lub mini-site</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-green-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Osadzamy chatbota Voiceflow z bazą wiedzy</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-green-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Make zapisuje rozmowy i status leadów w CRM</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-green-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Ustawiamy automatyczne powiadomienia o „gorących" leadach</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-8">
+              <h4 class="text-xl font-bold text-white mb-4">🛠️ Narzędzia</h4>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-indigo-500/20 text-indigo-300 rounded-full text-sm font-medium border border-indigo-500/30">Website builder (no-code)</span>
+                <span class="px-4 py-2 bg-teal-500/20 text-teal-300 rounded-full text-sm font-medium border border-teal-500/30">Voiceflow</span>
+                <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm font-medium border border-purple-500/30">Make</span>
+                <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full text-sm font-medium border border-orange-500/30">Airtable</span>
+              </div>
+            </div>
+            
+            <div class="result-section bg-gradient-to-r from-green-500/10 to-transparent rounded-xl p-6">
+              <h4 class="text-xl font-bold text-white mb-3">🏆 Efekt</h4>
+              <p class="text-white/90">Strona nie tylko zbiera leady, lecz od razu ocenia ich gotowość do zakupu. Ty dostajesz sygnał wtedy, gdy warto wejść do rozmowy.</p>
+            </div>
+          </div>
+        </div>
+  
+        <!-- ======================== Moduł 6 ======================== -->
+        <div class="agenda-item pb-16 reveal-on-scroll fade-in-up" style="transition-delay:0.75s">
+          <div class="glass px-8 py-10 rounded-2xl border-l-4 border-purple-500">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4">6</div>
+              <div>
+                <h3 class="text-3xl font-bold text-white"><span class="text-purple-400">🟣</span> Moduł 6 — <span class="text-gradient">Obsługa & Lojalność</span></h3>
+              </div>
+            </div>
+            
+            <div class="bg-purple-500/10 rounded-xl p-6 mb-8">
+              <h4 class="text-lg font-bold text-white mb-3">🎯 Cel</h4>
+              <p class="text-white/90">Po sprzedaży klient nie znika z radaru: bot prowadzi go za rękę, a system lojalnościowy zamienia zadowolenie w powtórne zakupy i polecenia.</p>
+            </div>
+            
+            <div class="mb-8">
+              <h4 class="text-xl font-bold text-white mb-4">🔧 Co robimy</h4>
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <span class="text-purple-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Rozszerzamy chatbota o FAQ posprzedażowe</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-purple-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Automatycznie zbieramy opinie i oceny NPS</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-purple-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Wysyłamy kupony rekomendacyjne i upsell</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-purple-400 mr-3 mt-1">•</span>
+                  <span class="text-white/90">Segmentujemy bazę pod kampanie retencyjne</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-8">
+              <h4 class="text-xl font-bold text-white mb-4">🛠️ Narzędzia</h4>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-teal-500/20 text-teal-300 rounded-full text-sm font-medium border border-teal-500/30">Voiceflow</span>
+                <span class="px-4 py-2 bg-purple-500/20 text-purple-300 rounded-full text-sm font-medium border border-purple-500/30">Make</span>
+                <span class="px-4 py-2 bg-orange-500/20 text-orange-300 rounded-full text-sm font-medium border border-orange-500/30">Airtable</span>
+              </div>
+            </div>
+            
+            <div class="result-section bg-gradient-to-r from-purple-500/10 to-transparent rounded-xl p-6">
+              <h4 class="text-xl font-bold text-white mb-3">🏆 Efekt</h4>
+              <p class="text-white/90">Klient czuje, że opieka działa non-stop, a Ty budujesz przychód z powrotów i poleceń bez zwiększania zespołu wsparcia.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Summary -->
+        <div class="text-center mt-16 p-8 bg-gradient-to-r from-blue-500/10 to-purple-600/10 rounded-2xl border border-blue-500/20">
+          <p class="text-xl text-white/90 leading-relaxed">
+            Po tych sześciu modułach Twój biznes pracuje jak zespół cyfrowych specjalistów: przyciąga, sprzedaje i obsługuje klientów, a Ty odzyskujesz czas na strategie i skalowanie.
+          </p>
+        </div>
+
+        </div>
+  
+      <!-- ======= CTA ======= -->
+      <div class="mt-24 text-center reveal-on-scroll">
+        <a class="btn-primary inline-block" href="#mentor" >Poznaj swojego mentora</a>
+      </div>
+    </div>
+  </section>
+
+
+
+    <!-- Pricing -->
+    <section id="cennik" class="section bg-gradient-to-b from-gray-50 to-gray-100 py-20">
+        <div class="container mx-auto px-4 lg:px-8">
+            <!-- Nagłówek -->
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <span class="inline-block px-4 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4">PAKIETY WARSZTATOWE</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Praktyczna wiedza, którą wdrożysz od zaraz</h2>
+                <p class="text-xl text-gray-600">Wybierz pakiet dostosowany do Twoich potrzeb i poziomu zaangażowania</p>
+            </div>
+    
+            <!-- Karty cenowe -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto text-white">
+                <!-- Oferta A -->
+                <div class="pricing-card rounded-2xl overflow-hidden shadow-xl border-2 border-blue-500 bg-white relative transform transition-all duration-300 hover:scale-105">
+                    <div class="bg-blue-600 text-white p-6 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Pakiet LIVE</h3>
+                        <p class="text-blue-200">Pakiet z pełnym dostępem do materiałów</p>
+                        <!-- <div class="flex justify-center items-end mb-4">
+                            <span class="text-5xl font-extrabold">2 499 zł</span>
+                            <span class="text-blue-200 ml-2">netto</span>
+                        </div> -->
+                    </div>
+                    <div class="p-10">
+                        <ul class="space-y-4 mb-10 text-white">
+                            <!-- Lista benefitów z poprawioną kolejnością -->
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>5 moduły warsztatowe na żywo</strong> (ok. 10 godzin praktycznej wiedzy) i 5 godzinnych spotkań Q&A</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>12-miesięczny dostęp</strong> do nagrań wszystkich sesji</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>Projekt końcowy</strong> z grupowym omówieniem i feedback'iem</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>Zamknięta grupa</strong> dla uczestników warsztatów (3 miesiące)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>Praktyczne ćwiczenia</strong> z każdego modułu z przykładami</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>Zestaw szablonów</strong> i narzędzi do wdrożenia</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span>Certyfikat ukończenia warsztatów</span>
+                            </li>
+                        </ul>
+                        <button class="block text-center py-4 px-8 rounded-lg  bg-blue-600 text-white font-bold text-lg transition duration-300 hover:bg-blue-700 transform hover:-translate-y-1 shadow-lg hover:shadow-xl w-full" onclick="openModal('pakiet-live')">WYBIERZ TEN PAKIET</button>
+                    </div>
+                </div>
+    
+                <!-- Oferta B -->
+                <div class="pricing-card rounded-2xl overflow-hidden shadow-xl bg-white relative transform transition-all duration-300 hover:scale-105">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">Tylko 8 miejsca!</div>
+                    <div class="absolute -top-4 -left-4">
+                    </div>
+                    <div class="bg-gray-800 text-white p-6 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Pakiet LIVE + MENTORING</h3>
+                        <p class="text-gray-400">Kompletny pakiet z mentoringiem</p>
+                        <!-- <div class="flex justify-center items-end mb-4">
+                            <span class="text-5xl font-extrabold">3 999 zł</span>
+                            <span class="text-gray-400 ml-2">netto</span>
+                        </div> -->
+                    </div>
+                    <div class="p-10">
+                        <p class="text-blue-600 font-semibold mb-4 border-b border-blue-200 pb-2">Zawiera wszystko z pakietu Standard, plus:</p>
+                        <ul class="space-y-4 mb-10 text-white">
+                            <!-- Lista benefitów uporządkowana + 1:1 -->
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>3 indywidualne sesje mentoringowe</strong> (60 min) z ekspertem</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>Indywidualny audyt</strong> Twojej strategii biznesowej</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>6-miesięczny dostęp do kanału VIP</strong> dla absolwentów Premium</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                <span><strong>30-minutowa konsultacja</strong> przed rozpoczęciem warsztatów</span>
+                            </li>
+                        </ul>
+                        <button class="block text-center py-4 px-8 btn-primary w-full text-lg" onclick="openModal('pakiet-live-mentoring')">WYBIERZ TEN PAKIET</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+<!-- FAQ Section -->
+<section id="faq" class="section">
+    <div class="container mx-auto px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white reveal-on-scroll">
+                Najczęściej zadawane <span class="text-gradient">pytania</span>
+            </h2>
+        </div>
+        
+        <div class="max-w-3xl mx-auto">
+            <!-- FAQ Accordion -->
+            <div class="faq-accordion">
+                <!-- FAQ Item 1 - Udoskonalony -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Czy potrzebuję wcześniejszego doświadczenia z narzędziami AI?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Większość uczestników widzi pierwsze wymierne rezultaty już w ciągu pierwszego tygodnia od wdrożenia pierwszych elementów systemu. Typowe początkowe efekty to oszczędność 5-10 godzin tygodniowo na powtarzalnych zadaniach oraz zwiększenie konwersji leadów o 15-30%. Pełne korzyści zazwyczaj pojawiają się po 6 tygodniach, gdy cały system zostanie zintegrowany i zoptymalizowany pod Twoją konkretną ofertę.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 - Udoskonalony -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.3s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Jakie koszty poza kursem muszę wziąć pod uwagę?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Aby w pełni wdrożyć system, sugerujemy budżet około 300-400 zł miesięcznie na narzędzia, w tym:</p>
+                        <ul class="text-white opacity-80 list-disc pl-6 mt-2">
+                            <li>ChatGPT Plus (ok. 90 zł/mies.)</li>
+                            <li>Make.com (darmowy plan na początek, później ok. 100 zł/mies.)</li>
+                            <li>Claude (darmowy plan jest wystarczający dla większości potrzeb)</li>
+                            <li>Runaway (opcjonalnie, w zależności od Twoich potrzeb)</li>
+                        </ul>
+                        <p class="text-white opacity-80 mt-4">W trakcie kursu pokazujemy również, jak maksymalnie wykorzystać darmowe plany oraz tańsze alternatywy dla bardziej zaawansowanych narzędzi, co pozwala zacząć z minimalnym budżetem ok. 100 zł miesięcznie. W ramach kursu otrzymasz również specjalne zniżki na wybrane narzędzia, które nie są dostępne publicznie.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 - Udoskonalony -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.4s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Co jeśli już korzystam z niektórych narzędzi AI?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">To fantastycznie! Twoja istniejąca wiedza będzie cennym atutem. Nasz kurs pokaże Ci, jak strategicznie połączyć te narzędzia w spójny, zautomatyzowany system sprzedażowy, który działa 24/7. Wielu naszych uczestników już wcześniej korzystało z ChatGPT czy innych narzędzi AI, ale dopiero systemowe podejście i integracja w zautomatyzowany lejek przyniosły im przełomowe rezultaty. Nasz program skupia się na unikalnych przepływach pracy i zastosowaniach, których nie znajdziesz w typowych poradnikach online. Według ankiet, nawet zaawansowani użytkownicy AI odkrywają w naszym kursie techniki, które zwiększają ich produktywność o 40-60%.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 7 - Nowy -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.6s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Czy ten program jest odpowiedni dla mojej branży?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">
+                            Nasz program został zaprojektowany z myślą o twórcach online i przedsiębiorcach posiadających oferty high ticket — zarówno usług, jak i produktów premium. Sprawdzi się wszędzie tam, gdzie kluczowe jest skuteczne pozyskiwanie klientów i skalowanie sprzedaży.
+                            </p>    
+                    </div>
+                </div>
+
+                <!-- FAQ Item 8 - Nowy -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.7s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Jakie wsparcie otrzymam podczas programu?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">W ramach programu otrzymasz kompleksowe wsparcie na wielu poziomach:</p>
+                        <ul class="text-white opacity-80 list-disc pl-6 mt-2">
+                            <li>Cotygodniowe sesje Q&A na żywo z głównym instruktorem (nagrania dostępne, jeśli nie możesz uczestniczyć)</li>
+                            <li>Dedykowana społeczność w zamkniętej grupie, gdzie możesz zadawać pytania 24/7</li>
+                            <li>Wsparcie techniczne przez czat i e-mail</li>
+                            <li>Dodatkowe godziny konsultacji 1:1 (dostępne w zależności od wybranego pakietu)</li>
+                            <li>Biblioteka gotowych promptów i szablonów do wykorzystania w Twoim biznesie</li>
+                        </ul>
+                        <p class="text-white opacity-80 mt-4">Naszym priorytetem jest Twój sukces, dlatego zapewniamy wielopoziomowe wsparcie, które pomoże Ci pokonać każdą przeszkodę i w pełni wdrożyć system w Twoim biznesie.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 9 - Nowy -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 0.8s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Co jeśli nie będę mógł/mogła uczestniczyć w którejś z sesji na żywo?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Rozumiemy, że masz napięty harmonogram, dlatego zaprojektowaliśmy program z myślą o maksymalnej elastyczności. Wszystkie sesje są nagrywane i udostępniane uczestnikom po zakończeniu. Dodatkowo:</p>
+                        <ul class="text-white opacity-80 list-disc pl-6 mt-2">
+                            <li>Otrzymasz szczegółowe notatki z każdej sesji z kluczowymi punktami i czasowymi odnośnikami do nagrania</li>
+                            <li>Możesz zadawać pytania przed sesją, a my odpowiemy na nie podczas spotkania</li>
+                            <li>Masz dostęp do dedykowanego wątku w grupie społecznościowej, gdzie możesz omówić tematy z sesji</li>
+                            <li>Wszystkie materiały są podzielone na logiczne moduły, które możesz przerabiać we własnym tempie</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <!-- FAQ Item 12 - Nowy -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 1.1s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Ile czasu tygodniowo powinienem/powinnam poświęcić na program?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Rekomendujemy poświęcenie około 4-5 godzin tygodniowo dla osiągnięcia optymalnych rezultatów, co obejmuje:</p>
+                        <ul class="text-white opacity-80 list-disc pl-6 mt-2">
+                            <li>2 godziny na przerobienie materiałów szkoleniowych</li>
+                            <li>1 godzina na uczestnictwo w sesji Q&A (lub obejrzenie nagrania)</li>
+                            <li>1-2 godziny na praktyczne wdrażanie poznanych technik w Twoim biznesie</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <!-- FAQ Item 14 - Nowy -->
+                <div class="faq-item glass rounded-2xl mb-6 reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 1.3s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Co wyróżnia ten program od innych kursów AI dostępnych online?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Nasz program wyróżnia się na kilku kluczowych płaszczyznach:</p>
+                        <ul class="text-white opacity-80 list-disc pl-6 mt-2">
+                            <li><strong>Systemowe podejście:</strong> Nie uczymy pojedynczych narzędzi, ale kompletnego systemu, który łączy różne technologie AI w zautomatyzowany lejek sprzedażowy</li>
+                            <li><strong>Praktyczne wdrożenie:</strong> Ponad 80% kursu to praktyczne ćwiczenia i rzeczywiste wdrożenia, nie teoretyczne wykłady</li>
+                            <li><strong>Wsparcie na żywo:</strong> Cotygodniowe sesje Q&A i aktywna społeczność, gdzie otrzymasz odpowiedzi na Twoje specyficzne pytania</li>
+                        </ul>
+                        <p class="text-white opacity-80 mt-4">Podczas gdy większość kursów skupia się na podstawach obsługi narzędzi AI, my pokazujemy, jak strategicznie wykorzystać AI jako przewagę konkurencyjną w Twoim biznesie, aby generować więcej leadów, konwertować więcej klientów i zwiększać przychody – wszystko przy mniejszym nakładzie Twojego czasu.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 15 - Nowy -->
+                <div class="faq-item glass rounded-2xl reveal-on-scroll fade-in-up overflow-hidden" style="transition-delay: 1.4s">
+                    <button class="faq-question w-full px-10 py-8 flex justify-between items-center text-left" aria-expanded="false">
+                        <h3 class="text-2xl font-bold text-white">Jak duża będzie kohorta programu?</h3>
+                        <span class="faq-icon text-accent transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer px-10 pb-8 pt-0 hidden">
+                        <p class="text-white opacity-80">Aby zapewnić najwyższą jakość wsparcia i interakcji, ograniczamy wielkość każdej kohorty do maksymalnie 40 uczestników. Dzięki temu:</p>
+                        <ul class="text-white opacity-80 list-disc pl-6 mt-2">
+                            <li>Każdy uczestnik otrzymuje odpowiednią ilość indywidualnej uwagi podczas sesji Q&A</li>
+                            <li>Możemy dokładnie monitorować postępy każdej osoby i oferować spersonalizowane wsparcie</li>
+                            <li>Tworzy się spójna społeczność, gdzie uczestnicy mogą nawiązywać wartościowe kontakty</li>
+                            <li>Instruktorzy mogą dostosowywać tempo i zakres materiału do potrzeb grupy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Final CTA Section -->
+    <section class="section relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-primary/30 to-secondary/30 z-0"></div>
+        <div class="container mx-auto px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white reveal-on-scroll">
+                Gotowy wyskalować swoją sprzedaż <span class="text-gradient">dzięki AI</span>?
+            </h2>
+            <p class="text-xl text-white opacity-90 max-w-3xl mx-auto mb-8 reveal-on-scroll">
+                W zaledwie 6 tygodni możesz zamienić nieregularne dochody w stabilny, przewidywalny system. Dołącz do twórców, którzy dzięki AI tworzą treści szybciej i z przyjemnością rozwijają swój marketing oraz sprzedaż na nowym poziomie.
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center mb-10 reveal-on-scroll">
+                <!-- <div class="bg-white bg-opacity-10 rounded-xl px-6 py-4 mb-6 md:mb-0 md:mr-8">
+                    <p class="text-white mb-1">Gwarantowane miejsca kończą się za:</p>
+                    <div class="text-gradient font-bold text-xl">3 dni, 11 godzin, 43 minuty</div>
+                </div> -->
+                <button class="btn-primary inline-block" onclick="openModal()">Dowiedz się o programie</button>
+            </div>
+        
+            
+            <p class="text-white opacity-80 text-lg reveal-on-scroll">Nie czekaj, aż Twoja konkurencja zacznie korzystać z AI. <strong><br />Liczba miejsc jest ograniczona</strong>, aby zapewnić najwyższą jakość wsparcia.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark py-16 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-gradient">AI Funnel Accelerator</h3>
+                    <p class="text-white opacity-70">Zmieniamy sposób, w jaki niezależni twórcy i przedsiębiorcy sprzedają swoje produkty i usługi High-Ticket.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-5 text-white">Szybkie linki</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#o-programie" class="text-white opacity-70 hover:opacity-100 transition-opacity">Co zmienisz?</a></li>
+                        <li><a href="#program" class="text-white opacity-70 hover:opacity-100 transition-opacity">O Programie</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-5 text-white">Zasoby</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#faq" class="text-white opacity-70 hover:opacity-100 transition-opacity">FAQ</a></li>
+                        <li><a href="/prywatnosc.pdf" target="_blank" class="text-white opacity-70 hover:opacity-100 transition-opacity">Polityka prywatności</a></li>
+                        <li><a href="/regulamin.pdf" target="_blank" class="text-white opacity-70 hover:opacity-100 transition-opacity">Regulamin</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-5 text-white">Kontakt</h3>
+                    <p class="text-white opacity-70 mb-3">info@edufy.pl</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-16 pt-10 text-center text-white opacity-60">
+                <p>&copy; 2025 edufy.pl | Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Registration Form -->
+    <div id="registrationModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="text-3xl font-bold text-white mb-4">
+                    Dowiedz się więcej o programie<br/><span class="text-gradient">AI Funnel Accelerator</span>
+                </h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <p class="text-lg text-white opacity-80 mb-8 text-center">
+                    Po wypełnieniu formularza nasz doradca skontaktuje się z Tobą w celu przedstawienia szczegółowych informacji dotyczących przebiegu programu oraz jego kosztów.
+                </p>
+                
+                <form id="registrationForm" class="space-y-6">
+                    <div>
+                        <label for="name" class="form-label">Imię i Nazwisko</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Twoje imię" required>
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="twoj@email.pl" required>
+                    </div>
+                    
+                    <div>
+                        <label for="phone" class="form-label">Telefon</label>
+                        <input type="tel" id="phone" name="phone" class="form-input" placeholder="+48 000 000 000" required>
+                    </div>
+                    
+                    <div>
+                        <label for="package" class="form-label">Wybierz pakiet</label>
+                        <select id="package" name="package" class="form-input">
+                            <option value="" disabled selected>Wybierz pakiet</option>
+                            <option value="pakiet-live">Pakiet LIVE</option>
+                            <option value="pakiet-live-mentoring">Pakiet LIVE & MENTORING</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <label class="flex items-start cursor-pointer group">
+                            <div class="relative flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input type="checkbox" class="opacity-0 absolute h-5 w-5" required>
+                                    <div class="bg-transparent border-2 border-gray-500 rounded w-5 h-5 flex flex-shrink-0 justify-center items-center mr-3 group-hover:border-primary transition-colors">
+                                        <svg class="fill-current hidden w-3 h-3 text-white pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-sm text-white opacity-70 ml-2">Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z polityką prywatności. Rozumiem, że mogę otrzymywać komunikację związaną z programem.</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary w-full text-lg py-4">
+                        Wyślij formularz
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+</html>
+</html>
